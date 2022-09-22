@@ -9,7 +9,36 @@
 <body>
 	<div style="">
 	
-	<button onclick="plot();"> plot </button>
+	<form   >
+  <label for="select_plant">Choose a plant to visualize:</label>
+  <select name="plants" id="select_plant" onchange="plot(this.value)">
+    <option value="https://raw.githubusercontent.com/xiaoranzhou/cpb-binder/master/tutorial/jupyter/case_01_0.05cm_lateral_radius.xml_16_0_0_0_res_10_water_r_xyl_5rst_1_15-6-29-13-21.csv">Case1 Plant1</option>
+    <option value="https://raw.githubusercontent.com/xiaoranzhou/cpb-binder/master/tutorial/jupyter/case_01_0.05cm_lateral_radius.xml_16_1_0_0_res_10_water_r_xyl_5rst_1_15-6-29-13-24.csv">Case1 Plant2</option>
+    <option value="https://raw.githubusercontent.com/xiaoranzhou/cpb-binder/master/tutorial/jupyter/case_01_0.05cm_lateral_radius.xml_16_2_0_0_res_10_water_r_xyl_5rst_1_15-6-29-13-27.csv">Case1 Plant3</option>
+    <option value="https://raw.githubusercontent.com/xiaoranzhou/cpb-binder/master/tutorial/jupyter/case_01_0.025cm_lateral_radius.xml_16_1_0.1_0_res_2nd_10_trans_trsv6vml_15-6-29-15-30.csv">Case2 Plant1</option>
+    <option value="https://raw.githubusercontent.com/xiaoranzhou/cpb-binder/master/tutorial/jupyter/case_01_0.05cm_lateral_radius.xml_16_1_0.1_0_res_2nd_10_trans_trsv6vml_15-6-29-15-33.csv">Case2 Plant2</option>
+    <option value="https://raw.githubusercontent.com/xiaoranzhou/cpb-binder/master/tutorial/jupyter/case_01_0.075cm_lateral_radius.xml_16_1_0.1_0_res_2nd_10_trans_trsv6vml_15-6-29-15-36.csv">Case2 Plant3</option>
+    <option value="https://raw.githubusercontent.com/xiaoranzhou/cpb-binder/master/tutorial/jupyter/case_3_lateral_radius.xml_16_1_1_case_3_fixed_res_main_5_trsv10_15-6-29-14-1.csv">Case3 Plant1</option>
+    <option value="https://raw.githubusercontent.com/xiaoranzhou/cpb-binder/master/tutorial/jupyter/case_3_lateral_radius.xml_16_1_1_case_3_fixed_res_main_5_trsv9_15-6-29-13-58.csv">Case3 Plant2</option>
+    <option value="https://raw.githubusercontent.com/xiaoranzhou/cpb-binder/master/tutorial/jupyter/case_3_lateral_radius.xml_16_1_1_case_3_fixed_res_main_5_trsv8_15-6-29-13-55.csv">Case3 Plant3</option>
+  </select>
+</form>
+
+<form >
+  <label for="figure1_column">Change figure1 target column:</label>
+  <select name="figure1 column" id="figure1_column">
+    <option value="P_ST" selected>Sieve-tube Pressue</option>
+    <option value="P_Xyl">Xylem Pressure</option>
+    <option value="Q_ST">Carbon Content</option>
+    <option value="C_ST">Sieve-tube Concentration</option>
+    <option value="c_demand">Carbon Demand</option>
+    <option value="c_satis">Exudation</option>
+    <option value="exudation">Growth Rate</option>
+    <option value="order">Order</option>
+    <option value="organ_id">organ_id</option>
+    <option value="organ_id">organ_id</option>
+  </select>
+</form>
 	</div>
   <div id="myDiv" style="width:95vw; height:95vh"><!-- Plotly chart will be drawn inside this DIV --></div>
   
@@ -243,9 +272,9 @@ var layout= {
   },
 	scene1:{
 	aspectratio:{x:1,y:1,z:1},
-	xaxis:{showticklabels:false, title:{text:""},range:[-0.1,0.1], gridcolor:"grey", color:"grey" ,backgroundcolor:"rgba(0, 0, 0, 0.2)",showbackground: true, },
-	yaxis:{showticklabels:false, title:{text:""},range:[-0.1,0.1],  gridcolor:"black", color:"grey" ,backgroundcolor:"rgba(0, 0, 0, 0.2)",showbackground: true,},
-	zaxis:{showticklabels:false, title:{text:""},range:[-0.18,0.18],  gridcolor:"black", color:"grey" ,backgroundcolor:"rgba(0, 0, 0, 0.2)",showbackground: true,},
+	xaxis:{showticklabels:false, title:{text:""},range:[-0.1,0.1], gridcolor:"white", color:"black" ,backgroundcolor:"rgba(0, 0, 0, 0.1)",showbackground: true, },
+	yaxis:{showticklabels:false, title:{text:""},range:[-0.1,0.1],  gridcolor:"white", color:"black" ,backgroundcolor:"rgba(0, 0, 0, 0.1)",showbackground: true,},
+	zaxis:{showticklabels:false, title:{text:""},range:[-0.21,0.18],  gridcolor:"white", color:"black" ,backgroundcolor:"rgba(0, 0, 0, 0.1)",showbackground: true,},
 	domain: {
             x: [0.0,  0.5],
             y: [0.5, 1.0]
@@ -263,9 +292,9 @@ var layout= {
 	},
 	scene2:{
 	aspectratio:{x:1,y:1,z:1},
-	xaxis:{showticklabels:false, title:{text:""},range:[-0.1,0.1], gridcolor:"grey", color:"grey" ,backgroundcolor:"rgba(0, 0, 0, 0.2)",showbackground: true, },
-	yaxis:{showticklabels:false, title:{text:""},range:[-0.1,0.1],  gridcolor:"black", color:"grey" ,backgroundcolor:"rgba(0, 0, 0, 0.2)",showbackground: true,},
-	zaxis:{showticklabels:false, title:{text:""},range:[-0.18,0.18],  gridcolor:"black", color:"grey" ,backgroundcolor:"rgba(0, 0, 0, 0.2)",showbackground: true,},
+	xaxis:{showticklabels:false, title:{text:""},range:[-0.1,0.1], gridcolor:"white", color:"black" ,backgroundcolor:"rgba(0, 0, 0, 0.1)",showbackground: true, },
+	yaxis:{showticklabels:false, title:{text:""},range:[-0.1,0.1],  gridcolor:"white", color:"black" ,backgroundcolor:"rgba(0, 0, 0, 0.1)",showbackground: true,},
+	zaxis:{showticklabels:false, title:{text:""},range:[-0.21,0.18],  gridcolor:"white", color:"black" ,backgroundcolor:"rgba(0, 0, 0, 0.1)",showbackground: true,},
 
 	domain: {
             x: [0.5,  1.0],
@@ -281,9 +310,9 @@ var layout= {
 	},
 	scene3:{
 	aspectratio:{x:1,y:1,z:1},
-	xaxis:{showticklabels:false, title:{text:""},range:[-0.1,0.1], gridcolor:"grey", color:"grey" ,backgroundcolor:"rgba(0, 0, 0, 0.2)",showbackground: true, },
-	yaxis:{showticklabels:false, title:{text:""},range:[-0.1,0.1],  gridcolor:"black", color:"grey" ,backgroundcolor:"rgba(0, 0, 0, 0.2)",showbackground: true,},
-	zaxis:{showticklabels:false, title:{text:""},range:[-0.18,0.18],  gridcolor:"black", color:"grey" ,backgroundcolor:"rgba(0, 0, 0, 0.2)",showbackground: true,},
+	xaxis:{showticklabels:false, title:{text:""},range:[-0.1,0.1], gridcolor:"white", color:"black" ,backgroundcolor:"rgba(0, 0, 0, 0.1)",showbackground: true, },
+	yaxis:{showticklabels:false, title:{text:""},range:[-0.1,0.1],  gridcolor:"white", color:"black" ,backgroundcolor:"rgba(0, 0, 0, 0.1)",showbackground: true,},
+	zaxis:{showticklabels:false, title:{text:""},range:[-0.21,0.18],  gridcolor:"white", color:"black" ,backgroundcolor:"rgba(0, 0, 0, 0.1)",showbackground: true,},
 
 	domain: {
             x: [0,  0.5],
@@ -299,9 +328,9 @@ var layout= {
 	},
 	scene4:{
 	aspectratio:{x:1,y:1,z:1},
-	xaxis:{showticklabels:false, title:{text:""},range:[-0.1,0.1], gridcolor:"grey", color:"grey" ,backgroundcolor:"rgba(0, 0, 0, 0.2)",showbackground: true, },
-	yaxis:{showticklabels:false, title:{text:""},range:[-0.1,0.1],  gridcolor:"black", color:"grey" ,backgroundcolor:"rgba(0, 0, 0, 0.2)",showbackground: true,},
-	zaxis:{showticklabels:false, title:{text:""},range:[-0.18,0.18],  gridcolor:"black", color:"grey" ,backgroundcolor:"rgba(0, 0, 0, 0.2)",showbackground: true,},
+	xaxis:{showticklabels:false, title:{text:""},range:[-0.1,0.1], gridcolor:"white", color:"black" ,backgroundcolor:"rgba(0, 0, 0, 0.1)",showbackground: true, },
+	yaxis:{showticklabels:false, title:{text:""},range:[-0.1,0.1],  gridcolor:"white", color:"black" ,backgroundcolor:"rgba(0, 0, 0, 0.1)",showbackground: true,},
+	zaxis:{showticklabels:false, title:{text:""},range:[-0.21,0.18],  gridcolor:"white", color:"black" ,backgroundcolor:"rgba(0, 0, 0, 0.1)",showbackground: true,},
 
 	domain: {
             x: [0.5,  1.0],

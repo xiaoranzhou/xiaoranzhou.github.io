@@ -4,27 +4,54 @@
       <script src="https://cdn.jsdelivr.net/pyodide/v0.21.3/full/pyodide.js"></script>
   </head>
   <body>
-    Pyodide test page <br>
-		<input type="file" id="input_json" name="json" multiple/>
-	<input type="file" id="input_xlsx" name="xlsx" multiple/>
-	<button id="submit" onclick="main();"> submit </button>
+    Browser app converts ARC.JSON to SAMPLE.XML for ENA repo <br>
+        <input style="" type="file" id="input_json" name="json" multiple/>
+    <input style="display:none" type="file" id="input_xlsx" name="xlsx" multiple/>
+    <button id="submit" onclick="main(input_json);"> start conversion </button>
+        <div style="margin:auto;" id="xml_output">
+    </div>
     <script type="text/javascript">
-	var input_json , input_xlsx;
-	const input1 = document.getElementById("input_json");
-	input1.addEventListener("change", handleFiles1, false);
-	function handleFiles1() {
-	  input_json = this.files; 
-	};
-	const input2 = document.getElementById("input_xlsx");
-	input2.addEventListener("change", handleFiles2, false);
-	function handleFiles2() {
-	  input_xlsx = this.files; 
-	};
+    var input_json , input_xlsx;
+    const input1 = document.getElementById("input_json");
+    input1.addEventListener("change", handleFiles1, false);
+    function handleFiles1() {
+
+        if (this.files.length > 0) 
+      {
+        var reader = new FileReader(); // File reader to read the file 
+        
+        // This event listener will happen when the reader has read the file
+        reader.addEventListener('load', function() {
+          var result = JSON.stringify(JSON.parse(reader.result)); // Parse the result into an object 
+          console.log("reader.result is : "+reader.result);
+          input_json = result;
+          //console.log("result is : "+result);
+
+        });
+        
+        reader.readAsText(this.files[0]); // Read the uploaded file
+
+    
+    
+    
+    
+    };
+    }
+    
+    const input2 = document.getElementById("input_xlsx");
+    input2.addEventListener("change", handleFiles2, false);
+    function handleFiles2() {
+      input_xlsx = this.files; 
+    };
     let pyodide;
-async function main() {
-  pyodide = await loadPyodide();
-  await pyodide.loadPackage(["pandas"]);
-  pyodide.runPython(`
+    
+    async function main(input_json) {
+    pyodide = await loadPyodide();
+    await pyodide.loadPackage(["pandas"]);
+    //let namespace = pyodide.globals.get("dict")();
+    let namespace = pyodide.toPy({ input_json:input_json });
+    pyodide.runPython(`
+import time
 import sys, getopt
 import xml.etree.ElementTree as et 
 import json
@@ -33,21 +60,21 @@ import subprocess
 import numpy as np
 from pyodide.http import pyfetch
 from js import XMLHttpRequest
-
-
-
+print(input_json)
+start = time.time()
+print("start")
 def append_table_protocol(element, json_rows):
 
     for parameter in element:
 
         p=parameter.get('parameterName') if parameter.get('parameterName') is not None else None
-#         print(p)
+#         #  print(p)
         term_name = p.get('annotationValue') if p.get('annotationValue') is not None else None
-        print('name is: '+ term_name )
+        #  print('name is: '+ term_name )
         term_source = p.get('termSource') if p.get('termSource')  is not None else None
-        print( term_source)
+        #  print( term_source)
         term_accession = p.get('termAccession') if p.get('termAccession')  is not None else None
-        print( term_accession)                          
+        #  print( term_accession)                          
         index_value= p.get('comments')[0].get("value")
         json_rows.append( [file_id,
                            arc_id, 
@@ -202,7 +229,7 @@ def append_output(element, json_rows):
                            index_value, 
                            value])
 #         print('index value is: '+ term_value)
-#         print('index value is: '+ term_value)
+
 # todo factorValues, derived from
 
 def init_none():
@@ -229,7 +256,7 @@ def init_none():
     term_source = None
     term_accession = None
     
-def write_smaple_xml(xml_input):
+def write_sample_xml(xml_input):
     input_ = xml_input[xml_input["subsection_id"].str.match(r'1SPL01_plants_')==True ]
     sample= input_
     input_list = sample[sample["input_name"].notna()]
@@ -267,20 +294,11 @@ def write_smaple_xml(xml_input):
 
 
     tree = et.ElementTree(a)
-    et.indent(tree, space=" \\n", level=0)
-    et.dump(a)
+    et.indent(tree, space=" ", level=0)
+    #et.dump(a)
     tree.write("SAMPLE.xml", encoding="utf-8")
+    return tree
         
-
-        
-        
-
-    
-    
-    
-
-
-# new function
 
 def convert_json(arc_json_file, mapping_file):
     with open(arc_json_file, "r") as read_file:
@@ -289,8 +307,8 @@ def convert_json(arc_json_file, mapping_file):
     
     
 
-    
-
+    global xml_output
+    global xmloutput
     global file_id
     global arc_id
     global subsection_id
@@ -326,14 +344,13 @@ def convert_json(arc_json_file, mapping_file):
     file_id = arc_json.get("identifier")
     section = "studies"
     studies = arc_json.get("studies")
-	
     arc_id = studies[0].get("identifier")
     processSequences = arc_json.get("studies")[0].get('assays')[0].get("processSequence")
 
     for process_seq in processSequences:
 
         subsection_id = process_seq.get("name")
-        print(subsection_id)
+        #  print(subsection_id)
 
         parameter_values = process_seq.get("parameterValues")
         append_table_assays(parameter_values, json_rows)
@@ -346,7 +363,7 @@ def convert_json(arc_json_file, mapping_file):
                 input_id = i
 
                 derived_from = input_.get("derivesFrom")[0].get("name") if input_.get("derivesFrom") is not None else None
-                print(input_name + " derivesFrom is ", derived_from)
+                #  print(input_name + " derivesFrom is ", derived_from)
                 characteristics = input_.get("characteristics") 
                 if characteristics != None:
                     append_c_input(characteristics,json_rows)
@@ -364,7 +381,7 @@ def convert_json(arc_json_file, mapping_file):
             output_name = output_.get("name")
             output_id = i
             derived_from = output_.get("derivesFrom")[0].get("name") if output_.get("derivesFrom") is not None else None
-            print(output_name + " and derived from is ", derived_from)
+            #  print(output_name + " and derived from is ", derived_from)
 
             term_type = output_.get('type') if output_.get('type') is not None else None
 
@@ -390,7 +407,22 @@ def convert_json(arc_json_file, mapping_file):
 
 
 
+    json_table = pd.DataFrame(json_rows, columns= json_cols)
+    mapping = pd.read_csv(mapping_file)
+    term_id = mapping.iloc[:,2]
+    mapping.iloc[:,3] = term_id.map( lambda x: "http://purl.obolibrary.org/obo/{}".format( str(x).replace(":", "_") )  )
 
+    
+    json_table["ena_id"] = json_table["term_name"]
+    a = json_table.loc[:, "ena_id"]
+    # a = json_table.loc[:, "term_accession"]
+    term_mapping = mapping.iloc[:,3]
+    for i, term in enumerate(term_mapping):
+         cond = json_table["term_accession"] == term
+    #     print(term)
+    #     print(filter_)
+         a.mask(cond , mapping.loc[:, "Field Name"][i], inplace= True)
+    json_table.to_csv('json_table_new.csv')
     
     
     a = et.Element('PROJECT_SET')
@@ -405,40 +437,71 @@ def convert_json(arc_json_file, mapping_file):
         f = et.SubElement(b, "SUBMISSION_PROJECT")
         g = et.SubElement(f, "SEQUENCING_PROJECT")
     tree = et.ElementTree(a)
-    et.indent(tree, space=" \\n", level=0)
+    et.indent(tree, space=" ", level=0)
 
     tree.write("STUDY.xml", encoding="utf-8")
 
     # sample xml
     xml_input = pd.read_csv("json_table_new.csv")
-    write_smaple_xml(xml_input)
-  
-req1 = XMLHttpRequest.new()
-req1.open("GET", "./inv.json", False)
-req1.send(None)
-arc_json_file = str(req1.response)
+    xml_output = et.tostring(write_sample_xml(xml_input).getroot(), encoding='utf8', method='xml')
+    xmloutput = xml_output.decode("utf-8")
+    with open("SAMPLE.XML", "wb") as fh:
+        fh.write(xml_output )
+    
+#req1 = XMLHttpRequest.new()
+#req1.open("GET", "./inv.json", False)
+#req1.send(None)
+#arc_json_file = str(req1.response)
 with open("inv.json", "w") as fh:
-      fh.write(arc_json_file)
+      fh.write(input_json)
 
 req2 = XMLHttpRequest.new()
-req2.open("GET", "./mapping_ERC000037.xlsx", False)
+req2.open("GET", "./mapping_ERC000037.csv", False)
 req2.send(None)
 mapping_file = str(req2.response)
-with open("mapping_ERC000037.xlsx", "w") as fh:
+with open("mapping_ERC000037.csv", "w") as fh:
       fh.write(mapping_file)
 
 
-req3 = XMLHttpRequest.new()
-req3.open("GET", "./json_table_new.csv", False)
-req3.send(None)
-json_table_new = str(req3.response)
-with open("json_table_new.csv", "w") as fh:
-      fh.write(json_table_new)
+#req3 = XMLHttpRequest.new()
+#req3.open("GET", "./json_table_new.csv", False)
+#req3.send(None)
+#json_table_new = str(req3.response)
+#with open("json_table_new.csv", "w") as fh:
+#      fh.write(json_table_new)
 
-convert_json("inv.json", "mapping_ERC000037.xlsx")
- `);
+convert_json("inv.json", "mapping_ERC000037.csv")
+end = time.time()
+used_time = end - start
+print("used time is: {} ".format(used_time) )
+ `,{ globals: namespace });
+let xmloutput = namespace.get("xmloutput");
+let output_div = document.getElementById("xml_output");
+output_div.innerText = xmloutput;
+var saveData = (function () {
+    var a = document.createElement("a");
+    document.body.appendChild(a);
+    a.style = "display: none";
+    return function (data, fileName) {
+            blob = new Blob([data], {type: "octet/stream"}),
+            url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = fileName;
+        a.click();
+        window.URL.revokeObjectURL(url);
+    };
+}());
 
-}
+var data = xmloutput,
+    fileName = "SAMPLE.XML";
+
+saveData(data, fileName);
+//let file = pyodide.FS.readFile("SAMPLE.XML", { encoding: "utf8" });
+//output_div.innerText = file;
+return namespace;
+
+
+};
  
     </script>
 

@@ -17,9 +17,9 @@
     
     example JSON input can be downloaded <a href="https://raw.githubusercontent.com/nfdi4plants/arc2repo/main/inv.json">here</a> 
     <br>
-        <input style="" type="file" id="input_json" name="json" multiple/>
+        <input  type="file" id="input_json" name="json" multiple/>
     <input style="display:none" type="file" id="input_xlsx" name="xlsx" multiple/>
-    <button id="submit" onclick="main(input_json);"> start conversion </button>
+    <button style="display:inline" id="submit" onclick="main(input_json);"> start conversion </button>
         <div style="margin:auto;" id="xml_output">
     </div>
     </div>
@@ -53,7 +53,7 @@
         });
         
         reader.readAsText(this.files[0]); // Read the uploaded file
-
+        //main(input_json);
     
     
     
@@ -83,7 +83,7 @@ import subprocess
 import numpy as np
 from pyodide.http import pyfetch
 from js import XMLHttpRequest
-print(input_json)
+# print(input_json)
 start = time.time()
 print("start")
 def append_table_protocol(element, json_rows):

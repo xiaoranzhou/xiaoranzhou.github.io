@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html>
+    
   <head>
+    <style>
+        .center {
+            position:relative;
+            text-align: center;
+        }
+        </style>
       <script src="https://cdn.jsdelivr.net/pyodide/v0.21.3/full/pyodide.js"></script>
   </head>
   <body>
-    Browser app converts ARC.JSON to SAMPLE.XML for ENA repo <br>
+    <h1 class="center">ARC.JSON to SAMPLE.XML </h1>
+
+    <div class="center">
+    
     example JSON input can be downloaded <a href="https://raw.githubusercontent.com/nfdi4plants/arc2repo/main/inv.json">here</a> 
     <br>
         <input style="" type="file" id="input_json" name="json" multiple/>
@@ -12,8 +22,19 @@
     <button id="submit" onclick="main(input_json);"> start conversion </button>
         <div style="margin:auto;" id="xml_output">
     </div>
+    </div>
     <script type="text/javascript">
     var input_json , input_xlsx;
+    var log_backup = console.log;
+    var log_messages = [];
+   
+    let output_div = document.getElementById("xml_output");
+        
+    console.log = function() {
+        log_messages.push.apply(log_messages, arguments);
+        log_backup.apply(console, arguments);
+        output_div.innerText= log_messages.join('\r\n');
+    };
     const input1 = document.getElementById("input_json");
     input1.addEventListener("change", handleFiles1, false);
     function handleFiles1() {
@@ -25,7 +46,7 @@
         // This event listener will happen when the reader has read the file
         reader.addEventListener('load', function() {
           var result = JSON.stringify(JSON.parse(reader.result)); // Parse the result into an object 
-          console.log("reader.result is : "+reader.result);
+          //console.log("reader.result is : "+reader.result);
           input_json = result;
           //console.log("result is : "+result);
 
@@ -475,11 +496,9 @@ with open("mapping_ERC000037.csv", "w") as fh:
 convert_json("inv.json", "mapping_ERC000037.csv")
 end = time.time()
 used_time = end - start
-print("used time is: {} ".format(used_time) )
+print("Time used for conversion is: {} seconds".format(used_time) )
  `,{ globals: namespace });
-let xmloutput = namespace.get("xmloutput");
-let output_div = document.getElementById("xml_output");
-output_div.innerText = xmloutput;
+ let xmloutput = namespace.get("xmloutput");
 var saveData = (function () {
     var a = document.createElement("a");
     document.body.appendChild(a);

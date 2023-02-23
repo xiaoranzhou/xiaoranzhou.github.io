@@ -1,0 +1,22 @@
+<PROJECT_SET>
+ 
+<PROJECT alias="TalinumFacultativeCAM">
+ 
+ 
+<TITLE>Facultative CAM in Talinum triangulare</TITLE>
+ 
+ 
+<DESCRIPTION>[{'pubMedID': '26530316', 'doi': '10.1104/pp.15.01076', 'authorList': 'Brilhaus, Dominik; Bräutigam, Andrea; Mettler-Altmann, Tabea; Winter, Klaus; Weber, Andreas P M', 'title': 'Reversible Burst of Transcriptional Changes during Induction of Crassulacean Acid Metabolism in Talinum triangulare.', 'status': {'annotationValue': 'Published'}}]</DESCRIPTION>
+ 
+ 
+<SUBMISSION_PROJECT>
+ 
+ 
+ 
+<SEQUENCING_PROJECT />
+ 
+ 
+</SUBMISSION_PROJECT>
+ 
+</PROJECT>
+</PROJECT_SET>

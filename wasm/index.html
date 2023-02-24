@@ -24,8 +24,14 @@
         <a class="" href="https://nfdi4plants.org/" style="">
             <img src="images/logo.png" alt="Logo" width="32" height="32" style="position: absolute; margin: 8px 12px 8px 12px; left: 0px; padding-top: 4px;" />
         </a>
-        
+
+
+
+          
+          
         <div class="justify-content-center row d-flex align-items-center" style="margin: 0 0 0 0; ; padding: 0 0 0 0; height: 3.25rem;  ">
+            
+            
             <div class="btn-group d-md-none g-0 dropdown col-auto d-flex align-items-center" style="">
                 <button type="button" class="btn rounded-0 border-0 g-0 btn-nav " data-bs-toggle="dropdown" aria-expanded="false" id="menu">
                     Menu &nbsp;
@@ -71,6 +77,7 @@
 </div>
     <h1 class="center">ARC.JSON to SAMPLE.XML </h1>
 
+            
     <div class="center">
     
     example JSON input can be downloaded <a href="https://raw.githubusercontent.com/nfdi4plants/arc2repo/main/inv.json">here</a> 
@@ -80,7 +87,12 @@
     <button class="btn btn-primary" style="display:inline" id="converter" onclick="main(input_json);"> Converter </button>
     <button class="btn btn-primary" style="display:inline" id="mapping_validator" onclick='validate("mapping_ERC000037.csv");'>ENA-Mapping Validator </button>
     <button class="btn btn-primary" style="display:inline" id="metadata_validator" onclick='validate_metadata(input_json);'>Metadata-Mapping Validator </button>
-
+    <div class="d-flex justify-content-center d-none" id="waiting">
+        <div class="spinner-grow btn-primary" style="width: 3rem; height: 3rem;" role="status">
+            <br>
+            <span class="sr-only d-none">Loading...</span>
+          </div>
+        </div>
     <div style="margin:auto;" id="xml_output">
     </div>
     </div>
@@ -100,10 +112,10 @@
 			        id: "converter",
 			        content: 'After importing the ARC.JSON file, we can click this button to convert the file based on the mapping file. At this step, no validation or checking will be made. The term name will be changed to the ENA term name automatically.'
 			    }, {id: "mapping_validator",
-                content:"To validate the mapping file we used for conversion, we can click this button. A comparison between the ENA sample.xml and the mapping file will be made. The terms existed in ENA but not in the mapping file will be show in a table after the validation"
+                content:"To validate the mapping file we used for conversion, we can click this button. A comparison between the ENA sample.xml and the mapping file will be made. The terms that is in ENA but not in the mapping file will be shown in a table after the validation"
 
                 }, {id:"metadata_validator",
-                content:"To validate the ARC.JSON metadata file we imported for conversion, we can click this button. A comparison between the mapping file and the metadata file will be made. The terms existed in ENA sample and also in the mapping file but not in the imported ARC.JSON file will be show in a table after the validation"
+                content:"To validate the ARC.JSON metadata file we imported for conversion, we can click this button. A comparison between the ENA sample.xml and the metadata file will be made. The terms that is in the ENA sample.xml but not in the imported ARC.JSON file will be shown in a table after the validation"
 
 
                 }
@@ -156,11 +168,12 @@ window.alert("no file is selected to import");
     let pyodide;
     
     async function main(input_json) {
+    
     if ( input_json ===undefined||input_json.length <0 ) {
         window.alert("please select an ARC.JSON file to be imported")
     } else { 
 
-    
+    document.getElementById("waiting").classList.remove("d-none");
     pyodide = await loadPyodide();
     await pyodide.loadPackage(["pandas"]);
     //let namespace = pyodide.globals.get("dict")();
@@ -614,12 +627,16 @@ var data = xmloutput,
 saveData(data, fileName);
 //let file = pyodide.FS.readFile("SAMPLE.XML", { encoding: "utf8" });
 //output_div.innerText = file;
+document.getElementById("waiting").classList.add("d-none");
 return namespace;
 
 
-}};
+}
+
+};
     
 async function validate(name) {
+    document.getElementById("waiting").classList.remove("d-none");
     pyodide = await loadPyodide();
     await pyodide.loadPackage(["pandas"]);
     //let namespace = pyodide.globals.get("dict")();
@@ -700,7 +717,7 @@ v_list1.forEach(function(row_array) {
     
 });
 
-
+document.getElementById("waiting").classList.add("d-none");
 return namespace;
 };
 
@@ -708,6 +725,7 @@ async function validate_metadata(input_json) {
     if ( input_json ===undefined||input_json.length <0 ) {
         window.alert("please select an ARC.JSON file to be imported")
     } else { 
+    document.getElementById("waiting").classList.remove("d-none");
     pyodide = await loadPyodide();
     await pyodide.loadPackage(["pandas"]);
     //let namespace = pyodide.globals.get("dict")();
@@ -1181,7 +1199,7 @@ v_list1.forEach(function(row_array) {
     
 });
 
-
+document.getElementById("waiting").classList.add("d-none");
 return namespace;
 }};
     </script>

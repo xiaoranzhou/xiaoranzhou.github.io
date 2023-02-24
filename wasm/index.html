@@ -11,10 +11,13 @@
             text-align: center;
         }
         </style>
+    
     <script src="https://cdn.jsdelivr.net/pyodide/v0.21.3/full/pyodide.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <link href="css/custom.css" rel="stylesheet"/>
+    <link href="css/bs5-intro-tour.css" rel="stylesheet" />	
+    <script src="js/bs5-intro-tour.js" type="text/javascript" charset="utf-8"></script>
   </head>
   <body>
     <div class="col-12" style="background: rgb(45, 62, 80); height: 3.25rem; margin: 0 0 0 0px; padding: 0 0 0 0; ">
@@ -30,10 +33,10 @@
                 </button>
                 <ul class="dropdown-menu">
                 <li>
-                        <button id="convertor" class="dropdown-item" onclick=''>Convertor</button>
+                        <button id="converter_menu" class="dropdown-item" onclick=''>Converter</button>
                     </li>
                     <li>
-                        <button id="updater" class="dropdown-item" onclick=''>Updater</button>
+                        <button id="updater_menu" class="dropdown-item" onclick=''>Updater</button>
                     </li>
                    
                 </ul>
@@ -47,13 +50,13 @@
                 </button>
                 <ul class="dropdown-menu" >
                     <li>
-                        <button id="convertor" class="dropdown-item" onclick=''>Convertor</button>
+                        <button id="converter_long" class="dropdown-item" onclick=''>Converter</button>
                     </li>
                     <li>
-                        <button id="validator" class="dropdown-item" onclick=''>Validator</button>
+                        <button id="validator_long" class="dropdown-item" onclick=''>Validator</button>
                     </li>
                     <li>
-                        <button id="updator" class="dropdown-item" onclick=''>Updater</button>
+                        <button id="updater_long" class="dropdown-item" onclick=''>Updater</button>
                     </li>
                     
                 </ul>
@@ -74,9 +77,9 @@
     <br>
         <input class="btn btn-primary d-inline"  type="file" id="input_json" name="json" multiple/>
     <input style="display:none" type="file" id="input_xlsx" name="xlsx" multiple/>
-    <button class="btn btn-primary" style="display:inline" id="converter" onclick="main(input_json);"> Convertor </button>
+    <button class="btn btn-primary" style="display:inline" id="converter" onclick="main(input_json);"> Converter </button>
     <button class="btn btn-primary" style="display:inline" id="mapping_validator" onclick='validate("mapping_ERC000037.csv");'>ENA-Mapping Validator </button>
-    <button class="btn btn-primary" style="display:inline" id="ARC_metadata_validator" onclick='validate_metadata(input_json);'>Metadata-Mapping Validator </button>
+    <button class="btn btn-primary" style="display:inline" id="metadata_validator" onclick='validate_metadata(input_json);'>Metadata-Mapping Validator </button>
 
     <div style="margin:auto;" id="xml_output">
     </div>
@@ -86,7 +89,28 @@
     var input_json , input_xlsx;
     var log_backup = console.log;
     var log_messages = [];
-        
+    var steps = [{
+			        title: "Converter and validators",
+			        content: '<p> Welcome! Our converter can convert an ARC.JSON file to a SAMPLE.XML file, The ARC.JSON file is an output from the ARCcommander, which is developed by the <a href="https://nfdi4plants.org/">DataPLANT</a> team. The SAMPLE.XML can be directly uploaded to the European Nucleotide Archive (ENA)'
+			        //
+			    }, {
+			        id: "input_json",
+			        content: 'Here we can import an ARC.JSON. An example JSON input can be downloaded <a href="https://raw.githubusercontent.com/nfdi4plants/arc2repo/main/inv.json">here</a>'
+			    }, {
+			        id: "converter",
+			        content: 'After importing the ARC.JSON file, we can click this button to convert the file based on the mapping file. At this step, no validation or checking will be made. The term name will be changed to the ENA term name automatically.'
+			    }, {id: "mapping_validator",
+                content:"To validate the mapping file we used for conversion, we can click this button. A comparison between the ENA sample.xml and the mapping file will be made. The terms existed in ENA but not in the mapping file will be show in a table after the validation"
+
+                }, {id:"metadata_validator",
+                content:"To validate the ARC.JSON metadata file we imported for conversion, we can click this button. A comparison between the mapping file and the metadata file will be made. The terms existed in ENA sample and also in the mapping file but not in the imported ARC.JSON file will be show in a table after the validation"
+
+
+                }
+			];
+
+	var tour = new Tour(steps); // initialize the guided tour
+    tour.show();
     let output_div = document.getElementById("xml_output");
         
     console.log = function() {
@@ -117,7 +141,11 @@
     
     
     
-    };
+    }else{
+
+window.alert("no file is selected to import");
+
+};
     }
     
     const input2 = document.getElementById("input_xlsx");
@@ -128,6 +156,11 @@
     let pyodide;
     
     async function main(input_json) {
+    if ( input_json ===undefined||input_json.length <0 ) {
+        window.alert("please select an ARC.JSON file to be imported")
+    } else { 
+
+    
     pyodide = await loadPyodide();
     await pyodide.loadPackage(["pandas"]);
     //let namespace = pyodide.globals.get("dict")();
@@ -584,7 +617,7 @@ saveData(data, fileName);
 return namespace;
 
 
-};
+}};
     
 async function validate(name) {
     pyodide = await loadPyodide();
@@ -634,6 +667,7 @@ print("Time used for conversion is: {} seconds".format(round(used_time,2)) )
 `,{ globals: namespace });
 v_list = namespace.get("df_all");
 document.getElementById('m_v_modal').click();
+document.getElementById('init_word').innerText = "The following terms are missing in the mapping file";
 document.getElementById('mandatory_n').innerText = v_list.get(1).length;
 document.getElementById('recommended_n').innerText = v_list.get(2).length;
 document.getElementById('optional_n').innerText = v_list.get(3).length;
@@ -642,8 +676,10 @@ const max_v = Math.max(v_list1[0].length,v_list1[1].length,v_list1[2].length );
 v_list1.forEach(e => {e.length = max_v;});
 csv_content = "data:text/csv;charset=utf-8,";
 csv_content += "mandatory, recommended, optional \r\n";
+let table = document.getElementById("validate_table");
+table.innerHTML = '<tr><th scope="col">mandatory</th><th scope="col">recommended</th><th scope="col">optional</th></tr> ';
 for (let i = 0; i < max_v+1; i++) {
-    let table = document.getElementById("validate_table");
+
     let row= table.insertRow(-1); 
     let cell1= row.insertCell(0);
     let cell2= row.insertCell(1);
@@ -669,6 +705,9 @@ return namespace;
 };
 
 async function validate_metadata(input_json) {
+    if ( input_json ===undefined||input_json.length <0 ) {
+        window.alert("please select an ARC.JSON file to be imported")
+    } else { 
     pyodide = await loadPyodide();
     await pyodide.loadPackage(["pandas"]);
     //let namespace = pyodide.globals.get("dict")();
@@ -1065,13 +1104,14 @@ def convert_json(arc_json_file, mapping_file):
     et.indent(tree, space=" ", level=0)
 
     tree.write("STUDY.xml", encoding="utf-8")
-    df_all = [list(json_table[json_table["in_ena"]=="mandatory"].groupby(['term_accession']).count().index),
-        list(json_table[json_table["in_ena"]=="mandatory"].groupby(['term_name']).count().index),
-        list(json_table[json_table["in_ena"]=="recommended"].groupby(['term_accession']).count().index),
-        list(json_table[json_table["in_ena"]=="recommended"].groupby(['term_name']).count().index),
-        list(json_table[json_table["in_ena"]=="optional"].groupby(['term_accession']).count().index),
-        list(json_table[json_table["in_ena"]=="optional"].groupby(['term_name']).count().index),
-        ]
+    isin = mapping["term_accession"].isin(json_table[json_table["in_ena"]!=False].groupby(['term_accession']).count().index.to_series())
+    df_all = [mapping[np.invert(isin)][mapping["Requirement"]=="mandatory"]['id'],
+            mapping[np.invert(isin)][mapping["Requirement"]=="mandatory"]['Field Name'],
+            mapping[np.invert(isin)][mapping["Requirement"]=="recommended"]['id'],
+            mapping[np.invert(isin)][mapping["Requirement"]=="recommended"]['Field Name'],
+            mapping[np.invert(isin)][mapping["Requirement"]=="optional"]['id'],
+            mapping[np.invert(isin)][mapping["Requirement"]=="optional"]['Field Name']
+            ]
     # sample xml
     xml_input = pd.read_csv("json_table_new.csv")
     xml_output = et.tostring(write_sample_xml(xml_input).getroot(), encoding='utf8', method='xml')
@@ -1108,7 +1148,7 @@ print("Time used for conversion is: {} seconds".format(round(used_time, 2)) )
 `,{ globals: namespace });
 v_list = namespace.get("df_all");
 document.getElementById('m_v_modal').click();
-document.getElementById('init_word').innerText = "The following terms exist in the metadata";
+document.getElementById('init_word').innerText = "The following terms are missing in the metadata of ARC.JSON";
 document.getElementById('mandatory_n').innerText = v_list.get(1).length;
 document.getElementById('recommended_n').innerText = v_list.get(3).length;
 document.getElementById('optional_n').innerText = v_list.get(5).length;
@@ -1117,8 +1157,10 @@ const max_v = Math.max(v_list1[0].length,v_list1[1].length,v_list1[2].length );
 v_list1.forEach(e => {e.length = max_v;});
 csv_content = "data:text/csv;charset=utf-8,";
 csv_content += "mandatory, recommended, optional \r\n";
+let table = document.getElementById("validate_table");
+table.innerHTML = '<tr><th scope="col">mandatory</th><th scope="col">recommended</th><th scope="col">optional</th></tr> ';
 for (let i = 0; i < max_v+1; i++) {
-    let table = document.getElementById("validate_table");
+
     let row= table.insertRow(-1); 
     let cell1= row.insertCell(0);
     let cell2= row.insertCell(1);
@@ -1141,7 +1183,7 @@ v_list1.forEach(function(row_array) {
 
 
 return namespace;
-};
+}};
     </script>
 <!-- Button trigger modal -->
 <button type="button" class="d-none btn btn-primary" data-bs-toggle="modal" data-bs-target="#map_vali_modal" id="m_v_modal">
@@ -1163,11 +1205,7 @@ return namespace;
             <span id="recommended_n"></span> recommended term(s),<br>
             <span id="optional_n"></span> optional term(s).<br>
             <table id ="validate_table" class="table table-bordered table-hover" >
-                <tr>
-                  <th scope="col">mandatory</th>
-                  <th scope="col">recommended</th>
-                  <th scope="col">optional</th>
-                </tr>    
+   
             </table>
     
         </div>

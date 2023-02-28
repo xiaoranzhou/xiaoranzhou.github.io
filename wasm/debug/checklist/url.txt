@@ -1,0 +1,3 @@
+https://wwwdev.ebi.ac.uk/ena/submit/report/checklists/xml/*?type=sequence
+https://wwwdev.ebi.ac.uk/ena/submit/report/checklists/getReadFields
+https://wwwdev.ebi.ac.uk/ena/submit/report/checklists/xml/*?type=sample

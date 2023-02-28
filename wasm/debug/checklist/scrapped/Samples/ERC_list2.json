@@ -1,0 +1,338 @@
+[{
+        "report": {
+            "id": "ERC000011",
+            "type": "Sample",
+            "name": "ENA default sample checklist",
+            "description": "Minimum information required for the sample"
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000012",
+            "type": "Sample",
+            "name": "GSC MIxS air",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000013",
+            "type": "Sample",
+            "name": "GSC MIxS host associated",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000014",
+            "type": "Sample",
+            "name": "GSC MIxS human associated",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000015",
+            "type": "Sample",
+            "name": "GSC MIxS human gut",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000016",
+            "type": "Sample",
+            "name": "GSC MIxS human oral",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000017",
+            "type": "Sample",
+            "name": "GSC MIxS human skin",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000018",
+            "type": "Sample",
+            "name": "GSC MIxS human vaginal",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000019",
+            "type": "Sample",
+            "name": "GSC MIxS microbial mat biolfilm",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000020",
+            "type": "Sample",
+            "name": "GSC MIxS plant associated",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000022",
+            "type": "Sample",
+            "name": "GSC MIxS soil",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000023",
+            "type": "Sample",
+            "name": "GSC MIxS wastewater sludge",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000024",
+            "type": "Sample",
+            "name": "GSC MIxS water",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000025",
+            "type": "Sample",
+            "name": "GSC MIxS miscellaneous natural or artificial environment",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000028",
+            "type": "Sample",
+            "name": "ENA prokaryotic pathogen minimal sample checklist",
+            "description": "Minimum information required for a prokaryotic pathogen sample"
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000027",
+            "type": "Sample",
+            "name": "ENA Micro B3",
+            "description": "Minimum information about a Micro B3 sample. A checklist for reporting metadata of marine microbial samples associated with genomics data. NOTE: Non-genomics data, i.e. oceanographic environmental data and morphology-based biodiversity data, should be submitted to the appropriate National Oceanographic Data Centre according to established reporting practices maintained by oceanographic community experts. Major National Oceanographic Data Centres from countries bordering the North-East Atlantic, and its adjacent seas: the Mediterranean, the Black Sea, the Baltic, the North Sea and the Arctic are listed at http://www.seadatanet.org/Overview/Partners. For the Ocean Sampling Day campaign, non-genomics data shall be reported to the PANGAEA (http://www.pangaea.de/submit/)."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000021",
+            "type": "Sample",
+            "name": "GSC MIxS sediment",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000026",
+            "type": "Sample",
+            "name": "EGA default checklist",
+            "description": "The minimum sample requirements for EGA"
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000029",
+            "type": "Sample",
+            "name": "ENA Global Microbial Identifier reporting standard checklist GMI_MDM:1.1",
+            "description": "Minimum Data for Matching (MDM). A checklist for reporting metadata of pathogen samples for the Global Microbial Identifier (GMI) reporting system. More about GMI can be found here http://www.g-m-i.org/"
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000031",
+            "type": "Sample",
+            "name": "GSC MIxS built environment",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000030",
+            "type": "Sample",
+            "name": "ENA Tara Oceans",
+            "description": "Minimum information about a Tara Oceans sample. A checklist for reporting metadata of oceanic plankton samples associated with genomics data from the Tara Oceans Expedition."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000033",
+            "type": "Sample",
+            "name": "ENA virus pathogen reporting standard checklist",
+            "description": "Minimum information about a virus pathogen. A checklist for reporting metadata of virus pathogen samples associated with genomic data. This minimum metadata standard was developed by the COMPARE platform for submission of virus surveillance and outbreak data (such as Ebola) as well as virus isolate information."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000036",
+            "type": "Sample",
+            "name": "ENA sewage checklist",
+            "description": "Minimum information about sewage samples. A checklist for reporting of sewage surveillance samples associated with sequence data from metagenomic sequencing projects. This minimum metadata standard was developed by the COMPARE platform."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000032",
+            "type": "Sample",
+            "name": "ENA Influenza virus reporting standard checklist",
+            "description": "Minimum information about an Influenza virus sample. A checklist for reporting metadata of Influenza virus samples associated with genomic data. This minimum metadata standard supports submission of avian, human and mammalian surveillance data as well as serology and viruse isolate information (where available). The ENA Influenza sample checklist is based on standards in use at the Influenza Research Database."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000034",
+            "type": "Sample",
+            "name": "ENA mutagenesis by carcinogen treatment checklist",
+            "description": "Minimum Information required for reporting samples associated with genomic data, derived from carcinogen induced animal tumours. This minimum metadata standard was developed in collaboration with Duncan Odom lab for the Mouse Liver Cancer Evolution Project."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000035",
+            "type": "Sample",
+            "name": "ENA Crop Plant sample enhanced annotation checklist",
+            "description": "The ENA Crop sample enhanced checklist has been developed in collaboration with a number of EMBL-EBI teams to capture enriched annotation of published crop plant samples that lack sufficient reported metadata and are typically associated with systematic transcriptomic realignment-based analyses."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000040",
+            "type": "Sample",
+            "name": "ENA UniEuk_EukBank Checklist",
+            "description": "Minimum information required for reporting samples associated with the UniEuk EukBank initiative. This checklist aims to capture contextual metadata associated with V4 18S SSU rRNA molecular data."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000037",
+            "type": "Sample",
+            "name": "ENA Plant Sample Checklist",
+            "description": "ENA implementation of plant specimen contextual information associated with molecular data. The checklist has been developed in collaboration with the NCBI-GenBank and iPlant data resources under the umbrella of the Genomic Standards Consortium."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000038",
+            "type": "Sample",
+            "name": "ENA Shellfish Checklist",
+            "description": "Shellfish contextual information associated with molecular data. The checklist has been developed in collaboration with EMBRIC Project partners."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000039",
+            "type": "Sample",
+            "name": "ENA parasite sample checklist",
+            "description": "Minimum information about parasite samples. A checklist for reporting metadata of parasite samples associated with molecular data. This standard was developed by the COMPARE platform and can be used for submission of sample metadata derived from protozoan parasites (e.g. Cryptosporidium) and also multicellular eukaryotic parasites (e.g. Platyhelminthes and Nematoda)."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000041",
+            "type": "Sample",
+            "name": "ENA Global Microbial Identifier Proficiency Test (GMI PT) checklist",
+            "description": "Minimum information to standardise metadata related to samples used in GMI PT (Global Microbial Identifier Proficiency Test). A checklist for reporting metadata of GMI PT samples associated with molecular data. This minimum metadata standard was developed by the COMPARE platform and can be used for submission of sample metadata derived from Campylobacter coli,  Campylobacter jejuni, Listeria monocytogenes, Klebsiella pneumoniae, Salmonella enterica, Escherichia coli and Staphylococcus aureus."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000043",
+            "type": "Sample",
+            "name": "ENA Marine Microalgae Checklist",
+            "description": "Marine microalgae contextual information. The checklist has been developed in collaboration with EMBRIC Project partners and is suitable for reporting metadata related to environmental samples and those in culture collections."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000044",
+            "type": "Sample",
+            "name": "COMPARE-ECDC-EFSA pilot human-associated reporting standard",
+            "description": "A checklist for reporting metadata of human-associated pathogen samples for the COMPARE-ECDC-EFSA reporting system."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000045",
+            "type": "Sample",
+            "name": "COMPARE-ECDC-EFSA pilot food-associated reporting standard",
+            "description": "A checklist for reporting metadata of food-borne pathogen samples for the COMPARE-ECDC-EFSA reporting system."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000046",
+            "type": "Sample",
+            "name": "Pan Prostate sample checklist",
+            "description": "Minimal Information required for reporting samples associated with molecular data into the Pan Prostate Cancer Project (http://panprostate.org/)."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000047",
+            "type": "Sample",
+            "name": "GSC MIMAGS",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000048",
+            "type": "Sample",
+            "name": "GSC MISAGS",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000049",
+            "type": "Sample",
+            "name": "GSC MIUVIGS",
+            "description": "Genomic Standards Consortium package extension for reporting of measurements and observations obtained from the environment where the sample was obtained. By choosing the environmental package, a selection of fields can be made from a relevant subsets of the GSC terms."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000050",
+            "type": "Sample",
+            "name": "ENA binned metagenome",
+            "description": "Minimum information to standardise metadata of binned metagenome samples. Ensures binned and MAG metagenome assembly metadata is compatible."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000051",
+            "type": "Sample",
+            "name": "PDX Checklist",
+            "description": "Minimum information required for reporting samples associated with patient-derived xenograft (PDX) models or patient samples"
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000052",
+            "type": "Sample",
+            "name": "HoloFood Checklist",
+            "description": "Minimum information required for reporting HoloFood samples. HoloFood is a 'hologenomic' approach that will improve the efficiency of food production systems by understanding the biomolecular and physiological processes affected by incorporating feed additives and novel sustainable feeds in farmed animals (https://www.holofood.eu/)."
+        },
+        "links": []
+    }, {
+        "report": {
+            "id": "ERC000053",
+            "type": "Sample",
+            "name": "Tree of Life Checklist",
+            "description": "Minimum information required for reporting samples associated with the Tree of Life Programme (https://www.sanger.ac.uk/programme/tree-of-life/)."
+        },
+        "links": []
+    }
+]

@@ -1,0 +1,487 @@
+{
+    "fieldTypes": [{
+            "name": "cram",
+            "file_type": "cram",
+            "label": "Submit sequencing reads using CRAM files",
+            "description": "Each submitted CRAM file will be associated with a separate sample, experiment and run.",
+            "fields": [{
+                    "label": "Sample",
+                    "name": "sample",
+                    "mandatory": true,
+                    "description": "Sample alias or accession."
+                }, {
+                    "label": "Study",
+                    "name": "study",
+                    "mandatory": true,
+                    "description": "Study alias or accession."
+                }, {
+                    "label": "Instrument model",
+                    "name": "instrument_model",
+                    "mandatory": true,
+                    "description": "The sequencing instrument model used in the experiment",
+                    "value_choice": ["MinION", "GridION", "PromethION", "454 GS", "454 GS 20", "454 GS FLX", "454 GS FLX+", "454 GS FLX Titanium", "454 GS Junior", "Illumina Genome Analyzer", "Illumina Genome Analyzer II", "Illumina Genome Analyzer IIx", "Illumina HiSeq 1000", "Illumina HiSeq 1500", "Illumina HiSeq 2000", "Illumina HiSeq 2500", "Illumina HiSeq 3000", "Illumina HiSeq 4000", "Illumina iSeq 100", "Illumina HiScanSQ", "Illumina NextSeq 500", "Illumina NextSeq 550", "Illumina NovaSeq 6000", "Illumina HiSeq X Five", "Illumina HiSeq X Ten", "Illumina MiSeq", "Illumina MiniSeq", "NextSeq 1000", "NextSeq 2000", "AB SOLiD System", "AB SOLiD System 2.0", "AB SOLiD System 3.0", "AB SOLiD 3 Plus System", "AB SOLiD 4 System", "AB SOLiD 4hq System", "AB SOLiD PI System", "AB 5500 Genetic Analyzer", "AB 5500xl Genetic Analyzer", "AB 5500xl-W Genetic Analysis System", "Ion Torrent PGM", "Ion Torrent Proton", "Ion Torrent S5", "Ion Torrent S5 XL", "Complete Genomics", "PacBio RS", "PacBio RS II", "Sequel", "Sequel II", "Sequel IIe", "AB 3730xL Genetic Analyzer", "AB 3730 Genetic Analyzer", "AB 3500xL Genetic Analyzer", "AB 3500 Genetic Analyzer", "AB 3130xL Genetic Analyzer", "AB 3130 Genetic Analyzer", "AB 310 Genetic Analyzer", "BGISEQ-500", "DNBSEQ-T7", "DNBSEQ-G400", "DNBSEQ-G50", "DNBSEQ-G400 FAST", "Ion GeneStudio S5 Prime", "Ion GeneStudio S5 Plus", "Ion GeneStudio S5", "Ion Torrent Genexus", "Illumina HiSeq X", "MGISEQ-2000RS", "BGISEQ-50"]
+                }, {
+                    "label": "Library name",
+                    "name": "library_name",
+                    "mandatory": true,
+                    "description": "The name for the library if any."
+                }, {
+                    "label": "Library source",
+                    "name": "library_source",
+                    "mandatory": true,
+                    "description": "The type of source material that is being sequenced.",
+                    "value_choice": ["GENOMIC", "TRANSCRIPTOMIC", "METAGENOMIC", "METATRANSCRIPTOMIC", "SYNTHETIC", "VIRAL RNA", "OTHER"]
+                }, {
+                    "label": "Library selection",
+                    "name": "library_selection",
+                    "mandatory": true,
+                    "description": "The method used to select for or against, enrich, or screen the material being sequenced.",
+                    "value_choice": ["RANDOM", "PCR", "RANDOM PCR", "RT-PCR", "HMPR", "MF", "repeat fractionation", "size fractionation", "MSLL", "cDNA", "ChIP", "MNase", "DNase", "Hybrid Selection", "Reduced Representation", "Restriction Digest", "5-methylcytidine antibody", "MBD2 protein methyl-CpG binding domain", "CAGE", "RACE", "MDA", "padlock probes capture method", "Oligo-dT", "Inverse rRNA selection", "ChIP-Seq", "other", "unspecified"]
+                }, {
+                    "label": "Library strategy",
+                    "name": "library_strategy",
+                    "mandatory": true,
+                    "description": "The sequencing technique intended for this library.",
+                    "value_choice": ["WGA", "WXS", "RNA-Seq", "snRNA-seq", "ssRNA-seq", "miRNA-Seq", "ncRNA-Seq", "FL-cDNA", "EST", "Hi-C", "ATAC-seq", "WGS", "WCS", "RAD-Seq", "CLONE", "POOLCLONE", "AMPLICON", "CLONEEND", "FINISHING", "ChIP-Seq", "MNase-Seq", "DNase-Hypersensitivity", "Bisulfite-Seq", "CTS", "MRE-Seq", "MeDIP-Seq", "MBD-Seq", "Tn-Seq", "VALIDATION", "FAIRE-seq", "SELEX", "RIP-Seq", "ChIA-PET", "Synthetic-Long-Read", "Targeted-Capture", "Tethered Chromatin Conformation Capture", "ChM-Seq", "GBS", "OTHER"]
+                }, {
+                    "label": "Library construction protocol",
+                    "name": "library_construction_protocol",
+                    "description": "The protocol used to construct the library."
+                }, {
+                    "label": "Library layout",
+                    "name": "library_layout",
+                    "description": "The library layout specifies whether to expect single or paired configuration of reads.",
+                    "value_choice": ["SINGLE", "PAIRED"]
+                }, {
+                    "label": "Design description",
+                    "name": "design_description",
+                    "description": "The design of the library including details of how it was constructed."
+                }, {
+                    "label": "Insert size",
+                    "name": "insert_size",
+                    "description": "The distance between paired reads."
+                }, {
+                    "label": "File name",
+                    "name": "file_name",
+                    "mandatory": true,
+                    "description": "The file name including any subdirectory name. The only permitted file suffix is .cram."
+                }, {
+                    "label": "File checksum",
+                    "name": "file_md5",
+                    "mandatory": true,
+                    "description": "The file MD5 checksum. This field is mandatory if you do not use the Webin File Uploader or upload the checksum using a .md5 file."
+                }, {
+                    "label": "File unencrypted checksum",
+                    "name": "file_unencrypted_md5",
+                    "description": "The file unencrypted MD5 checksum.",
+                    "is_ega_field": true
+                }
+            ]
+        }, {
+            "name": "bam",
+            "file_type": "bam",
+            "label": "Submit sequencing reads using BAM files",
+            "description": "Each submitted BAM file will be associated with a separate sample, experiment and run.",
+            "fields": [{
+                    "label": "Sample",
+                    "name": "sample",
+                    "mandatory": true,
+                    "description": "Sample alias or accession."
+                }, {
+                    "label": "Study",
+                    "name": "study",
+                    "mandatory": true,
+                    "description": "Study alias or accession."
+                }, {
+                    "label": "Instrument model",
+                    "name": "instrument_model",
+                    "mandatory": true,
+                    "description": "The sequencing instrument model used in the experiment",
+                    "value_choice": ["MinION", "GridION", "PromethION", "454 GS", "454 GS 20", "454 GS FLX", "454 GS FLX+", "454 GS FLX Titanium", "454 GS Junior", "Illumina Genome Analyzer", "Illumina Genome Analyzer II", "Illumina Genome Analyzer IIx", "Illumina HiSeq 1000", "Illumina HiSeq 1500", "Illumina HiSeq 2000", "Illumina HiSeq 2500", "Illumina HiSeq 3000", "Illumina HiSeq 4000", "Illumina iSeq 100", "Illumina HiScanSQ", "Illumina NextSeq 500", "Illumina NextSeq 550", "Illumina NovaSeq 6000", "Illumina HiSeq X Five", "Illumina HiSeq X Ten", "Illumina MiSeq", "Illumina MiniSeq", "NextSeq 1000", "NextSeq 2000", "AB SOLiD System", "AB SOLiD System 2.0", "AB SOLiD System 3.0", "AB SOLiD 3 Plus System", "AB SOLiD 4 System", "AB SOLiD 4hq System", "AB SOLiD PI System", "AB 5500 Genetic Analyzer", "AB 5500xl Genetic Analyzer", "AB 5500xl-W Genetic Analysis System", "Ion Torrent PGM", "Ion Torrent Proton", "Ion Torrent S5", "Ion Torrent S5 XL", "Complete Genomics", "PacBio RS", "PacBio RS II", "Sequel", "Sequel II", "Sequel IIe", "AB 3730xL Genetic Analyzer", "AB 3730 Genetic Analyzer", "AB 3500xL Genetic Analyzer", "AB 3500 Genetic Analyzer", "AB 3130xL Genetic Analyzer", "AB 3130 Genetic Analyzer", "AB 310 Genetic Analyzer", "BGISEQ-500", "DNBSEQ-T7", "DNBSEQ-G400", "DNBSEQ-G50", "DNBSEQ-G400 FAST", "Ion GeneStudio S5 Prime", "Ion GeneStudio S5 Plus", "Ion GeneStudio S5", "Ion Torrent Genexus", "Illumina HiSeq X", "MGISEQ-2000RS", "BGISEQ-50"]
+                }, {
+                    "label": "Library name",
+                    "name": "library_name",
+                    "mandatory": true,
+                    "description": "The name for the library if any."
+                }, {
+                    "label": "Library source",
+                    "name": "library_source",
+                    "mandatory": true,
+                    "description": "The type of source material that is being sequenced.",
+                    "value_choice": ["GENOMIC", "TRANSCRIPTOMIC", "METAGENOMIC", "METATRANSCRIPTOMIC", "SYNTHETIC", "VIRAL RNA", "OTHER"]
+                }, {
+                    "label": "Library selection",
+                    "name": "library_selection",
+                    "mandatory": true,
+                    "description": "The method used to select for or against, enrich, or screen the material being sequenced.",
+                    "value_choice": ["RANDOM", "PCR", "RANDOM PCR", "RT-PCR", "HMPR", "MF", "repeat fractionation", "size fractionation", "MSLL", "cDNA", "ChIP", "MNase", "DNase", "Hybrid Selection", "Reduced Representation", "Restriction Digest", "5-methylcytidine antibody", "MBD2 protein methyl-CpG binding domain", "CAGE", "RACE", "MDA", "padlock probes capture method", "Oligo-dT", "Inverse rRNA selection", "ChIP-Seq", "other", "unspecified"]
+                }, {
+                    "label": "Library strategy",
+                    "name": "library_strategy",
+                    "mandatory": true,
+                    "description": "The sequencing technique intended for this library.",
+                    "value_choice": ["WGA", "WXS", "RNA-Seq", "snRNA-seq", "ssRNA-seq", "miRNA-Seq", "ncRNA-Seq", "FL-cDNA", "EST", "Hi-C", "ATAC-seq", "WGS", "WCS", "RAD-Seq", "CLONE", "POOLCLONE", "AMPLICON", "CLONEEND", "FINISHING", "ChIP-Seq", "MNase-Seq", "DNase-Hypersensitivity", "Bisulfite-Seq", "CTS", "MRE-Seq", "MeDIP-Seq", "MBD-Seq", "Tn-Seq", "VALIDATION", "FAIRE-seq", "SELEX", "RIP-Seq", "ChIA-PET", "Synthetic-Long-Read", "Targeted-Capture", "Tethered Chromatin Conformation Capture", "ChM-Seq", "GBS", "OTHER"]
+                }, {
+                    "label": "Library construction protocol",
+                    "name": "library_construction_protocol",
+                    "description": "The protocol used to construct the library."
+                }, {
+                    "label": "Library layout",
+                    "name": "library_layout",
+                    "description": "The library layout specifies whether to expect single or paired configuration of reads.",
+                    "value_choice": ["SINGLE", "PAIRED"]
+                }, {
+                    "label": "Design description",
+                    "name": "design_description",
+                    "description": "The design of the library including details of how it was constructed."
+                }, {
+                    "label": "Insert size",
+                    "name": "insert_size",
+                    "description": "The distance between paired reads."
+                }, {
+                    "label": "File name",
+                    "name": "file_name",
+                    "mandatory": true,
+                    "description": "The file name including any subdirectory name. The only permitted file suffix is .bam."
+                }, {
+                    "label": "File checksum",
+                    "name": "file_md5",
+                    "mandatory": true,
+                    "description": "The file MD5 checksum. This field is mandatory if you do not use the Webin File Uploader or upload the checksum using a .md5 file."
+                }, {
+                    "label": "File unencrypted checksum",
+                    "name": "file_unencrypted_md5",
+                    "description": "The file unencrypted MD5 checksum.",
+                    "is_ega_field": true
+                }
+            ]
+        }, {
+            "name": "fastq1",
+            "file_type": "fastq",
+            "label": "Submit single reads using Fastq files",
+            "description": "Each submitted Fastq file will be associated with a separate sample, experiment and run.",
+            "fields": [{
+                    "label": "Sample",
+                    "name": "sample",
+                    "mandatory": true,
+                    "description": "Sample alias or accession."
+                }, {
+                    "label": "Study",
+                    "name": "study",
+                    "mandatory": true,
+                    "description": "Study alias or accession."
+                }, {
+                    "label": "Instrument model",
+                    "name": "instrument_model",
+                    "mandatory": true,
+                    "description": "The sequencing instrument model used in the experiment",
+                    "value_choice": ["MinION", "GridION", "PromethION", "454 GS", "454 GS 20", "454 GS FLX", "454 GS FLX+", "454 GS FLX Titanium", "454 GS Junior", "Illumina Genome Analyzer", "Illumina Genome Analyzer II", "Illumina Genome Analyzer IIx", "Illumina HiSeq 1000", "Illumina HiSeq 1500", "Illumina HiSeq 2000", "Illumina HiSeq 2500", "Illumina HiSeq 3000", "Illumina HiSeq 4000", "Illumina iSeq 100", "Illumina HiScanSQ", "Illumina NextSeq 500", "Illumina NextSeq 550", "Illumina NovaSeq 6000", "Illumina HiSeq X Five", "Illumina HiSeq X Ten", "Illumina MiSeq", "Illumina MiniSeq", "NextSeq 1000", "NextSeq 2000", "AB SOLiD System", "AB SOLiD System 2.0", "AB SOLiD System 3.0", "AB SOLiD 3 Plus System", "AB SOLiD 4 System", "AB SOLiD 4hq System", "AB SOLiD PI System", "AB 5500 Genetic Analyzer", "AB 5500xl Genetic Analyzer", "AB 5500xl-W Genetic Analysis System", "Ion Torrent PGM", "Ion Torrent Proton", "Ion Torrent S5", "Ion Torrent S5 XL", "Complete Genomics", "PacBio RS", "PacBio RS II", "Sequel", "Sequel II", "Sequel IIe", "AB 3730xL Genetic Analyzer", "AB 3730 Genetic Analyzer", "AB 3500xL Genetic Analyzer", "AB 3500 Genetic Analyzer", "AB 3130xL Genetic Analyzer", "AB 3130 Genetic Analyzer", "AB 310 Genetic Analyzer", "BGISEQ-500", "DNBSEQ-T7", "DNBSEQ-G400", "DNBSEQ-G50", "DNBSEQ-G400 FAST", "Ion GeneStudio S5 Prime", "Ion GeneStudio S5 Plus", "Ion GeneStudio S5", "Ion Torrent Genexus", "Illumina HiSeq X", "MGISEQ-2000RS", "BGISEQ-50"]
+                }, {
+                    "label": "Library name",
+                    "name": "library_name",
+                    "mandatory": true,
+                    "description": "The name for the library if any."
+                }, {
+                    "label": "Library source",
+                    "name": "library_source",
+                    "mandatory": true,
+                    "description": "The type of source material that is being sequenced.",
+                    "value_choice": ["GENOMIC", "TRANSCRIPTOMIC", "METAGENOMIC", "METATRANSCRIPTOMIC", "SYNTHETIC", "VIRAL RNA", "OTHER"]
+                }, {
+                    "label": "Library selection",
+                    "name": "library_selection",
+                    "mandatory": true,
+                    "description": "The method used to select for or against, enrich, or screen the material being sequenced.",
+                    "value_choice": ["RANDOM", "PCR", "RANDOM PCR", "RT-PCR", "HMPR", "MF", "repeat fractionation", "size fractionation", "MSLL", "cDNA", "ChIP", "MNase", "DNase", "Hybrid Selection", "Reduced Representation", "Restriction Digest", "5-methylcytidine antibody", "MBD2 protein methyl-CpG binding domain", "CAGE", "RACE", "MDA", "padlock probes capture method", "Oligo-dT", "Inverse rRNA selection", "ChIP-Seq", "other", "unspecified"]
+                }, {
+                    "label": "Library strategy",
+                    "name": "library_strategy",
+                    "mandatory": true,
+                    "description": "The sequencing technique intended for this library.",
+                    "value_choice": ["WGA", "WXS", "RNA-Seq", "snRNA-seq", "ssRNA-seq", "miRNA-Seq", "ncRNA-Seq", "FL-cDNA", "EST", "Hi-C", "ATAC-seq", "WGS", "WCS", "RAD-Seq", "CLONE", "POOLCLONE", "AMPLICON", "CLONEEND", "FINISHING", "ChIP-Seq", "MNase-Seq", "DNase-Hypersensitivity", "Bisulfite-Seq", "CTS", "MRE-Seq", "MeDIP-Seq", "MBD-Seq", "Tn-Seq", "VALIDATION", "FAIRE-seq", "SELEX", "RIP-Seq", "ChIA-PET", "Synthetic-Long-Read", "Targeted-Capture", "Tethered Chromatin Conformation Capture", "ChM-Seq", "GBS", "OTHER"]
+                }, {
+                    "label": "Library construction protocol",
+                    "name": "library_construction_protocol",
+                    "description": "The protocol used to construct the library."
+                }, {
+                    "label": "Library layout",
+                    "name": "library_layout",
+                    "mandatory": true,
+                    "description": "The library layout specifies whether to expect single or paired configuration of reads.",
+                    "value_choice": ["SINGLE", "PAIRED"]
+                }, {
+                    "label": "Design description",
+                    "name": "design_description",
+                    "description": "The design of the library including details of how it was constructed."
+                }, {
+                    "label": "File name",
+                    "name": "file_name",
+                    "mandatory": true,
+                    "description": "The file name including any subdirectory name. The only permitted file suffix are .fasta.gz, .fas.gz, .fsa.gz, .fna.gz, .fa.gz, .fasta.bz2, .fas.bz2, .fsa.bz2, .fna.bz2, .fa.bz2."
+                }, {
+                    "label": "File checksum",
+                    "name": "file_md5",
+                    "mandatory": true,
+                    "description": "The file MD5 checksum. This field is mandatory if you do not use the Webin File Uploader or upload the checksum using a .md5 file."
+                }, {
+                    "label": "File unencrypted checksum",
+                    "name": "file_unencrypted_md5",
+                    "description": "The file unencrypted MD5 checksum.",
+                    "is_ega_field": true
+                }
+            ]
+        }, {
+            "name": "fastq2",
+            "file_type": "fastq",
+            "label": "Submit paired reads using two Fastq files",
+            "description": "Each pair of submitted Fastq files will be associated with a separate sample, experiment and run.",
+            "fields": [{
+                    "label": "Sample",
+                    "name": "sample",
+                    "mandatory": true,
+                    "description": "Sample alias or accession."
+                }, {
+                    "label": "Study",
+                    "name": "study",
+                    "mandatory": true,
+                    "description": "Study alias or accession."
+                }, {
+                    "label": "Instrument model",
+                    "name": "instrument_model",
+                    "mandatory": true,
+                    "description": "The sequencing instrument model used in the experiment",
+                    "value_choice": ["MinION", "GridION", "PromethION", "454 GS", "454 GS 20", "454 GS FLX", "454 GS FLX+", "454 GS FLX Titanium", "454 GS Junior", "Illumina Genome Analyzer", "Illumina Genome Analyzer II", "Illumina Genome Analyzer IIx", "Illumina HiSeq 1000", "Illumina HiSeq 1500", "Illumina HiSeq 2000", "Illumina HiSeq 2500", "Illumina HiSeq 3000", "Illumina HiSeq 4000", "Illumina iSeq 100", "Illumina HiScanSQ", "Illumina NextSeq 500", "Illumina NextSeq 550", "Illumina NovaSeq 6000", "Illumina HiSeq X Five", "Illumina HiSeq X Ten", "Illumina MiSeq", "Illumina MiniSeq", "NextSeq 1000", "NextSeq 2000", "AB SOLiD System", "AB SOLiD System 2.0", "AB SOLiD System 3.0", "AB SOLiD 3 Plus System", "AB SOLiD 4 System", "AB SOLiD 4hq System", "AB SOLiD PI System", "AB 5500 Genetic Analyzer", "AB 5500xl Genetic Analyzer", "AB 5500xl-W Genetic Analysis System", "Ion Torrent PGM", "Ion Torrent Proton", "Ion Torrent S5", "Ion Torrent S5 XL", "Complete Genomics", "PacBio RS", "PacBio RS II", "Sequel", "Sequel II", "Sequel IIe", "AB 3730xL Genetic Analyzer", "AB 3730 Genetic Analyzer", "AB 3500xL Genetic Analyzer", "AB 3500 Genetic Analyzer", "AB 3130xL Genetic Analyzer", "AB 3130 Genetic Analyzer", "AB 310 Genetic Analyzer", "BGISEQ-500", "DNBSEQ-T7", "DNBSEQ-G400", "DNBSEQ-G50", "DNBSEQ-G400 FAST", "Ion GeneStudio S5 Prime", "Ion GeneStudio S5 Plus", "Ion GeneStudio S5", "Ion Torrent Genexus", "Illumina HiSeq X", "MGISEQ-2000RS", "BGISEQ-50"]
+                }, {
+                    "label": "Library name",
+                    "name": "library_name",
+                    "mandatory": true,
+                    "description": "The name for the library if any."
+                }, {
+                    "label": "Library source",
+                    "name": "library_source",
+                    "mandatory": true,
+                    "description": "The type of source material that is being sequenced.",
+                    "value_choice": ["GENOMIC", "TRANSCRIPTOMIC", "METAGENOMIC", "METATRANSCRIPTOMIC", "SYNTHETIC", "VIRAL RNA", "OTHER"]
+                }, {
+                    "label": "Library selection",
+                    "name": "library_selection",
+                    "mandatory": true,
+                    "description": "The method used to select for or against, enrich, or screen the material being sequenced.",
+                    "value_choice": ["RANDOM", "PCR", "RANDOM PCR", "RT-PCR", "HMPR", "MF", "repeat fractionation", "size fractionation", "MSLL", "cDNA", "ChIP", "MNase", "DNase", "Hybrid Selection", "Reduced Representation", "Restriction Digest", "5-methylcytidine antibody", "MBD2 protein methyl-CpG binding domain", "CAGE", "RACE", "MDA", "padlock probes capture method", "Oligo-dT", "Inverse rRNA selection", "ChIP-Seq", "other", "unspecified"]
+                }, {
+                    "label": "Library strategy",
+                    "name": "library_strategy",
+                    "mandatory": true,
+                    "description": "The sequencing technique intended for this library.",
+                    "value_choice": ["WGA", "WXS", "RNA-Seq", "snRNA-seq", "ssRNA-seq", "miRNA-Seq", "ncRNA-Seq", "FL-cDNA", "EST", "Hi-C", "ATAC-seq", "WGS", "WCS", "RAD-Seq", "CLONE", "POOLCLONE", "AMPLICON", "CLONEEND", "FINISHING", "ChIP-Seq", "MNase-Seq", "DNase-Hypersensitivity", "Bisulfite-Seq", "CTS", "MRE-Seq", "MeDIP-Seq", "MBD-Seq", "Tn-Seq", "VALIDATION", "FAIRE-seq", "SELEX", "RIP-Seq", "ChIA-PET", "Synthetic-Long-Read", "Targeted-Capture", "Tethered Chromatin Conformation Capture", "ChM-Seq", "GBS", "OTHER"]
+                }, {
+                    "label": "Library design",
+                    "name": "library_design",
+                    "description": "The design of the library including details of how it was constructed."
+                }, {
+                    "label": "Library construction protocol",
+                    "name": "library_construction_protocol",
+                    "description": "The protocol used to construct the library."
+                }, {
+                    "label": "Library layout",
+                    "name": "library_layout",
+                    "mandatory": true,
+                    "description": "The library layout specifies whether to expect single or paired configuration of reads.",
+                    "value_choice": ["SINGLE", "PAIRED"]
+                }, {
+                    "label": "Design description",
+                    "name": "design_description",
+                    "description": "The design of the library including details of how it was constructed."
+                }, {
+                    "label": "Insert size",
+                    "name": "insert_size",
+                    "description": "The distance between paired reads."
+                }, {
+                    "label": "Forward file name",
+                    "name": "forward_file_name",
+                    "mandatory": true,
+                    "description": "Please enter the file name including any subdirectory name. The permitted file suffixes are: .fasta.gz, .fas.gz, .fsa.gz, .fna.gz, .fa.gz, .fasta.bz2, .fas.bz2, .fsa.bz2, .fna.bz2, .fa.bz2."
+                }, {
+                    "label": "Forward File checksum",
+                    "name": "forward_file_md5",
+                    "mandatory": true,
+                    "description": "The file MD5 checksum. This field is mandatory if you do not use the Webin File Uploader or upload the checksum using a .md5 file."
+                }, {
+                    "label": "Forward file unencrypted checksum",
+                    "name": "forward_file_unencrypted_md5",
+                    "description": "The file unencrypted MD5 checksum."
+                }, {
+                    "label": "Reverse file name",
+                    "name": "reverse_file_name",
+                    "mandatory": true,
+                    "description": "Please enter the file name including any subdirectory name. The permitted file suffixes are: .fasta.gz, .fas.gz, .fsa.gz, .fna.gz, .fa.gz, .fasta.bz2, .fas.bz2, .fsa.bz2, .fna.bz2, .fa.bz2."
+                }, {
+                    "label": "Reverse file checksum",
+                    "name": "reverse_file_md5",
+                    "mandatory": true,
+                    "description": "The file MD5 checksum. This field is mandatory if you do not use the Webin File Uploader or upload the checksum using a .md5 file."
+                }, {
+                    "label": "Reverse file unencrypted checksum",
+                    "name": "reverse_file_unencrypted_md5",
+                    "description": "The file unencrypted MD5 checksum."
+                }
+            ]
+        }, {
+            "name": "PacBio_HDFS",
+            "label": "Submit reads using PacBio HDF5 native format",
+            "description": "Each set of PacBio HDF5 native format files (metadata.xml, bas.h5 and bax.h5) will be associated with a separate sample, experiment and run.",
+            "file_type": "PacBio_HDF5",
+            "fields": [{
+                    "label": "Sample",
+                    "name": "sample",
+                    "mandatory": true,
+                    "description": "Sample alias or accession."
+                }, {
+                    "label": "Study",
+                    "name": "study",
+                    "mandatory": true,
+                    "description": "Study alias or accession."
+                }, {
+                    "label": "Instrument model",
+                    "name": "instrument_model",
+                    "mandatory": true,
+                    "description": "The sequencing instrument model used in the experiment",
+                    "value_choice": ["MinION", "GridION", "PromethION", "454 GS", "454 GS 20", "454 GS FLX", "454 GS FLX+", "454 GS FLX Titanium", "454 GS Junior", "Illumina Genome Analyzer", "Illumina Genome Analyzer II", "Illumina Genome Analyzer IIx", "Illumina HiSeq 1000", "Illumina HiSeq 1500", "Illumina HiSeq 2000", "Illumina HiSeq 2500", "Illumina HiSeq 3000", "Illumina HiSeq 4000", "Illumina iSeq 100", "Illumina HiScanSQ", "Illumina NextSeq 500", "Illumina NextSeq 550", "Illumina NovaSeq 6000", "Illumina HiSeq X Five", "Illumina HiSeq X Ten", "Illumina MiSeq", "Illumina MiniSeq", "NextSeq 1000", "NextSeq 2000", "AB SOLiD System", "AB SOLiD System 2.0", "AB SOLiD System 3.0", "AB SOLiD 3 Plus System", "AB SOLiD 4 System", "AB SOLiD 4hq System", "AB SOLiD PI System", "AB 5500 Genetic Analyzer", "AB 5500xl Genetic Analyzer", "AB 5500xl-W Genetic Analysis System", "Ion Torrent PGM", "Ion Torrent Proton", "Ion Torrent S5", "Ion Torrent S5 XL", "Complete Genomics", "PacBio RS", "PacBio RS II", "Sequel", "Sequel II", "Sequel IIe", "AB 3730xL Genetic Analyzer", "AB 3730 Genetic Analyzer", "AB 3500xL Genetic Analyzer", "AB 3500 Genetic Analyzer", "AB 3130xL Genetic Analyzer", "AB 3130 Genetic Analyzer", "AB 310 Genetic Analyzer", "BGISEQ-500", "DNBSEQ-T7", "DNBSEQ-G400", "DNBSEQ-G50", "DNBSEQ-G400 FAST"]
+                }, {
+                    "label": "Library name",
+                    "name": "library_name",
+                    "mandatory": true,
+                    "description": "The name for the library if any."
+                }, {
+                    "label": "Library source",
+                    "name": "library_source",
+                    "mandatory": true,
+                    "description": "The type of source material that is being sequenced.",
+                    "value_choice": ["GENOMIC", "TRANSCRIPTOMIC", "METAGENOMIC", "METATRANSCRIPTOMIC", "SYNTHETIC", "VIRAL RNA", "OTHER"]
+                }, {
+                    "label": "Library selection",
+                    "name": "library_selection",
+                    "mandatory": true,
+                    "description": "The method used to select for or against, enrich, or screen the material being sequenced.",
+                    "value_choice": ["RANDOM", "PCR", "RANDOM PCR", "RT-PCR", "HMPR", "MF", "repeat fractionation", "size fractionation", "MSLL", "cDNA", "ChIP", "MNase", "DNase", "Hybrid Selection", "Reduced Representation", "Restriction Digest", "5-methylcytidine antibody", "MBD2 protein methyl-CpG binding domain", "CAGE", "RACE", "MDA", "padlock probes capture method", "Oligo-dT", "Inverse rRNA selection", "ChIP-Seq", "other", "unspecified"]
+                }, {
+                    "label": "Library strategy",
+                    "name": "library_strategy",
+                    "mandatory": true,
+                    "description": "The sequencing technique intended for this library.",
+                    "value_choice": ["WGA", "WXS", "RNA-Seq", "snRNA-seq", "ssRNA-seq", "miRNA-Seq", "ncRNA-Seq", "FL-cDNA", "EST", "Hi-C", "ATAC-seq", "WGS", "WCS", "RAD-Seq", "CLONE", "POOLCLONE", "AMPLICON", "CLONEEND", "FINISHING", "ChIP-Seq", "MNase-Seq", "DNase-Hypersensitivity", "Bisulfite-Seq", "CTS", "MRE-Seq", "MeDIP-Seq", "MBD-Seq", "Tn-Seq", "VALIDATION", "FAIRE-seq", "SELEX", "RIP-Seq", "ChIA-PET", "Synthetic-Long-Read", "Targeted-Capture", "Tethered Chromatin Conformation Capture", "ChM-Seq", "GBS", "OTHER"]
+                }, {
+                    "label": "Library construction protocol",
+                    "name": "library_construction_protocol",
+                    "description": "The protocol used to construct the library."
+                }, {
+                    "label": "Library layout",
+                    "name": "library_layout",
+                    "description": "The library layout specifies whether to expect single or paired configuration of reads.",
+                    "value_choice": ["SINGLE", "PAIRED"]
+                }, {
+                    "label": "Design description",
+                    "name": "design_description",
+                    "description": "The design of the library including details of how it was constructed."
+                }, {
+                    "label": "Insert size",
+                    "name": "insert_size",
+                    "description": "The distance between paired reads."
+                }, {
+                    "label": "File name",
+                    "name": "file_name",
+                    "mandatory": true,
+                    "description": "One PacBio MDF5 run consists of *.bax.h5, *.bas.h5 and xml files"
+                }, {
+                    "label": "File checksum",
+                    "name": "file_md5",
+                    "mandatory": true,
+                    "description": "The file MD5 checksum. This field is mandatory if you do not use the Webin File Uploader or upload the checksum using a .md5 file."
+                }, {
+                    "label": "File unencrypted checksum",
+                    "name": "file_unencrypted_md5",
+                    "description": "The file unencrypted MD5 checksum.",
+                    "is_ega_field": true
+                }
+            ]
+        }, {
+            "name": "oxford_nanopore",
+            "file_type": "OxfordNanopore_native",
+            "label": "Submit reads using Oxford Nanopore native format",
+            "description": "Each set of Oxford Nanopore native format files will be associated with a separate sample, experiment and run.",
+            "fields": [{
+                    "label": "Sample",
+                    "name": "sample",
+                    "mandatory": true,
+                    "description": "Sample alias or accession."
+                }, {
+                    "label": "Study",
+                    "name": "study",
+                    "mandatory": true,
+                    "description": "Study alias or accession."
+                }, {
+                    "label": "Instrument model",
+                    "name": "instrument_model",
+                    "mandatory": true,
+                    "description": "The sequencing instrument model used in the experiment",
+                    "value_choice": ["MinION", "GridION", "PromethION", "454 GS", "454 GS 20", "454 GS FLX", "454 GS FLX+", "454 GS FLX Titanium", "454 GS Junior", "Illumina Genome Analyzer", "Illumina Genome Analyzer II", "Illumina Genome Analyzer IIx", "Illumina HiSeq 1000", "Illumina HiSeq 1500", "Illumina HiSeq 2000", "Illumina HiSeq 2500", "Illumina HiSeq 3000", "Illumina HiSeq 4000", "Illumina iSeq 100", "Illumina HiScanSQ", "Illumina NextSeq 500", "Illumina NextSeq 550", "Illumina NovaSeq 6000", "Illumina HiSeq X Five", "Illumina HiSeq X Ten", "Illumina MiSeq", "Illumina MiniSeq", "NextSeq 1000", "NextSeq 2000", "AB SOLiD System", "AB SOLiD System 2.0", "AB SOLiD System 3.0", "AB SOLiD 3 Plus System", "AB SOLiD 4 System", "AB SOLiD 4hq System", "AB SOLiD PI System", "AB 5500 Genetic Analyzer", "AB 5500xl Genetic Analyzer", "AB 5500xl-W Genetic Analysis System", "Ion Torrent PGM", "Ion Torrent Proton", "Ion Torrent S5", "Ion Torrent S5 XL", "Complete Genomics", "PacBio RS", "PacBio RS II", "Sequel", "Sequel II", "Sequel IIe", "AB 3730xL Genetic Analyzer", "AB 3730 Genetic Analyzer", "AB 3500xL Genetic Analyzer", "AB 3500 Genetic Analyzer", "AB 3130xL Genetic Analyzer", "AB 3130 Genetic Analyzer", "AB 310 Genetic Analyzer", "BGISEQ-500", "DNBSEQ-T7", "DNBSEQ-G400", "DNBSEQ-G50", "DNBSEQ-G400 FAST"]
+                }, {
+                    "label": "Library name",
+                    "name": "library_name",
+                    "mandatory": true,
+                    "description": "The name for the library if any."
+                }, {
+                    "label": "Library source",
+                    "name": "library_source",
+                    "mandatory": true,
+                    "description": "The type of source material that is being sequenced.",
+                    "value_choice": ["GENOMIC", "TRANSCRIPTOMIC", "METAGENOMIC", "METATRANSCRIPTOMIC", "SYNTHETIC", "VIRAL RNA", "OTHER"]
+                }, {
+                    "label": "Library selection",
+                    "name": "library_selection",
+                    "mandatory": true,
+                    "description": "The method used to select for or against, enrich, or screen the material being sequenced.",
+                    "value_choice": ["RANDOM", "PCR", "RANDOM PCR", "RT-PCR", "HMPR", "MF", "repeat fractionation", "size fractionation", "MSLL", "cDNA", "ChIP", "MNase", "DNase", "Hybrid Selection", "Reduced Representation", "Restriction Digest", "5-methylcytidine antibody", "MBD2 protein methyl-CpG binding domain", "CAGE", "RACE", "MDA", "padlock probes capture method", "Oligo-dT", "Inverse rRNA selection", "ChIP-Seq", "other", "unspecified"]
+                }, {
+                    "label": "Library strategy",
+                    "name": "library_strategy",
+                    "mandatory": true,
+                    "description": "The sequencing technique intended for this library.",
+                    "value_choice": ["WGA", "WXS", "RNA-Seq", "snRNA-seq", "ssRNA-seq", "miRNA-Seq", "ncRNA-Seq", "FL-cDNA", "EST", "Hi-C", "ATAC-seq", "WGS", "WCS", "RAD-Seq", "CLONE", "POOLCLONE", "AMPLICON", "CLONEEND", "FINISHING", "ChIP-Seq", "MNase-Seq", "DNase-Hypersensitivity", "Bisulfite-Seq", "CTS", "MRE-Seq", "MeDIP-Seq", "MBD-Seq", "Tn-Seq", "VALIDATION", "FAIRE-seq", "SELEX", "RIP-Seq", "ChIA-PET", "Synthetic-Long-Read", "Targeted-Capture", "Tethered Chromatin Conformation Capture", "ChM-Seq", "GBS", "OTHER"]
+                }, {
+                    "label": "Library construction protocol",
+                    "name": "library_construction_protocol",
+                    "description": "The protocol used to construct the library."
+                }, {
+                    "label": "Library layout",
+                    "name": "library_layout",
+                    "description": "The library layout specifies whether to expect single or paired configuration of reads.",
+                    "value_choice": ["SINGLE", "PAIRED"]
+                }, {
+                    "label": "Design description",
+                    "name": "design_description",
+                    "description": "The design of the library including details of how it was constructed."
+                }, {
+                    "label": "Insert size",
+                    "name": "insert_size",
+                    "description": "The distance between paired reads."
+                }, {
+                    "label": "File name",
+                    "name": "file_name",
+                    "mandatory": true,
+                    "description": "The file name including any subdirectory name. The only permitted file suffix is .tar, .tar.gz, .tgz, tar.bz2, .zip ."
+                }, {
+                    "label": "File checksum",
+                    "name": "file_md5",
+                    "mandatory": true,
+                    "description": "The file MD5 checksum. This field is mandatory if you do not use the Webin File Uploader or upload the checksum using a .md5 file."
+                }, {
+                    "label": "File unencrypted checksum",
+                    "name": "file_unencrypted_md5",
+                    "description": "The file unencrypted MD5 checksum.",
+                    "is_ega_field": true
+                }
+            ]
+        }
+    ]
+}

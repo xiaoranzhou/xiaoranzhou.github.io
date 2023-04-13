@@ -385,51 +385,40 @@ def init_none():
     term_accession = None
     
 def write_sample_xml(xml_input):
-#     input_ = xml_input[xml_input["subsection_id"].str.match(r'1SPL01_plants_')==True ]
-    xml_input = pd.read_csv("json_table_new.csv")
-    # input_ = xml_input[xml_input["subsection_id"].str.match(r'1SPL01_plants_')==True ]
-    sample= xml_input
-    input_list = sample[sample["subsection_id"]=="sources"]
+    input_ = xml_input[xml_input["subsection_id"].str.match(r'1SPL01_plants_')==True ]
+    sample= input_
+    input_list = sample[sample["input_name"].notna()]
     output_list = sample[sample["output_name"].notna()]
 
     a = et.Element('SAMPLE_SET')
     for index1,input_name in enumerate(input_list["input_name"].unique()):
         one_sample = sample[sample['input_name'] == input_name]
+        for index2, tags in enumerate(one_sample):
+            b = et.SubElement(a, 'SAMPLE')
 
-        b = et.SubElement(a, 'SAMPLE')
+            b.attrib = {'alias': input_name , 'center_name':''}
+            c = et.SubElement(b, 'TITLE')
+            c.text = one_sample[one_sample['term_name']== 'Organism']['value'].to_string(header=False, index=False)
 
-        b.attrib = {'alias': input_name , 'center_name':''}
-        c = et.SubElement(b, 'TITLE')
-        json_string = list(one_sample[one_sample['term_name']== 'organism']['value'])[0]
-    #         print(str(json_string))
-        c.text = json.loads(str(json_string).replace("'", '"')).get('annotationValue')
+            d = et.SubElement(b, 'SAMPLE_NAME')
+            #d.text = input_name
 
-        d = et.SubElement(b, 'SAMPLE_NAME')
-        #d.text = input_name
+            e = et.SubElement(d, 'TAXON_ID')
+            e.text = '110664'
+            f = et.SubElement(d, 'SCIENTIFIC_NAME')
+            f.text = c.text = one_sample[one_sample['term_name']== 'Organism']['value'].to_string(header=False, index=False)
 
-        e = et.SubElement(d, 'TAXON_ID')
-        e.text = '110664'
-        f = et.SubElement(d, 'SCIENTIFIC_NAME')
-        json_string = list(one_sample[one_sample['term_name']== 'organism']['value'])[0]
-    #         print(str(json_string))
+            g = et.SubElement(d, 'COMMON_NAME')
+            g.text = input_name
 
-        f.text = json.loads(str(json_string).replace("'", '"')).get('annotationValue')
+            h = et.SubElement(b, 'SAMPLE_ATTRIBUTES')
+            for index3, row in one_sample.iterrows():
+                m = et.SubElement(h,'SAMPLE_ATTRIBUTE' )
+                j = et.SubElement(m, 'TAG')
+                j.text = str(row['term_name'])
 
-        g = et.SubElement(d, 'COMMON_NAME')
-        g.text = input_name
-
-
-        h = et.SubElement(b, 'SAMPLE_ATTRIBUTES')
-        for index3, row in one_sample.iterrows():
-            m = et.SubElement(h,'SAMPLE_ATTRIBUTE' )
-            j = et.SubElement(m, 'TAG')
-            j.text = str(row['term_name'])
-
-            k = et.SubElement(m, 'VALUE')
-            k.text = str(row['value']) 
-
-            l = et.SubElement(m, 'TERM_ACCESSION')
-            l.text = '"' +str(row['term_accession']) +'"'
+                k = et.SubElement(m, 'VALUE')
+                k.text = str(row['value']) 
 
 
     tree = et.ElementTree(a)
@@ -484,26 +473,6 @@ def convert_json(arc_json_file, mapping_file):
     section = "studies"
     studies = arc_json.get("studies")
     arc_id = studies[0].get("identifier")
-
-    # new code for new materials structure   
-    materials = arc_json.get("studies")[0].get("materials")
-    subsection_id = "sources"
-    for i,input_ in enumerate(materials.get("sources")):
-
-
-        input_name = input_.get("name")
-        input_id = i
-
-        derived_from = input_.get("derivesFrom")[0].get("name") if input_.get("derivesFrom") is not None else None
-        #  print(input_name + " derivesFrom is ", derived_from)
-        characteristics = input_.get("characteristics") 
-        if characteristics != None:
-            print("find chara")
-            append_c_input(characteristics,json_rows)
-        factorvalues = input_.get("factorValues") 
-        if factorvalues != None:
-                append_input(factorvalues,json_rows)
-
     processSequences = arc_json.get("studies")[0].get('assays')[0].get("processSequence")
 
     for process_seq in processSequences:

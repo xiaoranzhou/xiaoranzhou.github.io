@@ -1,47 +1,47 @@
-﻿template,name,id,term_accession,,,Field Name,Field Format,(Field Restriction),Requirement,(Units)
+template,name,id,term_accession,,,Field Name,Field Format,(Field Restriction),Requirement,(Units)
 extration,,,,,,ploidy,free text,,recommended,
 extration,,,,,,number of replicons,restricted text,regular expression ,recommended,
 extration,,,,,,extrachromosomal elements,restricted text,regular expression ,optional,
 extration,,,,,,estimated size,restricted text,regular expression ,recommended,
 extration,,,,,,sample volume or weight for DNA extraction,restricted text,regular expression ,optional,options
-sample,Characteristics [Sample Collected By],NFDI4PSO:0000076,,,,collected_by,free text,,optional,
-sample,Characteristics [Sample Collection Date],NFDI4PSO:0000075,,,,collection date,restricted text,regular expression ,mandatory,
+sample,Characteristics [sample collected by],GENEPIO:0001153,,,,collected_by,free text,,optional,
+sample,Characteristics [sample collection date],GENEPIO:0001174,,,,collection date,restricted text,regular expression ,mandatory,
 sample,,,,,,geographic location (altitude),restricted text,regular expression ,optional,m
-sample,Characteristics [Geographic Area],NFDI4PSO:0000074,,,,geographic location (country and/or sea),text choice,options,mandatory,
-sample,Characteristics [Latitude],NFDI4PSO:0002003,,,,geographic location (latitude),restricted text,regular expression ,mandatory,DD
-sample,Characteristics [Longitude],NFDI4PSO:0002004,,,,geographic location (longitude),restricted text,regular expression ,mandatory,DD
-sample,Characteristics [Geographic Area],NFDI4PSO:0000074,,,,geographic location (region and locality),free text,,optional,
+sample,Characteristics [Geographic Area],DPBO:0000074,,,,geographic location (country and/or sea),text choice,options,mandatory,
+sample,Characteristics [Latitude],SIO:000319,,,,geographic location (latitude),restricted text,regular expression ,mandatory,DD
+sample,Characteristics [Longitude],SIO:000318,,,,geographic location (longitude),restricted text,regular expression ,mandatory,DD
+sample,Characteristics [Geographic Area],DPBO:0000074,,,,geographic location (region and locality),free text,,optional,
 sample,,,,,,identified_by,free text,,optional,
 sample,,,,,,geographic location (depth),restricted text,regular expression ,optional,m
 sample,,,,,,environment (biome),free text,,optional,
 sample,,,,,,environment (feature),free text,,optional,
 sample,,,,,,geographic location (elevation),restricted text,regular expression ,optional,m
 sample,,,,,,source material identifiers,free text,,recommended,
-sample,Parameter [Sample Collection Method],NFDI4PSO:0000009,,,,sample collection device or method,free text,,optional,
+sample,Parameter [sample collection method],DPBO:0000009,,,,sample collection device or method,free text,,optional,
 sample,,,,,,sample material processing,free text,,optional,
-sample,Characteristics [Isolate],NFDI4PSO:0000065,,,,isolation and growth condition,free text,,mandatory,
+sample,Characteristics [isolate],NCIT:C53471,,,,isolation and growth condition,free text,,mandatory,
 sample,,,,,,propagation,free text,,recommended,
 sample,,,,,,amount or size of sample collected,restricted text,regular expression ,optional,options
 sample,,,,,,sample storage duration,restricted text,regular expression ,optional,options
-sample,Parameter [Sample storage],NFDI4PSO:0000011,,,,sample storage temperature,restricted text,regular expression ,optional,°C
+sample,Parameter [sample storage],DPBO:0000011,,,,sample storage temperature,restricted text,regular expression ,optional,
 sample,,,,,,sample storage location,free text,,optional,
 sample,,,,,,sampling time point,free text,,optional,
 sample,Characteristics [Plant structure],PO:0009011,,,,plant structure,free text,,mandatory,
 sample,Characteristics [Plant developmental stage],PO:0009012,,,,plant developmental stage,free text,,mandatory,
 sample,,,,,,sampled age,free text,,optional,
-sample,Characteristics [Phenotype],NFDI4PSO:0000073,,,,sample phenotype,free text,,optional,
-sample,Characteristics [Plant disease],NFDI4PSO:0000071,,,,sample health state,text choice,options,recommended,
+sample,Characteristics [phenotype],DPBO:0000073,,,,sample phenotype,free text,,optional,
+sample,Characteristics [plant disease],PSO:0000013,,,,sample health state,text choice,options,recommended,
 sample,,,,,,sample disease status,free text,,recommended,
-sample,Characteristics [Plant disease stage],NFDI4PSO:0000072,,,,sample disease stage,free text,,optional,
+sample,Characteristics [plant disease stage],DPBO:0000072,,,,sample disease stage,free text,,optional,
 sample,,,,,,sample wet mass,free text,,optional,
 sample,,,,,,sample dry mass,free text,,optional,
 sample,Characteristics [whole plant size],TO:1000012,,,,sample height,free text,,optional,
 sample,,,,,,sample length,free text,,optional,
 sample,,,,,,growth facility,text choice,options,recommended,
 sample,,,,,,sample capture status,text choice,options,optional,
-sample,Characteristics [Genotype],NFDI4PSO:0000031,,,,genotype,free text,,optional,
+sample,Characteristics [genotype],EFO:0000513,,,,genotype,free text,,optional,
 sample,,,,,,genetic modification,free text,,optional,
-sample,Characteristics [Organism],NFDI4PSO:0000030,,,,organism common name,free text,,recommended,
+sample,Characteristics [organism],OBI:0100026,,,,organism common name,free text,,recommended,
 sample,,,,,,subspecific genetic lineage rank,free text,,recommended,
 sample,,,,,,subspecific genetic lineage name,free text,,recommended,
 sample,,,,,,biological status,free text,,optional,

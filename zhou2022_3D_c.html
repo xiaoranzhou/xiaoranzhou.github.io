@@ -66,6 +66,7 @@
   <div id="myDiv" style="width:95vw; height:87vh"><!-- Plotly chart will be drawn inside this DIV --></div>
   
   <script>
+	var plt;
   const plant_name = "https://raw.githubusercontent.com/xiaoranzhou/cpb-binder/master/tutorial/jupyter/case_01_0.075cm_lateral_radius.xml_16_1_0.1_0_res_2nd_10_trans_trsv6vml_15-6-29-15-36.csv";
   var figure_data= [
   { "column_name": "JW_ST", "column_text": "Sieve-tube Solution Flow", "column_unit" : "ml/h" },
@@ -529,7 +530,9 @@
 			}]
 		  };
 		  
-
+		  window["getcamera"] =function(scene){
+			console.log(layout[scene].camera.eye);
+		  } 
 		  
 		var frames = [];
 		  
@@ -592,7 +595,7 @@
 
 		}
 		var data = [trace1,trace2,trace3,trace4];
-		Plotly.newPlot('myDiv', {
+		plt = Plotly.newPlot('myDiv', {
 			data: data,
 			layout: layout,
 			frames: frames,

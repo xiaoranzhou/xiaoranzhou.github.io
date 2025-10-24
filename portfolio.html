@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xiaoran Zhou | AI Applications Portfolio</title>
+    <meta name="description" content="AI-powered tools for research data management, LLM workflow integration, and automated evaluation">
+    <meta name="keywords" content="AI, LLM, Data Management, MCP, Model Context Protocol, DataPLAN, elab2arc, Research Data">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #2ecc71;
+            --dark-bg: #1a252f;
+        }
+
+        body {
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('images/animation.gif') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        /* Tool Card Styles */
+        .tool-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .tool-card h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-card .tech-stack {
+            margin: 1rem 0;
+        }
+
+        .tool-card .badge {
+            margin: 3px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+
+        .demo-container {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border: 2px dashed #dee2e6;
+        }
+
+        /* GitHub Integration */
+        .github-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .github-card:hover {
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+
+        .github-stats {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Expertise Cards */
+        .expertise-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .expertise-card:hover {
+            transform: scale(1.05);
+        }
+
+        .expertise-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Skills Section */
+        .skill-category {
+            margin-bottom: 2rem;
+        }
+
+        .skill-category h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary-color);
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--secondary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">Xiaoran Zhou</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#tools">AI Tools</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#expertise">Expertise</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#github">GitHub</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Main Site</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content text-center">
+                <h1 class="hero-title">AI Applications Portfolio</h1>
+                <p class="hero-subtitle">Specializing in LLM-Powered Tools for Research Data Management</p>
+                <p class="lead mb-4">Bridging cutting-edge AI technology with scientific research workflows</p>
+                <div class="tech-badges">
+                    <span class="tech-badge"><i class="bi bi-robot"></i> Large Language Models</span>
+                    <span class="tech-badge"><i class="bi bi-diagram-3"></i> Workflow Automation</span>
+                    <span class="tech-badge"><i class="bi bi-server"></i> MCP Servers</span>
+                    <span class="tech-badge"><i class="bi bi-graph-up"></i> Data Evaluation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Tools Showcase Section -->
+    <section id="tools" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">AI-Powered Tools</h2>
+            <p class="section-subtitle text-center">Innovative applications leveraging LLMs for research data management</p>
+
+            <!-- DataPLAN -->
+            <div class="tool-card">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <h3><i class="bi bi-file-earmark-text text-primary"></i> DataPLAN</h3>
+                        <p class="lead">LLM-Powered Data Management Plan Generator for Plant Sciences</p>
+                        <p>DataPLAN leverages large language models to automatically generate comprehensive, compliant data management plans. The tool integrates LLM workflows to understand research contexts, suggest appropriate metadata standards, and create structured DMPs that meet funder requirements.</p>
+
+                        <div class="tech-stack">
+                            <strong>Technologies:</strong>
+                            <span class="badge bg-primary">LLM Integration</span>
+                            <span class="badge bg-success">Workflow Automation</span>
+                            <span class="badge bg-info">ISA Framework</span>
+                            <span class="badge bg-warning text-dark">Research Data Management</span>
+                        </div>
+
+                        <div class="mt-3">
+                            <a href="https://www.mdpi.com/2306-5729/8/11/159" class="btn btn-primary" target="_blank">
+                                <i class="bi bi-file-text"></i> Read Publication
+                            </a>
+                            <a href="https://github.com/nfdi4plants/DataPLAN" class="btn btn-outline-secondary ms-2" target="_blank">
+                                <i class="bi bi-github"></i> GitHub Repository
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="demo-container text-center">
+                            <i class="bi bi-activity" style="font-size: 4rem; color: var(--secondary-color);"></i>
+                            <p class="mt-2 mb-0"><strong>Live Demo</strong></p>
+                            <p class="text-muted small">Interactive DMP generation with AI assistance</p>
+                            <!-- Placeholder for embedding actual demo -->
+                            <a href="#" class="btn btn-sm btn-outline-primary">Try DataPLAN</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- elab2arc -->
+            <div class="tool-card">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 order-lg-2">
+                        <div class="demo-container text-center">
+                            <i class="bi bi-arrow-left-right" style="font-size: 4rem; color: var(--accent-color);"></i>
+                            <p class="mt-2 mb-0"><strong>AI-Powered Conversion</strong></p>
+                            <p class="text-muted small">Free text protocols → Standardized Excel/ARC</p>
+                            <!-- Placeholder for embedding actual demo -->
+                            <a href="#" class="btn btn-sm btn-outline-success">Try elab2arc</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 order-lg-1">
+                        <h3><i class="bi bi-file-earmark-spreadsheet text-success"></i> elab2arc</h3>
+                        <p class="lead">AI-Driven Conversion of Experimental Protocols to Standardized Formats</p>
+                        <p>elab2arc uses advanced natural language processing and LLMs to automatically parse free-text experimental protocols from electronic lab notebooks and convert them into standardized, machine-readable Excel files compliant with ARC (Annotated Research Context) specifications. This tool dramatically reduces manual data entry and ensures reproducibility.</p>
+
+                        <div class="tech-stack">
+                            <strong>Technologies:</strong>
+                            <span class="badge bg-success">NLP</span>
+                            <span class="badge bg-primary">LLM Parsing</span>
+                            <span class="badge bg-info">ARC Specification</span>
+                            <span class="badge bg-warning text-dark">Data Standardization</span>
+                        </div>
+
+                        <div class="mt-3">
+                            <a href="https://github.com/nfdi4plants/elab2arc" class="btn btn-success" target="_blank">
+                                <i class="bi bi-github"></i> GitHub Repository
+                            </a>
+                            <a href="#" class="btn btn-outline-secondary ms-2">
+                                <i class="bi bi-book"></i> Documentation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DataPLAN MCP Server -->
+            <div class="tool-card">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <h3><i class="bi bi-plugin text-info"></i> DataPLAN MCP Server</h3>
+                        <p class="lead">Model Context Protocol Server for Research Data Management</p>
+                        <p>A custom-built MCP (Model Context Protocol) server that enables AI assistants like Claude to directly interact with DataPLAN functionality. This server provides structured access to data management planning capabilities, allowing seamless integration of DMP generation into AI-powered research workflows.</p>
+
+                        <div class="tech-stack">
+                            <strong>Technologies:</strong>
+                            <span class="badge bg-info">Model Context Protocol</span>
+                            <span class="badge bg-primary">Server Development</span>
+                            <span class="badge bg-success">API Integration</span>
+                            <span class="badge bg-warning text-dark">Claude AI</span>
+                        </div>
+
+                        <div class="mt-3">
+                            <a href="https://github.com/xiaoranzhou/dataplan-mcp" class="btn btn-info" target="_blank">
+                                <i class="bi bi-github"></i> MCP Server Repository
+                            </a>
+                            <a href="https://modelcontextprotocol.io" class="btn btn-outline-secondary ms-2" target="_blank">
+                                <i class="bi bi-info-circle"></i> Learn About MCP
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="demo-container">
+                            <pre class="mb-0" style="font-size: 0.8rem; background: white; padding: 1rem; border-radius: 5px;"><code>{
+  "server": "dataplan-mcp",
+  "tools": [
+    "generate_dmp",
+    "validate_metadata",
+    "suggest_standards"
+  ],
+  "integration": "claude-ai"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Evaluation Expertise Section -->
+    <section id="expertise" class="section">
+        <div class="container">
+            <h2 class="section-title text-center">AI Evaluation Expertise</h2>
+            <p class="section-subtitle text-center">Leveraging AI for comprehensive quality assessment and optimization</p>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="expertise-card text-center">
+                        <i class="bi bi-folder-check"></i>
+                        <h4>Project Evaluation</h4>
+                        <p>AI-powered assessment of research projects, analyzing methodology, data quality, and reproducibility using LLM-based evaluation frameworks.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="expertise-card text-center" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <i class="bi bi-code-square"></i>
+                        <h4>Code Review</h4>
+                        <p>Automated code quality analysis, documentation assessment, and best practice recommendations using AI-assisted review systems.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="expertise-card text-center" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <i class="bi bi-file-earmark-check"></i>
+                        <h4>DMP Analysis</h4>
+                        <p>Comprehensive evaluation of Data Management Plans for compliance, completeness, and best practices using LLM validation workflows.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="expertise-card text-center" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <i class="bi bi-database-check"></i>
+                        <h4>Data Quality Assessment</h4>
+                        <p>AI-driven data quality checks, metadata validation, and standardization recommendations for research data.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-lg-10 mx-auto">
+                    <div class="card border-0 shadow-lg">
+                        <div class="card-body p-4">
+                            <h4 class="text-center mb-4">Evaluation Capabilities</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Automated compliance checking</li>
+                                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Metadata quality analysis</li>
+                                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Documentation assessment</li>
+                                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> FAIR principles evaluation</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Reproducibility scoring</li>
+                                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Standards compliance verification</li>
+                                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Data structure optimization</li>
+                                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> AI-assisted recommendations</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Technical Skills</h2>
+            <p class="section-subtitle text-center">Expertise spanning AI, data management, and scientific computing</p>
+
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="skill-category">
+                        <h4><i class="bi bi-robot me-2"></i> AI & Machine Learning</h4>
+                        <span class="skill-tag">Large Language Models (GPT, Claude)</span>
+                        <span class="skill-tag">Natural Language Processing</span>
+                        <span class="skill-tag">LLM Workflow Integration</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                        <span class="skill-tag">AI-Assisted Evaluation</span>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4><i class="bi bi-diagram-3 me-2"></i> Integration & Protocols</h4>
+                        <span class="skill-tag">Model Context Protocol (MCP)</span>
+                        <span class="skill-tag">API Development</span>
+                        <span class="skill-tag">Workflow Automation</span>
+                        <span class="skill-tag">Server Development</span>
+                        <span class="skill-tag">Claude AI Integration</span>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4><i class="bi bi-database me-2"></i> Research Data Management</h4>
+                        <span class="skill-tag">ISA Framework</span>
+                        <span class="skill-tag">ARC Specification</span>
+                        <span class="skill-tag">Data Management Plans</span>
+                        <span class="skill-tag">Metadata Standards</span>
+                        <span class="skill-tag">FAIR Principles</span>
+                        <span class="skill-tag">Data Standardization</span>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4><i class="bi bi-code-slash me-2"></i> Development & Tools</h4>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">WebAssembly</span>
+                        <span class="skill-tag">Git/GitHub</span>
+                        <span class="skill-tag">Bootstrap</span>
+                        <span class="skill-tag">RESTful APIs</span>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4><i class="bi bi-bezier2 me-2"></i> Domain Expertise</h4>
+                        <span class="skill-tag">Plant Sciences</span>
+                        <span class="skill-tag">Bioinformatics</span>
+                        <span class="skill-tag">Scientific Computing</span>
+                        <span class="skill-tag">Data Quality Assessment</span>
+                        <span class="skill-tag">Electronic Lab Notebooks</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Integration Section -->
+    <section id="github" class="section">
+        <div class="container">
+            <h2 class="section-title text-center">Open Source Contributions</h2>
+            <p class="section-subtitle text-center">Explore my repositories and contribute to research data tools</p>
+
+            <div class="row g-4">
+                <!-- DataPLAN Repository -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="github-card">
+                        <h5><i class="bi bi-github me-2"></i> DataPLAN</h5>
+                        <p class="text-muted mb-3">Web-based data management plan generator for plant sciences with LLM integration</p>
+                        <div class="github-stats">
+                            <span class="stat-item"><i class="bi bi-star-fill text-warning"></i> Stars</span>
+                            <span class="stat-item"><i class="bi bi-diagram-2-fill text-info"></i> Forks</span>
+                        </div>
+                        <a href="https://github.com/nfdi4plants/DataPLAN" class="btn btn-sm btn-outline-dark mt-3 w-100" target="_blank">
+                            View Repository <i class="bi bi-box-arrow-up-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- elab2arc Repository -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="github-card">
+                        <h5><i class="bi bi-github me-2"></i> elab2arc</h5>
+                        <p class="text-muted mb-3">AI-powered converter from electronic lab notebook protocols to ARC format</p>
+                        <div class="github-stats">
+                            <span class="stat-item"><i class="bi bi-star-fill text-warning"></i> Stars</span>
+                            <span class="stat-item"><i class="bi bi-diagram-2-fill text-info"></i> Forks</span>
+                        </div>
+                        <a href="https://github.com/nfdi4plants/elab2arc" class="btn btn-sm btn-outline-dark mt-3 w-100" target="_blank">
+                            View Repository <i class="bi bi-box-arrow-up-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- DataPLAN MCP Repository -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="github-card">
+                        <h5><i class="bi bi-github me-2"></i> dataplan-mcp</h5>
+                        <p class="text-muted mb-3">Model Context Protocol server for integrating DataPLAN with AI assistants</p>
+                        <div class="github-stats">
+                            <span class="stat-item"><i class="bi bi-star-fill text-warning"></i> Stars</span>
+                            <span class="stat-item"><i class="bi bi-diagram-2-fill text-info"></i> Forks</span>
+                        </div>
+                        <a href="https://github.com/xiaoranzhou/dataplan-mcp" class="btn btn-sm btn-outline-dark mt-3 w-100" target="_blank">
+                            View Repository <i class="bi bi-box-arrow-up-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="https://github.com/xiaoranzhou" class="btn btn-lg btn-dark" target="_blank">
+                    <i class="bi bi-github me-2"></i> View All Repositories
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA Section -->
+    <section class="section bg-dark text-white text-center">
+        <div class="container">
+            <h2 class="mb-4">Interested in Collaboration?</h2>
+            <p class="lead mb-4">Let's discuss how AI can enhance your research data workflows</p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="mailto:a@xrzhou.com" class="btn btn-light btn-lg">
+                    <i class="bi bi-envelope-fill me-2"></i> Email Me
+                </a>
+                <a href="https://www.linkedin.com/in/xiaoranzhou/" class="btn btn-outline-light btn-lg" target="_blank">
+                    <i class="bi bi-linkedin me-2"></i> LinkedIn
+                </a>
+                <a href="https://github.com/xiaoranzhou" class="btn btn-outline-light btn-lg" target="_blank">
+                    <i class="bi bi-github me-2"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Show/hide back to top button
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.style.opacity = '1';
+                backToTop.style.pointerEvents = 'auto';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.pointerEvents = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -5,10 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xiaoran Zhou | Data Science Researcher</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
-        body { 
-            color: #333; 
+        :root {
+            /* Nature-inspired palette matching plant root simulation */
+            --primary-color: #2d4a3e;      /* Deep forest green */
+            --secondary-color: #5a7c70;    /* Sage green */
+            --accent-color: #8b9d83;       /* Soft moss */
+            --earth-brown: #6b5744;        /* Soil brown */
+            --root-beige: #c9b896;         /* Root/tan */
+            --dark-soil: #1a2b26;          /* Dark earth */
+        }
+
+        body {
+            color: #333;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+            padding-top: 60px;
+        }
+
+        /* Sticky Navigation Bar */
+        .top-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(45, 52, 54, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            padding: 12px 0;
+            transition: all 0.3s ease;
+        }
+
+        .top-navbar.scrolled {
+            background: rgba(45, 52, 54, 1);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .top-navbar .navbar-brand {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .top-navbar .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            padding: 8px 16px;
+            margin: 0 4px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .top-navbar .nav-link:hover {
+            background: rgba(90, 124, 112, 0.3);
+            color: white;
+        }
+
+        .top-navbar .nav-link.active {
+            background: rgba(90, 124, 112, 0.4);
+            color: white;
+        }
+
+        .btn-outline-primary.d-md-none {
+            color: white;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-outline-primary.d-md-none:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
         }
         .parallax-section {
             height: 100vh;
@@ -17,20 +84,117 @@
             background-repeat: no-repeat;
             background-size: cover;
             position: relative;
+            transition: opacity 0.3s ease;
+        }
+
+        .parallax-section:hover {
+            opacity: 0.95;
         }
         .content-section {
             padding: 60px 20px;
             min-height: 50vh;
             position: relative;
             z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .content-section:hover {
+            transform: scale(1.02);
         }
         .publication-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(5px);
+            background: transparent;
+            border-radius: 0;
+            padding: 3rem 2rem;
+            box-shadow: none;
+            backdrop-filter: none;
+            max-width: 900px;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out;
         }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .publication-card h3 {
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.3),
+                0 4px 8px rgba(0, 0, 0, 0.2),
+                0 8px 16px rgba(0, 0, 0, 0.15),
+                2px 2px 3px rgba(0, 0, 0, 0.4);
+            letter-spacing: -0.5px;
+            transition: transform 0.3s ease;
+        }
+
+        .publication-card h3:hover {
+            transform: translateY(-5px);
+            text-shadow:
+                0 4px 8px rgba(0, 0, 0, 0.4),
+                0 8px 16px rgba(0, 0, 0, 0.3),
+                0 16px 32px rgba(0, 0, 0, 0.2),
+                2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .publication-card p {
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.4),
+                0 3px 6px rgba(0, 0, 0, 0.3),
+                1px 1px 2px rgba(0, 0, 0, 0.5);
+            line-height: 1.6;
+        }
+
+        .publication-card p strong {
+            font-weight: 700;
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.5),
+                0 3px 8px rgba(0, 0, 0, 0.4),
+                1px 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        .publication-card a.btn {
+            background: rgba(255, 255, 255, 0.95);
+            color: #2c3e50;
+            border: none;
+            padding: 12px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.3),
+                0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .publication-card a.btn:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, 0.4),
+                0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
         .loader {
             position: fixed;
             bottom: 20px;
@@ -38,6 +202,7 @@
             transform: translateX(-50%);
             z-index: 2;
         }
+
         .publication-bg {
             background-attachment: fixed;
             background-position: center;
@@ -50,28 +215,592 @@
             height: 100%;
             z-index: -1;
         }
+
+        .publication-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.2) 0%,
+                rgba(0, 0, 0, 0.4) 50%,
+                rgba(0, 0, 0, 0.3) 100%
+            );
+            z-index: 1;
+        }
+
+        .publication-card {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Portfolio Sections */
+        .portfolio-section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            text-shadow:
+                0 4px 8px rgba(0, 0, 0, 0.3),
+                0 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.4rem;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 3rem;
+        }
+
+        .tool-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid var(--earth-brown);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .tool-card h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-card .badge {
+            margin: 3px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+
+        .expertise-card {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            height: 100%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .expertise-card:hover {
+            transform: scale(1.05);
+        }
+
+        .expertise-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary-color);
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-tag:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Button color updates */
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .github-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .github-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Floating Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            z-index: 10000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .chat-button {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 20px rgba(45, 74, 62, 0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(45, 74, 62, 0.5);
+        }
+
+        .chat-button .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background: #e74c3c;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .chat-window {
+            position: absolute;
+            bottom: 90px;
+            right: 0;
+            width: 450px;
+            height: 650px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .chat-window.open {
+            display: flex;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .chat-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .chat-header-info h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .chat-header-info p {
+            margin: 0;
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .chat-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f5f7f6;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chat-message {
+            display: flex;
+            gap: 10px;
+            animation: messageSlide 0.3s ease-out;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-message.bot {
+            align-self: flex-start;
+        }
+
+        .chat-message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .message-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .chat-message.user .message-avatar {
+            background: var(--accent-color);
+        }
+
+        .message-bubble {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .chat-message.bot .message-bubble {
+            background: white;
+            color: #333;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .chat-message.user .message-bubble {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            opacity: 0.6;
+            margin-top: 4px;
+            text-align: right;
+        }
+
+        .chat-message.bot .message-time {
+            text-align: left;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 18px;
+            border-bottom-left-radius: 4px;
+            width: fit-content;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .typing-indicator.active {
+            display: block;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        .chat-input-container {
+            padding: 15px 20px;
+            background: white;
+            border-top: 1px solid #e5e7e6;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: 1px solid #d1d5d4;
+            border-radius: 25px;
+            padding: 12px 18px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .chat-input:focus {
+            border-color: var(--secondary-color);
+        }
+
+        .chat-send-button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .chat-send-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(45, 74, 62, 0.3);
+        }
+
+        .chat-send-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .chat-suggestions {
+            display: flex;
+            gap: 8px;
+            padding: 0 20px 15px;
+            overflow-x: auto;
+        }
+
+        .suggestion-chip {
+            background: white;
+            border: 1px solid var(--secondary-color);
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .suggestion-chip:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .chat-widget {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .chat-window {
+                width: calc(100vw - 40px);
+                height: calc(100vh - 120px);
+                max-width: 450px;
+            }
+
+            .chat-button {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }
+
+            .publication-card h3 {
+                font-size: 1.8rem;
+            }
+            .publication-card p {
+                font-size: 1.1rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Sticky Top Navigation -->
+    <nav class="top-navbar">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a class="navbar-brand" href="#home">Xiaoran Zhou</a>
+                <div class="d-none d-md-flex gap-2">
+                    <a class="nav-link" href="#home">Home</a>
+                    <a class="nav-link" href="#publications">Publications</a>
+                    <a class="nav-link" href="#ai-tools">AI Tools</a>
+                    <a class="nav-link" href="#expertise">Expertise</a>
+                    <a class="nav-link" href="#skills">Skills</a>
+                    <a class="nav-link" href="#github">GitHub</a>
+                    <a class="nav-link" href="#contact">Contact</a>
+                </div>
+                <button class="btn btn-sm btn-outline-primary d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+            <div class="collapse d-md-none mt-2" id="mobileNav">
+                <div class="d-flex flex-column gap-2">
+                    <a class="nav-link" href="#home">Home</a>
+                    <a class="nav-link" href="#publications">Publications</a>
+                    <a class="nav-link" href="#ai-tools">AI Tools</a>
+                    <a class="nav-link" href="#expertise">Expertise</a>
+                    <a class="nav-link" href="#skills">Skills</a>
+                    <a class="nav-link" href="#github">GitHub</a>
+                    <a class="nav-link" href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
     <div class="loader" id="loader">
         <div class="spinner-border text-success" role="status"></div>
     </div>
 
     <div id="contentContainer">
         <!-- Hero Section -->
-        <div class="parallax-section" style="background-image: url('images/animation.gif')" onclick='window.location.href="/cpb"' >
+        <div id="home" class="parallax-section" style="background-image: url('images/animation.gif'); cursor: pointer;" onclick="window.location.href='https://xrzhou.com/cpb'">
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-lg-4 offset-lg-1">
                         <div class="profile-card text-light bg-transparent">
                             <h2>Xiaoran Zhou</h2>
                             <p class="lead">Data Science Researcher</p>
-                            <p>Bioinformatics, IBG-4<br>Forschungszentrum Jülich</p>
+                            <p class="mb-2">Bioinformatics, IBG-4<br>Forschungszentrum Jülich</p>
+                            <p class="small opacity-75">Specializing in AI Applications & Research Data Management</p>
                             <div class="d-grid gap-2">
+                                <a href="portfolio.html" class="btn btn-primary" onclick="event.stopPropagation()">AI Portfolio</a>
                                 <!-- <a href="mailto:a@xrzhou.com" class="btn btn-outline-primary">Email</a> -->
                                 <!-- <a href="https://xrzhou.com" class="btn btn-outline-info">Website</a> -->
-                                <a href="https://www.linkedin.com/in/xiaoranzhou/" class="btn btn-outline-info">LinkedIn</a>
-                                <a href="https://github.com/xiaoranzhou" class="btn btn-outline-info">GitHub</a>
+                                <a href="https://www.linkedin.com/in/xiaoranzhou/" class="btn btn-outline-info" onclick="event.stopPropagation()" target="_blank">LinkedIn</a>
+                                <a href="https://github.com/xiaoranzhou" class="btn btn-outline-info" onclick="event.stopPropagation()" target="_blank">GitHub</a>
                             </div>
                         </div>
                     </div>
@@ -80,11 +809,11 @@
         </div>
 
         <!-- Initial Publications Section -->
-        <div class="content-section">
+        <div id="publications" class="content-section" style="background: linear-gradient(135deg, #2d4a3e 0%, #5a7c70 100%);">
             <div class="container">
-                <h2 class="text-center mb-5">Publications</h2>
-                <p class="lead text-center">
-                    Selected publications showcasing research in plant sciences, data management, and modeling.
+                <h2 class="text-center mb-5" style="color: white; font-size: 3rem; font-weight: 700; text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);">Publications</h2>
+                <p class="lead text-center" style="color: white; font-size: 1.4rem; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); max-width: 800px; margin: 0 auto;">
+                    Selected publications showcasing research in plant sciences, AI-powered data management, and computational modeling.
                 </p>
             </div>
         </div>
@@ -92,11 +821,339 @@
 
     <div id="sentinel"></div>
 
+    <!-- AI Tools Section -->
+    <section id="ai-tools" class="portfolio-section" style="background: linear-gradient(135deg, #2d4a3e 0%, #5a7c70 100%);">
+        <div class="container">
+            <h2 class="section-title text-center">AI-Powered Tools</h2>
+            <p class="section-subtitle text-center">Innovative applications leveraging LLMs for research data management</p>
+
+            <div class="row">
+                <!-- DataPLAN -->
+                <div class="col-md-12 mb-4">
+                    <div class="tool-card">
+                        <h3><i class="bi bi-file-earmark-text text-primary"></i> DataPLAN</h3>
+                        <p class="lead">LLM-Powered Data Management Plan Generator for Plant Sciences</p>
+                        <p>DataPLAN leverages large language models to automatically generate comprehensive, compliant data management plans. The tool integrates LLM workflows to understand research contexts, suggest appropriate metadata standards, and create structured DMPs that meet funder requirements.</p>
+                        <div class="mt-3">
+                            <span class="badge bg-primary">LLM Integration</span>
+                            <span class="badge bg-success">Workflow Automation</span>
+                            <span class="badge bg-info">ISA Framework</span>
+                            <span class="badge bg-warning text-dark">Research Data Management</span>
+                        </div>
+                        <div class="mt-3">
+                            <a href="https://www.mdpi.com/2306-5729/8/11/159" class="btn btn-primary" target="_blank">
+                                <i class="bi bi-file-text"></i> Read Publication
+                            </a>
+                            <a href="https://github.com/nfdi4plants/DataPLAN" class="btn btn-outline-secondary ms-2" target="_blank">
+                                <i class="bi bi-github"></i> GitHub Repository
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- elab2arc -->
+                <div class="col-md-12 mb-4">
+                    <div class="tool-card">
+                        <h3><i class="bi bi-file-earmark-spreadsheet text-success"></i> elab2arc</h3>
+                        <p class="lead">AI-Driven Conversion of Experimental Protocols to Standardized Formats</p>
+                        <p>elab2arc uses advanced natural language processing and LLMs to automatically parse free-text experimental protocols from electronic lab notebooks and convert them into standardized, machine-readable Excel files compliant with ARC (Annotated Research Context) specifications.</p>
+                        <div class="mt-3">
+                            <span class="badge bg-success">NLP</span>
+                            <span class="badge bg-primary">LLM Parsing</span>
+                            <span class="badge bg-info">ARC Specification</span>
+                            <span class="badge bg-warning text-dark">Data Standardization</span>
+                        </div>
+                        <div class="mt-3">
+                            <a href="https://github.com/nfdi4plants/elab2arc" class="btn btn-success" target="_blank">
+                                <i class="bi bi-github"></i> GitHub Repository
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DataPLAN MCP -->
+                <div class="col-md-12 mb-4">
+                    <div class="tool-card">
+                        <h3><i class="bi bi-plugin text-info"></i> DataPLAN MCP Server</h3>
+                        <p class="lead">Model Context Protocol Server for Research Data Management</p>
+                        <p>A custom-built MCP (Model Context Protocol) server that enables AI assistants like Claude to directly interact with DataPLAN functionality. This server provides structured access to data management planning capabilities, allowing seamless integration of DMP generation into AI-powered research workflows.</p>
+                        <div class="mt-3">
+                            <span class="badge bg-info">Model Context Protocol</span>
+                            <span class="badge bg-primary">Server Development</span>
+                            <span class="badge bg-success">API Integration</span>
+                            <span class="badge bg-warning text-dark">Claude AI</span>
+                        </div>
+                        <div class="mt-3">
+                            <a href="https://github.com/xiaoranzhou/dataplan-mcp" class="btn btn-info" target="_blank">
+                                <i class="bi bi-github"></i> MCP Server Repository
+                            </a>
+                            <a href="https://modelcontextprotocol.io" class="btn btn-outline-secondary ms-2" target="_blank">
+                                <i class="bi bi-info-circle"></i> Learn About MCP
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Evaluation Expertise Section -->
+    <section id="expertise" class="portfolio-section" style="background: linear-gradient(135deg, #6b5744 0%, #8b9d83 100%);">
+        <div class="container">
+            <h2 class="section-title text-center">AI Evaluation Expertise</h2>
+            <p class="section-subtitle text-center">Leveraging AI for comprehensive quality assessment and optimization</p>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="expertise-card text-center">
+                        <i class="bi bi-folder-check"></i>
+                        <h4>Project Evaluation</h4>
+                        <p>AI-powered assessment of research projects, analyzing methodology, data quality, and reproducibility using LLM-based evaluation frameworks.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="expertise-card text-center" style="background: linear-gradient(135deg, #5a7c70 0%, #8b9d83 100%);">
+                        <i class="bi bi-code-square"></i>
+                        <h4>Code Review</h4>
+                        <p>Automated code quality analysis, documentation assessment, and best practice recommendations using AI-assisted review systems.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="expertise-card text-center" style="background: linear-gradient(135deg, #6b5744 0%, #5a7c70 100%);">
+                        <i class="bi bi-file-earmark-check"></i>
+                        <h4>DMP Analysis</h4>
+                        <p>Comprehensive evaluation of Data Management Plans for compliance, completeness, and best practices using LLM validation workflows.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="expertise-card text-center" style="background: linear-gradient(135deg, #8b9d83 0%, #c9b896 100%);">
+                        <i class="bi bi-database-check"></i>
+                        <h4>Data Quality Assessment</h4>
+                        <p>AI-driven data quality checks, metadata validation, and standardization recommendations for research data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="portfolio-section" style="background: linear-gradient(135deg, #8b9d83 0%, #c9b896 100%);">
+        <div class="container">
+            <h2 class="section-title text-center">Technical Skills</h2>
+            <p class="section-subtitle text-center">Expertise spanning AI, data management, and scientific computing</p>
+
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="mb-4">
+                        <h4 style="color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); margin-bottom: 1rem;">
+                            <i class="bi bi-robot me-2"></i> AI & Machine Learning
+                        </h4>
+                        <div>
+                            <span class="skill-tag">Large Language Models (GPT, Claude)</span>
+                            <span class="skill-tag">Natural Language Processing</span>
+                            <span class="skill-tag">LLM Workflow Integration</span>
+                            <span class="skill-tag">Prompt Engineering</span>
+                            <span class="skill-tag">AI-Assisted Evaluation</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <h4 style="color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); margin-bottom: 1rem;">
+                            <i class="bi bi-diagram-3 me-2"></i> Integration & Protocols
+                        </h4>
+                        <div>
+                            <span class="skill-tag">Model Context Protocol (MCP)</span>
+                            <span class="skill-tag">API Development</span>
+                            <span class="skill-tag">Workflow Automation</span>
+                            <span class="skill-tag">Server Development</span>
+                            <span class="skill-tag">Claude AI Integration</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <h4 style="color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); margin-bottom: 1rem;">
+                            <i class="bi bi-database me-2"></i> Research Data Management
+                        </h4>
+                        <div>
+                            <span class="skill-tag">ISA Framework</span>
+                            <span class="skill-tag">ARC Specification</span>
+                            <span class="skill-tag">Data Management Plans</span>
+                            <span class="skill-tag">Metadata Standards</span>
+                            <span class="skill-tag">FAIR Principles</span>
+                            <span class="skill-tag">Data Standardization</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <h4 style="color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); margin-bottom: 1rem;">
+                            <i class="bi bi-code-slash me-2"></i> Development & Tools
+                        </h4>
+                        <div>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">WebAssembly</span>
+                            <span class="skill-tag">Git/GitHub</span>
+                            <span class="skill-tag">Bootstrap</span>
+                            <span class="skill-tag">RESTful APIs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Integration Section -->
+    <section id="github" class="portfolio-section" style="background: linear-gradient(135deg, #2d4a3e 0%, #6b5744 100%);">
+        <div class="container">
+            <h2 class="section-title text-center">Open Source Contributions</h2>
+            <p class="section-subtitle text-center">Explore my repositories and contribute to research data tools</p>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="github-card">
+                        <h5><i class="bi bi-github me-2"></i> DataPLAN</h5>
+                        <p class="text-muted mb-3">Web-based data management plan generator for plant sciences with LLM integration</p>
+                        <a href="https://github.com/nfdi4plants/DataPLAN" class="btn btn-sm btn-dark w-100" target="_blank">
+                            View Repository <i class="bi bi-box-arrow-up-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="github-card">
+                        <h5><i class="bi bi-github me-2"></i> elab2arc</h5>
+                        <p class="text-muted mb-3">AI-powered converter from electronic lab notebook protocols to ARC format</p>
+                        <a href="https://github.com/nfdi4plants/elab2arc" class="btn btn-sm btn-dark w-100" target="_blank">
+                            View Repository <i class="bi bi-box-arrow-up-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="github-card">
+                        <h5><i class="bi bi-github me-2"></i> dataplan-mcp</h5>
+                        <p class="text-muted mb-3">Model Context Protocol server for integrating DataPLAN with AI assistants</p>
+                        <a href="https://github.com/xiaoranzhou/dataplan-mcp" class="btn btn-sm btn-dark w-100" target="_blank">
+                            View Repository <i class="bi bi-box-arrow-up-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="https://github.com/xiaoranzhou" class="btn btn-light btn-lg" target="_blank">
+                    <i class="bi bi-github me-2"></i> View All Repositories
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA Section -->
+    <section id="contact" class="portfolio-section" style="background: linear-gradient(135deg, #1a2b26 0%, #2d4a3e 100%);">
+        <div class="container text-center">
+            <h2 class="section-title">Let's Collaborate</h2>
+            <p class="section-subtitle">Interested in AI-powered research data management? Let's connect!</p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="mailto:a@xrzhou.com" class="btn btn-light btn-lg">
+                    <i class="bi bi-envelope-fill me-2"></i> Email Me
+                </a>
+                <a href="https://www.linkedin.com/in/xiaoranzhou/" class="btn btn-outline-light btn-lg" target="_blank">
+                    <i class="bi bi-linkedin me-2"></i> LinkedIn
+                </a>
+                <a href="https://github.com/xiaoranzhou" class="btn btn-outline-light btn-lg" target="_blank">
+                    <i class="bi bi-github me-2"></i> GitHub
+                </a>
+                <a href="https://scholar.google.de/citations?hl=en&user=PNEarlYAAAAJ" class="btn btn-outline-light btn-lg" target="_blank">
+                    <i class="bi bi-mortarboard me-2"></i> Google Scholar
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Chat Widget -->
+    <div class="chat-widget">
+        <div class="chat-window" id="chatWindow">
+            <!-- Chat Header -->
+            <div class="chat-header">
+                <div class="chat-header-left">
+                    <div class="chat-avatar">
+                        <img src="images/face.jpg" alt="Xiaoran Zhou">
+                    </div>
+                    <div class="chat-header-info">
+                        <h3>Xiaoran's Digital Twin</h3>
+                        <p>AI Research Assistant</p>
+                    </div>
+                </div>
+                <button class="chat-close" onclick="toggleChat()">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+
+            <!-- Chat Messages -->
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-message bot">
+                    <div class="message-avatar">
+                        <img src="images/face.jpg" alt="Xiaoran Zhou">
+                    </div>
+                    <div>
+                        <div class="message-bubble">
+                            Hello! I'm Xiaoran's AI digital twin. I can help you learn about his research in AI applications, data management, and plant sciences. How can I assist you today?
+                        </div>
+                        <div class="message-time">Just now</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typing Indicator -->
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dots">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+
+            <!-- Suggestion Chips -->
+            <div class="chat-suggestions" id="chatSuggestions">
+                <div class="suggestion-chip" onclick="sendSuggestion('Tell me about DataPLAN')">
+                    📊 DataPLAN
+                </div>
+                <div class="suggestion-chip" onclick="sendSuggestion('What is elab2arc?')">
+                    🔬 elab2arc
+                </div>
+                <div class="suggestion-chip" onclick="sendSuggestion('Research interests')">
+                    🌿 Research
+                </div>
+                <div class="suggestion-chip" onclick="sendSuggestion('Publications')">
+                    📚 Publications
+                </div>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="chat-input-container">
+                <input
+                    type="text"
+                    class="chat-input"
+                    id="chatInput"
+                    placeholder="Ask me anything..."
+                    onkeypress="handleKeyPress(event)"
+                />
+                <button class="chat-send-button" onclick="sendMessage()" id="sendButton">
+                    <i class="bi bi-send-fill"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Button -->
+        <button class="chat-button" onclick="toggleChat()" id="chatButton">
+            <i class="bi bi-chat-dots-fill"></i>
+            <span class="notification-badge">1</span>
+        </button>
+    </div>
+
     <script>
         const publications = [
             {
-                title: "DataPLAN: A Web-Based Data Management Plan Generator for the Plant Sciences",
-                journal: "MDPI Data 2023",
+                title: "DataPLAN: A Web-Based Data Management Plan Generator for the Plant Sciences (AI/LLM-Powered)",
+                journal: "MDPI Data 2023 | LLM Workflow Integration",
                 doi: "https://www.mdpi.com/2306-5729/8/11/159",
                 image: "images/animation1.gif"
             },
@@ -116,7 +1173,7 @@
                 title: "A Platform for the Biomedical Application of Large Language Models",
                 journal: "Nat. Biotechnol., 2025",
                 doi: "https://doi.org/10.1038/s41587-024-XXXXX",
-                image: "biotech-bg.jpg"
+                image: "images/animation.gif"
             }
         ];
 
@@ -125,13 +1182,13 @@
 
         function createPublicationSection(pub) {
             return `
-                <div class="content-section" style="position: relative; height:1080px">
+                <div class="content-section" style="position: relative; height:1080px; cursor: pointer;" onclick="window.open('${pub.doi}', '_blank')">
                     <div class="publication-bg" style="background-image: url('${pub.image}');"></div>
                     <div class="container">
                         <div class="publication-card">
                             <h3>${pub.title}</h3>
                             <p><strong>Journal:</strong> ${pub.journal}</p>
-                            <p><a href="${pub.doi}" target="_blank" class="btn btn-outline-primary">Read More</a></p>
+                            <p><a href="${pub.doi}" target="_blank" class="btn" onclick="event.stopPropagation()">Read More</a></p>
                         </div>
                     </div>
                 </div>
@@ -161,6 +1218,168 @@
         }, { threshold: 1.0 });
 
         observer.observe(document.getElementById('sentinel'));
+
+        // Chat Widget Functions
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatButton = document.getElementById('chatButton');
+            const badge = chatButton.querySelector('.notification-badge');
+
+            chatWindow.classList.toggle('open');
+
+            // Remove notification badge when chat is opened
+            if (chatWindow.classList.contains('open')) {
+                if (badge) {
+                    badge.style.display = 'none';
+                }
+                // Focus on input
+                document.getElementById('chatInput').focus();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+
+            if (message) {
+                addUserMessage(message);
+                input.value = '';
+
+                // Show typing indicator
+                showTyping();
+
+                // Simulate bot response after delay
+                setTimeout(() => {
+                    hideTyping();
+                    addBotMessage(getBotResponse(message));
+                }, 1500);
+            }
+        }
+
+        function sendSuggestion(suggestion) {
+            document.getElementById('chatInput').value = suggestion;
+            sendMessage();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function addUserMessage(message) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message user';
+            messageDiv.innerHTML = `
+                <div class="message-avatar">👤</div>
+                <div>
+                    <div class="message-bubble">${escapeHtml(message)}</div>
+                    <div class="message-time">${getCurrentTime()}</div>
+                </div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function addBotMessage(message) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message bot';
+            messageDiv.innerHTML = `
+                <div class="message-avatar">
+                    <img src="images/face.jpg" alt="Xiaoran Zhou">
+                </div>
+                <div>
+                    <div class="message-bubble">${message}</div>
+                    <div class="message-time">${getCurrentTime()}</div>
+                </div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function showTyping() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.classList.add('active');
+            scrollToBottom();
+        }
+
+        function hideTyping() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.classList.remove('active');
+        }
+
+        function scrollToBottom() {
+            const messagesContainer = document.getElementById('chatMessages');
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function getCurrentTime() {
+            const now = new Date();
+            return now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Simple bot responses (placeholder - will be replaced with actual AI backend)
+        function getBotResponse(message) {
+            const lowerMessage = message.toLowerCase();
+
+            if (lowerMessage.includes('dataplan')) {
+                return "DataPLAN is my flagship project - an AI-powered data management plan generator for plant sciences. It uses LLM workflows to automatically create comprehensive, compliant DMPs that meet funder requirements. Check out the <a href='https://www.mdpi.com/2306-5729/8/11/159' target='_blank'>publication</a> for more details!";
+            } else if (lowerMessage.includes('elab2arc')) {
+                return "elab2arc is an innovative tool that uses AI and NLP to convert free-text experimental protocols from electronic lab notebooks into standardized, machine-readable Excel files compliant with ARC specifications. It dramatically reduces manual data entry!";
+            } else if (lowerMessage.includes('mcp')) {
+                return "I've developed a Model Context Protocol (MCP) server for DataPLAN that enables AI assistants like Claude to directly interact with DMP generation functionality. It's a great example of integrating AI tools into research workflows!";
+            } else if (lowerMessage.includes('research') || lowerMessage.includes('interest')) {
+                return "My research focuses on AI applications for research data management, particularly in plant sciences. I develop tools that leverage LLMs for data standardization, protocol conversion, and quality assessment. I'm also interested in computational modeling of plant growth processes.";
+            } else if (lowerMessage.includes('publication')) {
+                return "I have several key publications including work on DataPLAN (MDPI Data 2023), plant modeling with CPlantBox (in silico Plants 2020), and phloem anatomy effects on root architecture (in silico Plants 2023). You can scroll up to see them all or visit my Google Scholar profile!";
+            } else if (lowerMessage.includes('contact') || lowerMessage.includes('email')) {
+                return "You can reach me at <a href='mailto:a@xrzhou.com'>a@xrzhou.com</a> or connect with me on <a href='https://www.linkedin.com/in/xiaoranzhou/' target='_blank'>LinkedIn</a>. I'm always happy to discuss AI applications in research data management!";
+            } else if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+                return "Hello! Great to chat with you! I'm Xiaoran's digital twin. Feel free to ask me about AI-powered research tools, data management, or plant sciences. What interests you?";
+            } else {
+                return "That's an interesting question! While I'm still learning, I can tell you about Xiaoran's work in AI applications (DataPLAN, elab2arc), research data management, and plant science modeling. What would you like to know more about?";
+            }
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.top-navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navbarHeight = document.querySelector('.top-navbar').offsetHeight;
+                    const targetPosition = target.offsetTop - navbarHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu if open
+                    const mobileNav = document.getElementById('mobileNav');
+                    if (mobileNav.classList.contains('show')) {
+                        mobileNav.classList.remove('show');
+                    }
+                }
+            });
+        });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

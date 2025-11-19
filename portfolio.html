@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xiaoran Zhou | AI Applications Portfolio</title>
     <meta name="description" content="AI-powered tools for research data management, LLM workflow integration, and automated evaluation">
-    <meta name="keywords" content="AI, LLM, Data Management, MCP, Model Context Protocol, DataPLAN, elab2arc, Research Data">
+    <meta name="keywords" content="AI, LLM, Data Management, DataPLAN, DMP-EVA, elab2arc, webdiff, Research Data">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
@@ -299,10 +299,13 @@
                         </div>
 
                         <div class="mt-3">
-                            <a href="https://www.mdpi.com/2306-5729/8/11/159" class="btn btn-primary" target="_blank">
+                            <a href="https://plan.nfdi4plants.org" class="btn btn-primary" target="_blank">
+                                <i class="bi bi-globe"></i> Try DataPLAN
+                            </a>
+                            <a href="https://doi.org/10.3390/data8110159" class="btn btn-outline-primary ms-2" target="_blank">
                                 <i class="bi bi-file-text"></i> Read Publication
                             </a>
-                            <a href="https://github.com/nfdi4plants/DataPLAN" class="btn btn-outline-secondary ms-2" target="_blank">
+                            <a href="https://github.com/nfdi4plants/dataplan" class="btn btn-outline-secondary ms-2" target="_blank">
                                 <i class="bi bi-github"></i> GitHub Repository
                             </a>
                         </div>
@@ -310,10 +313,43 @@
                     <div class="col-lg-4">
                         <div class="demo-container text-center">
                             <i class="bi bi-activity" style="font-size: 4rem; color: var(--secondary-color);"></i>
-                            <p class="mt-2 mb-0"><strong>Live Demo</strong></p>
+                            <p class="mt-2 mb-0"><strong>Live Tool</strong></p>
                             <p class="text-muted small">Interactive DMP generation with AI assistance</p>
-                            <!-- Placeholder for embedding actual demo -->
-                            <a href="#" class="btn btn-sm btn-outline-primary">Try DataPLAN</a>
+                            <a href="https://plan.nfdi4plants.org" class="btn btn-sm btn-outline-primary" target="_blank">
+                                <i class="bi bi-globe"></i> Launch DataPLAN
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DMP-EVA -->
+            <div class="tool-card">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 order-lg-2">
+                        <div class="demo-container text-center">
+                            <i class="bi bi-check-circle" style="font-size: 4rem; color: var(--accent-color);"></i>
+                            <p class="mt-2 mb-0"><strong>AI-Assisted Evaluation</strong></p>
+                            <p class="text-muted small">Automated DMP quality assessment</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 order-lg-1">
+                        <h3><i class="bi bi-clipboard-check text-success"></i> DMP-EVA</h3>
+                        <p class="lead">AI-Assisted Front-End DMP Evaluation Tool</p>
+                        <p>DMP-EVA is an innovative evaluation tool that leverages artificial intelligence to assess the quality and completeness of Data Management Plans. It provides automated feedback on DMP compliance, best practices, and areas for improvement, streamlining the review process for researchers and administrators.</p>
+
+                        <div class="tech-stack">
+                            <strong>Technologies:</strong>
+                            <span class="badge bg-success">AI Evaluation</span>
+                            <span class="badge bg-primary">Quality Assessment</span>
+                            <span class="badge bg-info">DMP Standards</span>
+                            <span class="badge bg-warning text-dark">Automated Feedback</span>
+                        </div>
+
+                        <div class="mt-3">
+                            <a href="https://github.com/usadellab/dmp-eva" class="btn btn-success" target="_blank">
+                                <i class="bi bi-github"></i> GitHub Repository
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -356,42 +392,33 @@
                 </div>
             </div>
 
-            <!-- DataPLAN MCP Server -->
+            <!-- webdiff -->
             <div class="tool-card">
                 <div class="row align-items-center">
                     <div class="col-lg-8">
-                        <h3><i class="bi bi-plugin text-info"></i> DataPLAN MCP Server</h3>
-                        <p class="lead">Model Context Protocol Server for Research Data Management</p>
-                        <p>A custom-built MCP (Model Context Protocol) server that enables AI assistants like Claude to directly interact with DataPLAN functionality. This server provides structured access to data management planning capabilities, allowing seamless integration of DMP generation into AI-powered research workflows.</p>
+                        <h3><i class="bi bi-code-slash text-warning"></i> webdiff</h3>
+                        <p class="lead">Visual Diff Tool for Web-Based File Comparison</p>
+                        <p>webdiff is a powerful web-based tool for visualizing differences between files and code versions. It provides an intuitive interface for comparing changes, making code review and version control more efficient. Perfect for developers who need quick, accessible diff visualization without complex setup.</p>
 
                         <div class="tech-stack">
                             <strong>Technologies:</strong>
-                            <span class="badge bg-info">Model Context Protocol</span>
-                            <span class="badge bg-primary">Server Development</span>
-                            <span class="badge bg-success">API Integration</span>
-                            <span class="badge bg-warning text-dark">Claude AI</span>
+                            <span class="badge bg-warning text-dark">Diff Algorithms</span>
+                            <span class="badge bg-primary">Web Interface</span>
+                            <span class="badge bg-success">Code Comparison</span>
+                            <span class="badge bg-info">Version Control</span>
                         </div>
 
                         <div class="mt-3">
-                            <a href="https://github.com/xiaoranzhou/dataplan-mcp" class="btn btn-info" target="_blank">
-                                <i class="bi bi-github"></i> MCP Server Repository
-                            </a>
-                            <a href="https://modelcontextprotocol.io" class="btn btn-outline-secondary ms-2" target="_blank">
-                                <i class="bi bi-info-circle"></i> Learn About MCP
+                            <a href="https://github.com/xiaoranzhou/webdiff" class="btn btn-warning text-dark" target="_blank">
+                                <i class="bi bi-github"></i> GitHub Repository
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        <div class="demo-container">
-                            <pre class="mb-0" style="font-size: 0.8rem; background: white; padding: 1rem; border-radius: 5px;"><code>{
-  "server": "dataplan-mcp",
-  "tools": [
-    "generate_dmp",
-    "validate_metadata",
-    "suggest_standards"
-  ],
-  "integration": "claude-ai"
-}</code></pre>
+                        <div class="demo-container text-center">
+                            <i class="bi bi-file-diff" style="font-size: 4rem; color: #ffc107;"></i>
+                            <p class="mt-2 mb-0"><strong>Visual Diff</strong></p>
+                            <p class="text-muted small">Side-by-side file comparison</p>
                         </div>
                     </div>
                 </div>
@@ -533,7 +560,7 @@
 
             <div class="row g-4">
                 <!-- DataPLAN Repository -->
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="github-card">
                         <h5><i class="bi bi-github me-2"></i> DataPLAN</h5>
                         <p class="text-muted mb-3">Web-based data management plan generator for plant sciences with LLM integration</p>
@@ -541,14 +568,29 @@
                             <span class="stat-item"><i class="bi bi-star-fill text-warning"></i> Stars</span>
                             <span class="stat-item"><i class="bi bi-diagram-2-fill text-info"></i> Forks</span>
                         </div>
-                        <a href="https://github.com/nfdi4plants/DataPLAN" class="btn btn-sm btn-outline-dark mt-3 w-100" target="_blank">
+                        <a href="https://github.com/nfdi4plants/dataplan" class="btn btn-sm btn-outline-dark mt-3 w-100" target="_blank">
+                            View Repository <i class="bi bi-box-arrow-up-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- DMP-EVA Repository -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="github-card">
+                        <h5><i class="bi bi-github me-2"></i> DMP-EVA</h5>
+                        <p class="text-muted mb-3">AI-assisted front-end DMP evaluation tool for quality assessment</p>
+                        <div class="github-stats">
+                            <span class="stat-item"><i class="bi bi-star-fill text-warning"></i> Stars</span>
+                            <span class="stat-item"><i class="bi bi-diagram-2-fill text-info"></i> Forks</span>
+                        </div>
+                        <a href="https://github.com/usadellab/dmp-eva" class="btn btn-sm btn-outline-dark mt-3 w-100" target="_blank">
                             View Repository <i class="bi bi-box-arrow-up-right"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- elab2arc Repository -->
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="github-card">
                         <h5><i class="bi bi-github me-2"></i> elab2arc</h5>
                         <p class="text-muted mb-3">AI-powered converter from electronic lab notebook protocols to ARC format</p>
@@ -562,16 +604,16 @@
                     </div>
                 </div>
 
-                <!-- DataPLAN MCP Repository -->
-                <div class="col-md-6 col-lg-4">
+                <!-- webdiff Repository -->
+                <div class="col-md-6 col-lg-3">
                     <div class="github-card">
-                        <h5><i class="bi bi-github me-2"></i> dataplan-mcp</h5>
-                        <p class="text-muted mb-3">Model Context Protocol server for integrating DataPLAN with AI assistants</p>
+                        <h5><i class="bi bi-github me-2"></i> webdiff</h5>
+                        <p class="text-muted mb-3">Visual diff tool for web-based file comparison and code review</p>
                         <div class="github-stats">
                             <span class="stat-item"><i class="bi bi-star-fill text-warning"></i> Stars</span>
                             <span class="stat-item"><i class="bi bi-diagram-2-fill text-info"></i> Forks</span>
                         </div>
-                        <a href="https://github.com/xiaoranzhou/dataplan-mcp" class="btn btn-sm btn-outline-dark mt-3 w-100" target="_blank">
+                        <a href="https://github.com/xiaoranzhou/webdiff" class="btn btn-sm btn-outline-dark mt-3 w-100" target="_blank">
                             View Repository <i class="bi bi-box-arrow-up-right"></i>
                         </a>
                     </div>

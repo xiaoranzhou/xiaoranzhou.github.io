@@ -256,6 +256,134 @@
             color: var(--primary-color);
         }
 
+        /* Chatbot Link Styling */
+        .chatbot-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(74, 85, 104, 0.08);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+
+        .chatbot-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(74, 85, 104, 0.25);
+        }
+
+        .chatbot-link i {
+            font-size: 0.9rem;
+        }
+
+        .expertise-card .chatbot-link {
+            display: inline-flex;
+            margin-top: 1rem;
+        }
+
+        /* Audience Pitch Tabs */
+        .pitch-container {
+            margin-top: 1.2rem;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1rem;
+        }
+
+        .pitch-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .pitch-tab {
+            padding: 6px 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            background: white;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .pitch-tab:hover {
+            border-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .pitch-tab.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        .pitch-tab i {
+            font-size: 0.85rem;
+        }
+
+        .pitch-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .pitch-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pitch-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .pitch-list li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.5;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .pitch-list li:last-child {
+            border-bottom: none;
+        }
+
+        .pitch-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .pitch-audience-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
         /* Button color updates */
         .btn-primary {
             background-color: var(--primary-color);
@@ -987,9 +1115,9 @@
                 <div class="col-lg-4 offset-lg-1">
                     <div class="profile-card text-light bg-transparent">
                         <h2>Xiaoran Zhou</h2>
-                        <p class="lead">Data Science Researcher</p>
+                        <p class="lead">AI-driven Plant Data Infrastructure Scientist</p>
                         <p class="mb-2">Bioinformatics, IBG-4<br>Forschungszentrum Jülich</p>
-                        <p class="small opacity-75">AI tool development and scientific visualization</p>
+                        <p class="small opacity-75">Turning experimental plant data into reusable, model-ready, fundable digital assets</p>
                         <div class="d-grid gap-2">
                             <a href="portfolio.html" class="btn btn-primary" onclick="event.stopPropagation()">AI Portfolio</a>
                             <a href="https://www.linkedin.com/in/xiaoranzhou/" class="btn btn-outline-info" onclick="event.stopPropagation()" target="_blank">LinkedIn</a>
@@ -1012,7 +1140,7 @@
                 <div class="col-md-12 mb-4">
                     <div class="tool-card">
                         <h3><i class="bi bi-file-earmark-text"></i> DataPLAN</h3>
-                        <p class="lead">Data management plan generator for plant sciences</p>
+                        <p class="lead">LLM-assisted Data Management Plan Generator</p>
                         <p>A web tool that uses language models to generate data management plans. It helps create structured DMPs with appropriate metadata standards.</p>
                         <div class="mt-3">
                             <span class="badge bg-primary">LLM Integration</span>
@@ -1020,6 +1148,44 @@
                             <span class="badge bg-info">ISA Framework</span>
                             <span class="badge bg-warning text-dark">Research Data Management</span>
                         </div>
+
+                        <!-- Audience Pitches -->
+                        <div class="pitch-container" data-tool="dataplan">
+                            <div class="pitch-audience-label">Benefits by Role</div>
+                            <div class="pitch-tabs">
+                                <button class="pitch-tab active" onclick="showPitch('dataplan', 'pi')">
+                                    <i class="bi bi-person-badge"></i> For PIs
+                                </button>
+                                <button class="pitch-tab" onclick="showPitch('dataplan', 'lab')">
+                                    <i class="bi bi-people"></i> For Lab Users
+                                </button>
+                                <button class="pitch-tab" onclick="showPitch('dataplan', 'reviewer')">
+                                    <i class="bi bi-clipboard-check"></i> For Evaluators
+                                </button>
+                            </div>
+                            <div class="pitch-content active" data-audience="pi">
+                                <ul class="pitch-list">
+                                    <li>Reduces proposal preparation time with auto-generated DMPs</li>
+                                    <li>Ensures funder compliance with FAIR & metadata standards</li>
+                                    <li>Improves institutional competitiveness through strong planning</li>
+                                </ul>
+                            </div>
+                            <div class="pitch-content" data-audience="lab">
+                                <ul class="pitch-list">
+                                    <li>Quickly produces accurate, structured DMP text — no templates to struggle with</li>
+                                    <li>Reuses previous metadata, reducing repetitive typing</li>
+                                    <li>Keeps projects aligned with standard formats from day one</li>
+                                </ul>
+                            </div>
+                            <div class="pitch-content" data-audience="reviewer">
+                                <ul class="pitch-list">
+                                    <li>Demonstrates credible Open Science compliance</li>
+                                    <li>Reduces inconsistencies and missing metadata</li>
+                                    <li>Shows proactive research data stewardship at proposal stage</li>
+                                </ul>
+                            </div>
+                        </div>
+
                         <div class="mt-3">
                             <a href="https://plan.nfdi4plants.org" class="btn btn-primary" target="_blank">
                                 <i class="bi bi-globe"></i> Try DataPLAN
@@ -1030,6 +1196,9 @@
                             <a href="https://github.com/nfdi4plants/dataplan" class="btn btn-outline-secondary ms-2" target="_blank">
                                 <i class="bi bi-github"></i> GitHub
                             </a>
+                            <a href="javascript:void(0)" class="chatbot-link ms-3" onclick="openChatWithQuestion('Tell me about DataPLAN')">
+                                <i class="bi bi-chat-dots"></i> Ask chatbot
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1038,7 +1207,7 @@
                 <div class="col-md-12 mb-4">
                     <div class="tool-card">
                         <h3><i class="bi bi-file-earmark-check"></i> DMP-EVA</h3>
-                        <p class="lead">DMP evaluation tool</p>
+                        <p class="lead">AI-Based DMP Evaluation Tool</p>
                         <p>A tool that assesses data management plans and provides feedback on compliance and completeness.</p>
                         <div class="mt-3">
                             <span class="badge bg-success">AI Evaluation</span>
@@ -1046,9 +1215,50 @@
                             <span class="badge bg-info">Compliance Checking</span>
                             <span class="badge bg-warning text-dark">Gap Analysis</span>
                         </div>
+
+                        <!-- Audience Pitches -->
+                        <div class="pitch-container" data-tool="dmpeva">
+                            <div class="pitch-audience-label">Benefits by Role</div>
+                            <div class="pitch-tabs">
+                                <button class="pitch-tab active" onclick="showPitch('dmpeva', 'pi')">
+                                    <i class="bi bi-person-badge"></i> For PIs
+                                </button>
+                                <button class="pitch-tab" onclick="showPitch('dmpeva', 'lab')">
+                                    <i class="bi bi-people"></i> For Lab Users
+                                </button>
+                                <button class="pitch-tab" onclick="showPitch('dmpeva', 'reviewer')">
+                                    <i class="bi bi-clipboard-check"></i> For Evaluators
+                                </button>
+                            </div>
+                            <div class="pitch-content active" data-audience="pi">
+                                <ul class="pitch-list">
+                                    <li>Automated quality check before submission — catch weaknesses early</li>
+                                    <li>Reduces revision cycles from reviewer feedback</li>
+                                    <li>Enhances perception of professional project management</li>
+                                </ul>
+                            </div>
+                            <div class="pitch-content" data-audience="lab">
+                                <ul class="pitch-list">
+                                    <li>Gives immediate actionable scoring and improvement suggestions</li>
+                                    <li>Ensures DMPs meet institutional and policy guidelines</li>
+                                    <li>Easy self-service — no waiting for internal review</li>
+                                </ul>
+                            </div>
+                            <div class="pitch-content" data-audience="reviewer">
+                                <ul class="pitch-list">
+                                    <li>Standardized assessment against best practices</li>
+                                    <li>Makes compliance visible and objectively measurable</li>
+                                    <li>Reduces subjective evaluation noise between reviewers</li>
+                                </ul>
+                            </div>
+                        </div>
+
                         <div class="mt-3">
                             <a href="https://github.com/usadellab/dmp-eva" class="btn btn-success" target="_blank">
                                 <i class="bi bi-github"></i> GitHub Repository
+                            </a>
+                            <a href="javascript:void(0)" class="chatbot-link ms-3" onclick="openChatWithQuestion('Tell me about DMP-EVA')">
+                                <i class="bi bi-chat-dots"></i> Ask chatbot
                             </a>
                         </div>
                     </div>
@@ -1058,7 +1268,7 @@
                 <div class="col-md-12 mb-4">
                     <div class="tool-card">
                         <h3><i class="bi bi-file-earmark-spreadsheet"></i> elab2arc</h3>
-                        <p class="lead">Protocol conversion tool</p>
+                        <p class="lead">AI-Powered Protocol Standardization Tool</p>
                         <p>Converts free-text experimental protocols from lab notebooks into standardized ARC-compliant Excel files.</p>
                         <div class="mt-3">
                             <span class="badge bg-success">NLP</span>
@@ -1066,9 +1276,50 @@
                             <span class="badge bg-info">ARC Specification</span>
                             <span class="badge bg-warning text-dark">Data Standardization</span>
                         </div>
+
+                        <!-- Audience Pitches -->
+                        <div class="pitch-container" data-tool="elab2arc">
+                            <div class="pitch-audience-label">Benefits by Role</div>
+                            <div class="pitch-tabs">
+                                <button class="pitch-tab active" onclick="showPitch('elab2arc', 'pi')">
+                                    <i class="bi bi-person-badge"></i> For PIs
+                                </button>
+                                <button class="pitch-tab" onclick="showPitch('elab2arc', 'lab')">
+                                    <i class="bi bi-people"></i> For Lab Users
+                                </button>
+                                <button class="pitch-tab" onclick="showPitch('elab2arc', 'reviewer')">
+                                    <i class="bi bi-clipboard-check"></i> For Evaluators
+                                </button>
+                            </div>
+                            <div class="pitch-content active" data-audience="pi">
+                                <ul class="pitch-list">
+                                    <li>Turns local lab know-how into reusable institutional assets</li>
+                                    <li>Saves personnel hours on formatting and metadata curation</li>
+                                    <li>Improves long-term data traceability for publications and audits</li>
+                                </ul>
+                            </div>
+                            <div class="pitch-content" data-audience="lab">
+                                <ul class="pitch-list">
+                                    <li>Upload ELN protocols → instantly get ARC-compatible Excel</li>
+                                    <li>No more manual copy-paste or metadata lookup</li>
+                                    <li>Fewer missing links → fewer late-stage project headaches</li>
+                                </ul>
+                            </div>
+                            <div class="pitch-content" data-audience="reviewer">
+                                <ul class="pitch-list">
+                                    <li>Evidence of reproducible and machine-readable experimental design</li>
+                                    <li>Supports FAIR implementation — "Findable & Interoperable" by default</li>
+                                    <li>Strong alignment with modern research data governance requirements</li>
+                                </ul>
+                            </div>
+                        </div>
+
                         <div class="mt-3">
                             <a href="https://github.com/nfdi4plants/elab2arc" class="btn btn-success" target="_blank">
                                 <i class="bi bi-github"></i> GitHub Repository
+                            </a>
+                            <a href="javascript:void(0)" class="chatbot-link ms-3" onclick="openChatWithQuestion('What is elab2arc?')">
+                                <i class="bi bi-chat-dots"></i> Ask chatbot
                             </a>
                         </div>
                     </div>
@@ -1090,6 +1341,9 @@
                         <i class="bi bi-tools"></i>
                         <h4>AI Tools</h4>
                         <p>Building applications that integrate language models for research data management workflows.</p>
+                        <a href="javascript:void(0)" class="chatbot-link" onclick="openChatWithQuestion('Tell me about your AI tools')">
+                            <i class="bi bi-chat-dots"></i> Ask chatbot
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
@@ -1097,6 +1351,9 @@
                         <i class="bi bi-code-square"></i>
                         <h4>Software Development</h4>
                         <p>Developing web applications with modular architecture and API integration.</p>
+                        <a href="javascript:void(0)" class="chatbot-link" onclick="openChatWithQuestion('Tell me about your software development experience')">
+                            <i class="bi bi-chat-dots"></i> Ask chatbot
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
@@ -1104,6 +1361,9 @@
                         <i class="bi bi-graph-up"></i>
                         <h4>Visualization</h4>
                         <p>Creating interactive visualizations for biological and computational models.</p>
+                        <a href="javascript:void(0)" class="chatbot-link" onclick="openChatWithQuestion('Tell me about your visualization work')">
+                            <i class="bi bi-chat-dots"></i> Ask chatbot
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
@@ -1111,6 +1371,9 @@
                         <i class="bi bi-database"></i>
                         <h4>Data Management</h4>
                         <p>Working with research data standards, metadata, and FAIR principles.</p>
+                        <a href="javascript:void(0)" class="chatbot-link" onclick="openChatWithQuestion('Tell me about research data management')">
+                            <i class="bi bi-chat-dots"></i> Ask chatbot
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1442,6 +1705,34 @@
 
         // Load publications when page loads
         window.addEventListener('DOMContentLoaded', loadPublications);
+
+        // Pitch Tab Functions
+        function showPitch(tool, audience) {
+            const container = document.querySelector(`.pitch-container[data-tool="${tool}"]`);
+            if (!container) return;
+
+            // Update tabs
+            container.querySelectorAll('.pitch-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.closest('.pitch-tab').classList.add('active');
+
+            // Update content
+            container.querySelectorAll('.pitch-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            const audienceMap = {
+                'pi': 'pi',
+                'lab': 'lab',
+                'reviewer': 'reviewer'
+            };
+
+            const targetContent = container.querySelector(`.pitch-content[data-audience="${audienceMap[audience]}"]`);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        }
 
         // Chat Widget Functions
         function toggleChat() {
@@ -2008,7 +2299,43 @@
             await digitalTwin.loadAgents(AGENT_DEFINITIONS);
             chatStore.setAvailableAgents(digitalTwin.getAgents());
             console.log('🤖 Digital Twin Agent System ready!');
+
+            // Open chat by default to make it more visible
+            const chatWindow = document.getElementById('chatWindow');
+            const chatButton = document.getElementById('chatButton');
+            const badge = chatButton.querySelector('.notification-badge');
+
+            chatWindow.classList.add('open');
+            if (badge) {
+                badge.style.display = 'none';
+            }
         });
+
+        // Function to open chat and optionally send a question
+        function openChatWithQuestion(question) {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatButton = document.getElementById('chatButton');
+            const badge = chatButton.querySelector('.notification-badge');
+
+            // Open the chat window
+            if (!chatWindow.classList.contains('open')) {
+                chatWindow.classList.add('open');
+                if (badge) {
+                    badge.style.display = 'none';
+                }
+            }
+
+            // Scroll chat into view on mobile
+            chatWindow.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+            // If a question is provided, set it and send it
+            if (question) {
+                document.getElementById('chatInput').value = question;
+                setTimeout(() => sendMessage(), 300);
+            } else {
+                document.getElementById('chatInput').focus();
+            }
+        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

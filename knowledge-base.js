@@ -45,8 +45,8 @@ const KNOWLEDGE_BASE = {
     {
       id: "elab2arc",
       name: "elab2arc",
-      aliases: ["elab2arc", "protocol conversion", "arc"],
-      description: "Converts free-text protocols to ARC-compliant Excel files",
+      aliases: ["elab2arc", "lab2arc", "protocol conversion", "arc", "elabftw"],
+      description: "Web-based Single Page Application (SPA) that bridges eLabFTW (electronic lab notebook) and PLANTdataHUB (GitLab-based ARC repository), enabling seamless synchronization of experimental metadata and raw data into FAIR-compliant ARCs",
       url: "https://github.com/nfdi4plants/elab2arc"
     }
   ],
@@ -57,6 +57,13 @@ const KNOWLEDGE_BASE = {
       journal: "in silico Plants",
       year: "2022",
       aliases: ["cplantbox", "plant modeling", "whole-plant modelling"]
+    },
+    {
+      id: "phd-thesis",
+      title: "PhD Thesis: Modeling Coupled Carbon and Water Flow in Growing Plants",
+      description: "Focuses on modeling the coupled flow of carbon and water in growing plants, with particular attention to the feedback between conduit resistance and axial growth rate. Presents a mechanistic functional–structural plant model (FSPM) that integrates water transport, carbon allocation, and dynamic plant growth.",
+      year: "2024",
+      aliases: ["phd", "thesis", "dissertation", "fsp", "functional-structural plant model", "plant growth", "carbon flow", "water flow", "phloem"]
     }
   ]
 };

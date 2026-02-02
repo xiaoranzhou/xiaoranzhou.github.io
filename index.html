@@ -1791,13 +1791,11 @@
                         streamingStarted = true;
                         const agent = digitalTwin.currentAgent;
 
+                        // Create the streaming message element immediately
+                        createStreamingMessage(messageId, agent);
+
                         // Start streaming state (automatically hides typing indicator)
                         chatStore.startStreaming(messageId, agent);
-
-                        // Small delay for smooth transition from typing to streaming
-                        setTimeout(() => {
-                            createStreamingMessage(messageId, agent);
-                        }, 100);
                     }
 
                     // Update streaming text via state (throttled)
@@ -2208,7 +2206,7 @@
 
     <script src="chat-state.js?v=1.0.0"></script>
     <script src="knowledge-base.js?v=1.0.1"></script>
-    <script src="digital-twin-agent.js?v=1.0.1"></script>
+    <script src="digital-twin-agent.js?v=1.0.7"></script>
     <script>
         // Embedded agent definitions
         const AGENT_DEFINITIONS = {

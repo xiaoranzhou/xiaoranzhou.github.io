@@ -278,30 +278,10 @@ For accurate information, I recommend:
           console.log('Using KB data, confidence: HIGH');
         }
       } else {
-        // === STAGE 2: Confidence Check ===
-        confidenceSource = 'model_evaluated';
-        const confidenceCheck = await this.checkResponseConfidence(userMessage, selectedAgent);
-
-        if (confidenceCheck.confidence < 0.5) {
-          // Low confidence - return fallback
-          if (this.debug) {
-            console.log('Low confidence, using fallback');
-          }
-          return {
-            response: this.getUncertainResponse(userMessage, confidenceCheck),
-            agent: selectedAgent,
-            confidenceScore: confidenceCheck.confidence * 100,
-            confidenceSource: 'fallback'
-          };
-        }
-
-        // Medium confidence - add uncertainty instruction
-        if (confidenceCheck.confidence < 0.7) {
-          systemPrompt += '\n\nIMPORTANT: You have limited confidence in this topic. Use qualifying language like "to my knowledge", "I believe", or "may include". Admit uncertainty when appropriate.\n';
-        }
-
+        // No KB match - proceed with API call but flag as unverified
+        confidenceSource = 'unverified';
         if (this.debug) {
-          console.log('Model confidence:', confidenceCheck.confidence, confidenceCheck.reasoning);
+          console.log('No KB match, using unverified API response');
         }
       }
 
@@ -339,7 +319,7 @@ For accurate information, I recommend:
 
       // Handle streaming response
       if (onChunk && response.body) {
-        return await this.handleStreamingResponse(response, selectedAgent, onChunk);
+        return await this.handleStreamingResponse(response, selectedAgent, onChunk, userMessage, confidenceSource);
       }
 
       // Handle non-streaming response
@@ -349,7 +329,12 @@ For accurate information, I recommend:
         throw new Error(data.error.message || 'API error occurred');
       }
 
-      const botResponse = data.choices[0].message.content;
+      let botResponse = data.choices[0].message.content;
+
+      // Add warning for unverified responses
+      if (confidenceSource === 'unverified') {
+        botResponse = `⚠️ **Unverified Response**: This information is not from my verified knowledge base and may not be accurate.\n\n${botResponse}`;
+      }
 
       // Add user message and bot response to conversation history
       this.conversationHistory.push(
@@ -368,8 +353,7 @@ For accurate information, I recommend:
       }
 
       // Calculate confidence score
-      const confidenceScore = confidenceSource === 'knowledge_base' ? 95 :
-                              confidenceSource === 'model_evaluated' ? 70 : 30;
+      const confidenceScore = confidenceSource === 'knowledge_base' ? 95 : 50;
 
       return {
         response: botResponse,
@@ -383,8 +367,21 @@ For accurate information, I recommend:
       console.error('API Error:', error);
 
       // FALLBACK: Always return something useful
+      const fallbackResponse = this.getFallbackResponse(userMessage);
+
+      // If streaming callback is provided, call it
+      if (onChunk) {
+        onChunk(fallbackResponse, fallbackResponse);
+      }
+
+      // Add to conversation history
+      this.conversationHistory.push(
+        { role: "user", content: userMessage },
+        { role: "assistant", content: fallbackResponse }
+      );
+
       return {
-        response: this.getFallbackResponse(userMessage),
+        response: fallbackResponse,
         agent: selectedAgent,
         confidenceScore: 20,
         confidenceSource: 'fallback_error',
@@ -396,11 +393,12 @@ For accurate information, I recommend:
   /**
    * Handle streaming response from API
    */
-  async handleStreamingResponse(response, agent, onChunk) {
+  async handleStreamingResponse(response, agent, onChunk, userMessage, confidenceSource = 'unknown') {
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
     let fullResponse = '';
     let buffer = '';
+    let warningAdded = false;
 
     try {
       while (true) {
@@ -426,8 +424,14 @@ For accurate information, I recommend:
               const parsed = JSON.parse(data);
 
               if (parsed.choices && parsed.choices[0]?.delta?.content) {
-                const chunk = parsed.choices[0].delta.content;
+                let chunk = parsed.choices[0].delta.content;
                 fullResponse += chunk;
+
+                // Add warning prefix for unverified responses (only once, at the start)
+                if (!warningAdded && confidenceSource === 'unverified' && fullResponse.length > 0) {
+                  fullResponse = `⚠️ **Unverified Response**: This information is not from my verified knowledge base and may not be accurate.\n\n${fullResponse}`;
+                  warningAdded = true;
+                }
 
                 // Call the chunk callback
                 if (onChunk) {
@@ -442,6 +446,11 @@ For accurate information, I recommend:
             }
           }
         }
+      }
+
+      // If no streaming happened but it's unverified, add warning
+      if (confidenceSource === 'unverified' && !warningAdded && fullResponse) {
+        fullResponse = `⚠️ **Unverified Response**: This information is not from my verified knowledge base and may not be accurate.\n\n${fullResponse}`;
       }
 
       // Add user message and bot response to conversation history
@@ -459,7 +468,9 @@ For accurate information, I recommend:
       return {
         response: fullResponse,
         agent: agent,
-        usage: null  // Streaming doesn't return usage stats
+        usage: null,  // Streaming doesn't return usage stats
+        confidenceScore: confidenceSource === 'knowledge_base' ? 95 : 50,
+        confidenceSource: confidenceSource
       };
 
     } catch (error) {

@@ -317,8 +317,9 @@ For accurate information, I recommend:
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      // Handle streaming response
-      if (onChunk && response.body) {
+      // Handle streaming response (only if actually SSE)
+      const contentType = response.headers.get('content-type');
+      if (onChunk && response.body && contentType && contentType.includes('text/event-stream')) {
         return await this.handleStreamingResponse(response, selectedAgent, onChunk, userMessage, confidenceSource);
       }
 
@@ -394,15 +395,78 @@ For accurate information, I recommend:
    * Handle streaming response from API
    */
   async handleStreamingResponse(response, agent, onChunk, userMessage, confidenceSource = 'unknown') {
+    // Safety check: if response is not actually streaming, parse as JSON
+    const contentType = response.headers.get('content-type');
+    if (contentType && contentType.includes('application/json')) {
+      // Not a streaming response - parse as JSON and send as single chunk
+      try {
+        const data = await response.json();
+        let content = '';
+
+        if (data.choices && data.choices[0]?.message?.content) {
+          content = data.choices[0].message.content;
+        } else if (data.choices && data.choices[0]?.delta?.content) {
+          // Some APIs return delta format even in non-streaming
+          content = data.choices[0].delta.content;
+        }
+
+        // Add unverified warning if needed
+        if (confidenceSource === 'unverified' && content) {
+          content = `⚠️ **Unverified Response**: This information is not from my verified knowledge base and may not be accurate.\n\n${content}`;
+        }
+
+        // Send as single chunk
+        if (onChunk && content) {
+          onChunk(content, content);
+        }
+
+        // Add to conversation history
+        this.conversationHistory.push(
+          { role: "user", content: userMessage },
+          { role: "assistant", content: content }
+        );
+
+        return {
+          response: content,
+          agent: agent,
+          usage: data.usage,
+          confidenceScore: confidenceSource === 'knowledge_base' ? 95 : 50,
+          confidenceSource: confidenceSource
+        };
+      } catch (error) {
+        console.error('JSON parse error:', error);
+        throw error;
+      }
+    }
+
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
     let fullResponse = '';
     let buffer = '';
     let warningAdded = false;
 
+    // Add read timeout protection
+    const READ_TIMEOUT = 30000; // 30 seconds
+    let timeoutId = null;
+
+    const readWithTimeout = () => {
+      return Promise.race([
+        reader.read(),
+        new Promise((_, reject) =>
+          timeoutId = setTimeout(() => reject(new Error('Stream read timeout')), READ_TIMEOUT)
+        )
+      ]);
+    };
+
     try {
       while (true) {
-        const { done, value } = await reader.read();
+        const { done, value } = await readWithTimeout();
+
+        // Clear timeout after successful read
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+          timeoutId = null;
+        }
 
         if (done) break;
 
@@ -480,6 +544,16 @@ For accurate information, I recommend:
         agent: agent,
         error: error.message
       };
+    } finally {
+      // Always cleanup timeout and reader
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      try {
+        reader.cancel();
+      } catch (e) {
+        // Ignore cancel errors
+      }
     }
   }
 

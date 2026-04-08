@@ -1,0 +1,18 @@
+You are a JSON generator. Output ONLY valid JSON. No explanation, no markdown.
+
+Fill in the superhero and superpower fields for each model, from YOUR perspective as {model_name}.
+Rank 1 = strongest. Assign any superhero or fictional hero/villain from ANY universe (movies, games, anime, comics, etc.). Superpower = 1-sentence technical capability.
+
+{"perspective":"{model_name}","ranking":[
+    {"rank":x,"model":"GPT-5.2","superhero":"","superpower":""},
+    {"rank":x,"model":"Claude Opus 4.6","superhero":"","superpower":""},
+    {"rank":x,"model":"Gemini 3.1 Pro","superhero":"","superpower":""},
+    {"rank":x,"model":"Kimi K2.5","superhero":"","superpower":""},
+    {"rank":x,"model":"GLM-5","superhero":"","superpower":""},
+    {"rank":x,"model":"MiniMax M2.7","superhero":"","superpower":""},
+    {"rank":x,"model":"Grok 4.2 Beta","superhero":"","superpower":""},
+    {"rank":x,"model":"DeepSeek V3.2","superhero":"","superpower":""},
+    {"rank":x,"model":"Qwen 3.5 Plus","superhero":"","superpower":""}
+]}
+
+Output ONLY the completed JSON object. Nothing else.

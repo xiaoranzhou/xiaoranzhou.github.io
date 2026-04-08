@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xiaoran Zhou | Blog</title>
+    <meta name="description" content="Blog by Xiaoran Zhou — insights on AI tools, LLMs, research data management, and scientific computing. Learn about DataPLAN, DMP-EVA, and FAIR data principles.">
+    <meta name="keywords" content="AI blog, LLM, research data management, DataPLAN, DMP-EVA, elab2arc, FAIR principles, plant science, scientific computing, Xiaoran Zhou">
+    <meta name="author" content="Xiaoran Zhou">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://xiaoranzhou.github.io/blog.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xiaoranzhou.github.io/blog.html">
+    <meta property="og:title" content="Xiaoran Zhou | Blog — AI, Research Data Management & Scientific Computing">
+    <meta property="og:description" content="Insights on AI tools, LLMs, research data management, and scientific computing by Xiaoran Zhou.">
+    <meta property="og:image" content="https://xiaoranzhou.github.io/images/perspective_4x4_cosmic.png">
+    <meta property="og:site_name" content="Xiaoran Zhou">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Xiaoran Zhou | Blog">
+    <meta name="twitter:description" content="Insights on AI tools, LLMs, research data management, and scientific computing.">
+    <meta name="twitter:image" content="https://xiaoranzhou.github.io/images/perspective_4x4_cosmic.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #2ecc71;
+            --dark-bg: #1a252f;
+        }
+
+        body {
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('images/animation.gif') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        /* Blog Card Styles */
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .blog-card h3 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .blog-card .blog-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .blog-card .blog-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .blog-card .blog-tags .badge {
+            margin: 3px;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+
+        .blog-card .blog-excerpt {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-card .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--secondary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Featured Post */
+        .featured-post {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .featured-post h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .featured-post .blog-meta {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .featured-post .blog-excerpt {
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--primary-color) 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 3rem;
+            margin-top: 3rem;
+        }
+
+        .newsletter-section input[type="email"] {
+            border-radius: 25px;
+            padding: 12px 20px;
+            border: none;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .newsletter-section .btn {
+            border-radius: 25px;
+            padding: 12px 30px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            .blog-card h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Blog",
+                "name": "Xiaoran Zhou Blog",
+                "url": "https://xiaoranzhou.github.io/blog.html",
+                "description": "Insights on AI tools, research data management, and scientific computing",
+                "author": {
+                    "@type": "Person",
+                    "name": "Xiaoran Zhou",
+                    "url": "https://xiaoranzhou.github.io"
+                },
+                "publisher": {
+                    "@type": "Person",
+                    "name": "Xiaoran Zhou",
+                    "url": "https://xiaoranzhou.github.io"
+                }
+            },
+            {
+                "@type": "BlogPosting",
+                "headline": "I Asked 9 LLM Models to View Each Other as Superheroes",
+                "description": "I asked 9 AI models to pick superhero identities for themselves and each other. The results reveal surprising patterns about how different models see themselves and their rivals.",
+                "datePublished": "2026-04-08",
+                "author": {"@type": "Person", "name": "Xiaoran Zhou", "url": "https://xiaoranzhou.github.io"},
+                "publisher": {"@type": "Person", "name": "Xiaoran Zhou"},
+                "mainEntityOfPage": "https://xiaoranzhou.github.io/blog-superhero-matrix.html",
+                "image": "https://xiaoranzhou.github.io/images/perspective_4x4_cosmic.png",
+                "keywords": ["LLM", "AI", "superhero", "ChatGPT", "Claude", "Gemini", "benchmark", "personality"]
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://xiaoranzhou.github.io/"},
+                    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://xiaoranzhou.github.io/blog.html"}
+                ]
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">Xiaoran Zhou</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="portfolio.html">AI Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://github.com/xiaoranzhou" target="_blank">GitHub</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mailto:a@xrzhou.com">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content text-center">
+                <h1 class="hero-title">Blog</h1>
+                <p class="hero-subtitle">Insights on AI, Research Data Management, and Scientific Computing</p>
+                <div class="tech-badges">
+                    <span class="tech-badge"><i class="bi bi-lightbulb"></i> AI & LLMs</span>
+                    <span class="tech-badge"><i class="bi bi-database"></i> Data Management</span>
+                    <span class="tech-badge"><i class="bi bi-code-slash"></i> Software Development</span>
+                    <span class="tech-badge"><i class="bi bi-graph-up"></i> Research</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Posts Section -->
+    <section id="posts" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Latest Posts</h2>
+            <p class="section-subtitle text-center">Thoughts, tutorials, and updates from my work</p>
+
+            <!-- Featured Post -->
+            <div class="featured-post" data-category="ai">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <span class="badge bg-warning text-dark mb-2"><i class="bi bi-star-fill"></i> Featured</span>
+                        <h2>I Asked 9 LLM Models to View Each Other as Superheroes</h2>
+                        <div class="blog-meta">
+                            <span><i class="bi bi-calendar3"></i> April 8, 2026</span>
+                            <span><i class="bi bi-clock"></i> 5 min read</span>
+                            <span><i class="bi bi-tag"></i> AI & LLMs</span>
+                        </div>
+                        <p class="blog-excerpt">I use LLMs every day, but I still don't fully understand them. So I ran an experiment: I asked 9 models to pick superhero identities for themselves and for each other. The results reveal surprising patterns about how different AI models see themselves and their rivals.</p>
+                        <a href="blog-superhero-matrix.html" class="btn btn-light">
+                            <i class="bi bi-book"></i> Read More
+                        </a>
+                    </div>
+                    <div class="col-lg-5 text-center mt-3 mt-lg-0">
+                        <img src="images/perspective_4x4_cosmic.png" alt="LLM Superhero Matrix" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="section bg-dark text-white text-center">
+        <div class="container">
+            <h2 class="mb-4">Get in Touch</h2>
+            <p class="lead mb-4">Questions, collaborations, or just want to chat about AI and research data?</p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="mailto:a@xrzhou.com" class="btn btn-light btn-lg">
+                    <i class="bi bi-envelope-fill me-2"></i> Email
+                </a>
+                <a href="https://www.linkedin.com/in/xiaoranzhou/" class="btn btn-outline-light btn-lg" target="_blank">
+                    <i class="bi bi-linkedin me-2"></i> LinkedIn
+                </a>
+                <a href="https://github.com/xiaoranzhou" class="btn btn-outline-light btn-lg" target="_blank">
+                    <i class="bi bi-github me-2"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Show/hide back to top button
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.style.opacity = '1';
+                backToTop.style.pointerEvents = 'auto';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.pointerEvents = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /wasm/
+Disallow: /content/
+
+Sitemap: https://xiaoranzhou.github.io/sitemap.xml

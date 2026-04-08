@@ -1,0 +1,12 @@
+title: I ask nine LLM Models to view each other as superheros, and this is what happend.
+
+I use llms everyday, for emails, coding, generate pictures, making deep research. Still, I don't understand them completely, as a human, I like many others make mortaphos of them. I know I am not the first one, openai thinks they are compressed wisdom, Andrej Karpathy thinks they are ghosts 
+Bender, Gebru, et al., says llms are Stochastic Parrots, llm hater might think they were Hallucinator. For me, I think llms like interactive superhero from a comic magazine, they realize my wish, help me do beyond my sole ability, sometimes understand me more than myself. But when I don't need them, I just close the magazine and rest, I can talke about chatgpt or claude just like talking a superhero characters. I am amused by my own thoughts and also want to know if it is true for llm models. So I wrote a prompt to ask which superhero do llm recognize itslef and which superhero do they view the others. 
+TLDR:......
+Here is my methodology incase you want to reproduce the results.
+....
+
+At the end, I think this helps us uderstand more on LLMs.
+I am sometimes tired of conprehense the thouthands of LLM benckmarking leaderbords. They were all complex, diverse and sometimes just made up from nowhere just for a conference abstract.
+If llms are so powerful like superheros, they must has also personalities, by knowing this, we could know who to seek help when something happens.
+To pass a exam professor X, dr. Manhatan or dr. Strange might be better than a deadpool who think he is ironman.

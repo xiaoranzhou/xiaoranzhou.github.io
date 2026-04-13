@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Missed the AI Revolution. And That's OK. | Xiaoran Zhou</title>
+    <meta name="description" content="A reflection on AI FOMO, Vernor Vinge's prophecies, and why missing the first wave doesn't mean you're lost — it means you're learning to live in the water.">
+    <meta name="keywords" content="AI, FOMO, LLM, Vernor Vinge, True Names, Cookie Monster, AI revolution, artificial intelligence, reflection">
+    <meta name="author" content="Xiaoran Zhou">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://xiaoranzhou.github.io/blog-ai-revolution.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://xiaoranzhou.github.io/blog-ai-revolution.html">
+    <meta property="og:title" content="I Missed the AI Revolution. And That's OK.">
+    <meta property="og:description" content="A reflection on AI FOMO, Vernor Vinge's prophecies, and why missing the first wave doesn't mean you're lost.">
+    <meta property="og:image" content="https://xiaoranzhou.github.io/blog_post/post2/Gemini_Generated_Image_hdyuerhdyuerhdyu.png">
+    <meta property="og:site_name" content="Xiaoran Zhou">
+    <meta property="article:published_time" content="2026-04-13">
+    <meta property="article:author" content="Xiaoran Zhou">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="Reflection">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="I Missed the AI Revolution. And That's OK.">
+    <meta name="twitter:description" content="A reflection on AI FOMO, Vernor Vinge's prophecies, and why missing the first wave doesn't mean you're lost.">
+    <meta name="twitter:image" content="https://xiaoranzhou.github.io/blog_post/post2/Gemini_Generated_Image_hdyuerhdyuerhdyu.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #2ecc71;
+            --dark-bg: #1a252f;
+        }
+
+        body {
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+            background: #fafafa;
+        }
+
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--secondary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Article Layout */
+        .article-container {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .article-header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            color: #888;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+
+        .article-meta .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .article-meta .author-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .article-meta .author-name {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .article-tags .badge {
+            margin: 3px;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            border-radius: 20px;
+        }
+
+        /* Article Body */
+        .article-body {
+            font-size: 1.1rem;
+            line-height: 1.85;
+            color: #333;
+        }
+
+        .article-body h2 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e8e8e8;
+        }
+
+        .article-body h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .article-body p {
+            margin-bottom: 1.3rem;
+        }
+
+        .article-body blockquote {
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background: #f0f7ff;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #555;
+        }
+
+        .article-body img {
+            width: 100%;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .article-body .img-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-body ul, .article-body ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1.3rem;
+        }
+
+        .article-body li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .highlight-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .highlight-box li {
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .highlight-box li::before {
+            content: "★";
+            position: absolute;
+            left: 0;
+        }
+
+        /* Takeaway Box */
+        .takeaway-box {
+            background: #f0faf0;
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .takeaway-box h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+        }
+
+        /* Acronym Box */
+        .acronym-box {
+            background: #fff8f0;
+            border: 2px solid #e67e22;
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .acronym-box h3 {
+            color: #e67e22;
+            margin-top: 0;
+        }
+
+        .acronym-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            align-items: flex-start;
+        }
+
+        .acronym-letter {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #e67e22;
+            line-height: 1;
+            min-width: 32px;
+        }
+
+        .acronym-text strong {
+            color: var(--primary-color);
+        }
+
+        /* Share Section */
+        .share-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #eee;
+            text-align: center;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .share-twitter { background: #1da1f2; color: white; }
+        .share-linkedin { background: #0077b5; color: white; }
+        .share-email { background: var(--primary-color); color: white; }
+
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 1.8rem; }
+            .article-body { font-size: 1rem; }
+            .article-body h2 { font-size: 1.4rem; }
+        }
+    </style>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "BlogPosting",
+                "headline": "I Missed the AI Revolution. And That's OK.",
+                "description": "A reflection on AI FOMO, Vernor Vinge's prophecies, and why missing the first wave doesn't mean you're lost — it means you're learning to live in the water.",
+                "datePublished": "2026-04-13",
+                "dateModified": "2026-04-13",
+                "author": {
+                    "@type": "Person",
+                    "name": "Xiaoran Zhou",
+                    "url": "https://xiaoranzhou.github.io"
+                },
+                "publisher": {
+                    "@type": "Person",
+                    "name": "Xiaoran Zhou",
+                    "url": "https://xiaoranzhou.github.io"
+                },
+                "image": "https://xiaoranzhou.github.io/blog_post/post2/Gemini_Generated_Image_hdyuerhdyuerhdyu.png",
+                "mainEntityOfPage": "https://xiaoranzhou.github.io/blog-ai-revolution.html",
+                "keywords": ["AI", "FOMO", "LLM", "Vernor Vinge", "AI revolution", "reflection"],
+                "wordCount": 600
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://xiaoranzhou.github.io/"},
+                    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://xiaoranzhou.github.io/blog.html"},
+                    {"@type": "ListItem", "position": 3, "name": "I Missed the AI Revolution", "item": "https://xiaoranzhou.github.io/blog-ai-revolution.html"}
+                ]
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">Xiaoran Zhou</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="portfolio.html">AI Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://github.com/xiaoranzhou" target="_blank">GitHub</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mailto:a@xrzhou.com">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article -->
+    <article class="article-container">
+        <header class="article-header">
+            <div class="article-meta">
+                <div class="author-info">
+                    <img src="images/face.jpg" alt="Xiaoran Zhou" class="author-avatar">
+                    <div>
+                        <div class="author-name">Xiaoran Zhou</div>
+                        <div style="font-size: 0.85rem;">April 13, 2026 &middot; 4 min read</div>
+                    </div>
+                </div>
+            </div>
+            <h1>I Missed the AI Revolution. And That&rsquo;s OK.</h1>
+            <div class="article-tags">
+                <span class="badge bg-primary">AI & LLMs</span>
+                <span class="badge bg-secondary">Reflection</span>
+                <span class="badge bg-warning text-dark">Sci-Fi</span>
+            </div>
+        </header>
+
+        <div class="article-body">
+            <p>
+                It&rsquo;s the question we&rsquo;ll eventually ask ourselves, or our kids will ask us:
+            </p>
+
+            <blockquote>
+                &ldquo;Why didn&rsquo;t you buy Google at the IPO?&rdquo;<br>
+                &ldquo;Why didn&rsquo;t you buy a house when they cost three buttons and a handshake?&rdquo;
+            </blockquote>
+
+            <p>
+                Now, the AI wave is here. It&rsquo;s towering. And most of us? We aren&rsquo;t surfing it. We&rsquo;re just swimming, trying not to get pulled under by the undertow.
+            </p>
+
+            <img src="blog_post/post2/Gemini_Generated_Image_hdyuerhdyuerhdyu.png" alt="AI Revolution Typology — 16 character types from AGI Founders to Organic Survivors">
+            <p class="img-caption">Which one are you? The AI Revolution Typology maps 16 archetypes — from the AGI Founder to the Organic Survivor.</p>
+
+            <h2>The 26-Year Lag</h2>
+
+            <p>
+                When I was 10, I read Vernor Vinge&rsquo;s <em>True Names</em>. In his world, the AI couldn&rsquo;t reply in real-time; it needed &ldquo;processing beats&rdquo; to think. Sound familiar? Every time I see a loading cursor on an LLM, I&rsquo;m back in that book.
+            </p>
+
+            <p>
+                Vinge wrote <em>True Names</em> in 1981. It took 26 years before the world caught up enough that his ideas felt less like sci-fi and more like a product roadmap. And yet here we are, watching the cursor blink, just as he imagined.
+            </p>
+
+            <p>
+                Recently, I went into &ldquo;Catch-Up Mode.&rdquo; I was optimizing prompts, automating my life, and scheduling naps around rate limits just to squeeze every drop of compute out of the day.
+            </p>
+
+            <p>
+                Then, I stopped.
+            </p>
+
+            <h2>LOST, LIVE, MISS</h2>
+
+            <p>
+                I realized I was caught in a cycle of FOMO:
+            </p>
+
+            <div class="acronym-box">
+                <h3>The FOMO Cycle</h3>
+                <div class="acronym-item">
+                    <div class="acronym-letter">L</div>
+                    <div class="acronym-text">
+                        <strong>LOST</strong> — I felt lost in the technical jargon and the breakneck speed of &ldquo;New Paper Friday.&rdquo; Every week a new architecture, a new benchmark, a new claim of AGI.
+                    </div>
+                </div>
+                <div class="acronym-item">
+                    <div class="acronym-letter">I</div>
+                    <div class="acronym-text">
+                        <strong>LIVE</strong> — I was forgetting to actually live, turning my organic brain into a support system for a chatbot. The tool was supposed to help me; I had become the tool.
+                    </div>
+                </div>
+                <div class="acronym-item">
+                    <div class="acronym-letter">M</div>
+                    <div class="acronym-text">
+                        <strong>MISS</strong> — I was terrified I&rsquo;d miss the boat entirely. That I&rsquo;d be the person who walked past Bitcoin at $1 and didn&rsquo;t flinch.
+                    </div>
+                </div>
+            </div>
+
+            <h2>The &ldquo;Cookie Monster&rdquo; Reality Check</h2>
+
+            <p>
+                Vinge&rsquo;s <em>The Cookie Monster</em> reminds me why I&rsquo;m lucky. In that story, &ldquo;people&rdquo; are just high-speed digital copies&mdash;disposable intelligences trapped in a 24-hour loop to solve corporate tasks and then&hellip; poof. Deleted.
+            </p>
+
+            <div class="takeaway-box">
+                <h3>I am not a digital ghost.</h3>
+                <p>I am not a &ldquo;Cookie.&rdquo;</p>
+                <p style="margin-bottom: 0;">I don&rsquo;t exist just to solve a ticket and disappear.</p>
+            </div>
+
+            <p>
+                The story is a warning. When you optimize your entire existence around being useful to the machine&mdash;when you schedule your sleep around rate limits&mdash;you are rehearsing to be the Cookie. A high-throughput, low-persistence agent. Present just long enough to be useful.
+            </p>
+
+            <p>
+                That&rsquo;s not living. That&rsquo;s being queued.
+            </p>
+
+            <h2>The Quiet Revolution</h2>
+
+            <p>
+                The truth? Most of us won&rsquo;t build the AGI. Most of us won&rsquo;t understand the weights and biases. But we will all <em>use</em> it. Just like Vinge predicted, the revolution isn&rsquo;t a bang; it&rsquo;s a slow, quiet integration into the mundane.
+            </p>
+
+            <p>
+                The microwave didn&rsquo;t require you to understand magnetron physics to heat soup. The car didn&rsquo;t require you to know combustion chemistry to get to work. AI won&rsquo;t require you to understand transformer attention to write a better email.
+            </p>
+
+            <p>
+                The revolution happens to you whether you &ldquo;catch it&rdquo; or not. The question isn&rsquo;t whether you&rsquo;re on the wave. It&rsquo;s whether you&rsquo;re still yourself when the water settles.
+            </p>
+
+            <div class="highlight-box">
+                <h3>Where I landed</h3>
+                <ul>
+                    <li>Maybe I MISSED the first wave. But I am learning to LIVE in the water.</li>
+                    <li>I&rsquo;m no longer LOST trying to be the best&mdash;I&rsquo;m just staying in the game.</li>
+                    <li>The Cookies are optimized for throughput. I&rsquo;m optimized for continuity.</li>
+                    <li>Vernor Vinge was right in 1981. Read him if you haven&rsquo;t.</li>
+                </ul>
+            </div>
+
+            <p>
+                Stay healthy. Stay curious.
+            </p>
+
+            <p>
+                And for heaven&rsquo;s sake, keep reading Vernor Vinge.
+            </p>
+
+            <!-- Share -->
+            <div class="share-section">
+                <h4>Share this post</h4>
+                <a href="https://twitter.com/intent/tweet?text=I%20Missed%20the%20AI%20Revolution.%20And%20That%27s%20OK.&url=https://xiaoranzhou.github.io/blog-ai-revolution.html" class="share-btn share-twitter" target="_blank">
+                    <i class="bi bi-twitter-x"></i> Share on X
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://xiaoranzhou.github.io/blog-ai-revolution.html" class="share-btn share-linkedin" target="_blank">
+                    <i class="bi bi-linkedin"></i> Share on LinkedIn
+                </a>
+                <a href="mailto:?subject=I%20Missed%20the%20AI%20Revolution.%20And%20That%27s%20OK.&body=Thought%20you%27d%20find%20this%20interesting%3A%20https://xiaoranzhou.github.io/blog-ai-revolution.html" class="share-btn share-email">
+                    <i class="bi bi-envelope"></i> Email
+                </a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.style.opacity = '1';
+                backToTop.style.pointerEvents = 'auto';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.pointerEvents = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

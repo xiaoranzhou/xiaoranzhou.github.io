@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xiaoran Zhou | Blog</title>
+    <meta name="description" content="Blog by Xiaoran Zhou — insights on AI tools, LLMs, research data management, and scientific computing. Learn about DataPLAN, DMP-EVA, and FAIR data principles.">
+    <meta name="keywords" content="AI blog, LLM, research data management, DataPLAN, DMP-EVA, elab2arc, FAIR principles, plant science, scientific computing, Xiaoran Zhou">
+    <meta name="author" content="Xiaoran Zhou">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://xiaoranzhou.github.io/pages/blog.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xiaoranzhou.github.io/pages/blog.html">
+    <meta property="og:title" content="Xiaoran Zhou | Blog — AI, Research Data Management & Scientific Computing">
+    <meta property="og:description" content="Insights on AI tools, LLMs, research data management, and scientific computing by Xiaoran Zhou.">
+    <meta property="og:image" content="https://xiaoranzhou.github.io/images/perspective_4x4_cosmic.png">
+    <meta property="og:site_name" content="Xiaoran Zhou">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Xiaoran Zhou | Blog">
+    <meta name="twitter:description" content="Insights on AI tools, LLMs, research data management, and scientific computing.">
+    <meta name="twitter:image" content="https://xiaoranzhou.github.io/images/perspective_4x4_cosmic.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --ink: #1e293b;
+            --ink-soft: #475569;
+            --ink-muted: #94a3b8;
+            --bg: #f9f7f4;
+            --surface: #ffffff;
+            --accent: #c2410c;
+            --accent-bg: #fff7ed;
+            --border: #e2e8f0;
+            --navy: #1e3a5f;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── NAV ──────────────────────────────────── */
+        .nav {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--ink);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--ink-soft);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--ink);
+        }
+
+        .nav-links a.active {
+            position: relative;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0; right: 0;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 1px;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--ink);
+            padding: 4px;
+        }
+
+        /* ── HERO ─────────────────────────────────── */
+        .blog-hero {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 72px 24px 56px;
+            text-align: center;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--ink-soft);
+            font-weight: 300;
+            max-width: 520px;
+            margin: 0 auto 36px;
+        }
+
+        .category-pills {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            background: none;
+            border: 1.5px solid var(--border);
+            color: var(--ink-soft);
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 6px 18px;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pill:hover {
+            border-color: var(--ink);
+            color: var(--ink);
+        }
+
+        .pill.active {
+            background: var(--ink);
+            border-color: var(--ink);
+            color: white;
+        }
+
+        /* ── POSTS SECTION ────────────────────────── */
+        .posts-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 64px 24px 96px;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── FEATURED CARD ────────────────────────── */
+        .post-featured {
+            background: var(--surface);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: 56px;
+            transition: box-shadow 0.3s, transform 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .post-featured:hover {
+            box-shadow: 0 12px 40px rgba(0,0,0,0.10);
+            transform: translateY(-2px);
+        }
+
+        .post-featured-img {
+            position: relative;
+            min-height: 320px;
+            overflow: hidden;
+        }
+
+        .post-featured-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .post-featured:hover .post-featured-img img {
+            transform: scale(1.03);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 100px;
+        }
+
+        .post-featured-body {
+            padding: 40px 40px 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.82rem;
+            color: var(--ink-soft);
+            margin-bottom: 16px;
+        }
+
+        .post-meta .dot {
+            width: 3px;
+            height: 3px;
+            background: var(--ink-muted);
+            border-radius: 50%;
+        }
+
+        .post-category {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .post-featured-body h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.25;
+            color: var(--ink);
+            margin-bottom: 14px;
+            letter-spacing: -0.01em;
+        }
+
+        .post-featured-body p {
+            color: var(--ink-soft);
+            font-size: 0.97rem;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .read-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+            transition: gap 0.2s;
+        }
+
+        .read-link:hover {
+            gap: 10px;
+        }
+
+        /* ── POSTS GRID ───────────────────────────── */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 28px;
+        }
+
+        .post-card {
+            background: var(--surface);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: box-shadow 0.3s, transform 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-card:hover {
+            box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+            transform: translateY(-2px);
+        }
+
+        .post-card-img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            background: var(--border);
+        }
+
+        .post-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .post-card:hover .post-card-img img {
+            transform: scale(1.04);
+        }
+
+        .post-card-body {
+            padding: 24px 24px 28px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-card-body h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--ink);
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .post-card-body p {
+            color: var(--ink-soft);
+            font-size: 0.9rem;
+            line-height: 1.65;
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        .post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .post-tag {
+            font-size: 0.73rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 3px 10px;
+            border-radius: 100px;
+        }
+
+        /* ── FOOTER ───────────────────────────────── */
+        .site-footer {
+            background: var(--ink);
+            color: rgba(255,255,255,0.7);
+            padding: 64px 24px;
+            text-align: center;
+        }
+
+        .site-footer h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .site-footer p {
+            font-size: 1rem;
+            margin-bottom: 32px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .footer-link-solid {
+            background: white;
+            color: var(--ink);
+        }
+
+        .footer-link-solid:hover {
+            background: var(--bg);
+        }
+
+        .footer-link-outline {
+            border: 1.5px solid rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.85);
+        }
+
+        .footer-link-outline:hover {
+            border-color: rgba(255,255,255,0.6);
+            color: white;
+        }
+
+        /* ── BACK TO TOP ──────────────────────────── */
+        .back-to-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: var(--ink);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            font-size: 1.1rem;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* ── RESPONSIVE ───────────────────────────── */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: white; border-bottom: 1px solid var(--border); padding: 16px 24px; gap: 16px; z-index: 99; }
+            .nav-toggle { display: block; }
+
+            .post-featured {
+                grid-template-columns: 1fr;
+            }
+
+            .post-featured-img {
+                min-height: 220px;
+            }
+
+            .post-featured-body {
+                padding: 28px 24px;
+            }
+
+            .post-featured-body h2 {
+                font-size: 1.5rem;
+            }
+
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-hero {
+                padding: 48px 24px 40px;
+            }
+        }
+
+        /* Hidden card (for filter) */
+        .post-card.hidden,
+        .post-featured.hidden {
+            display: none;
+        }
+    </style>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Blog",
+                "name": "Xiaoran Zhou Blog",
+                "url": "https://xiaoranzhou.github.io/pages/blog.html",
+                "description": "Insights on AI tools, research data management, and scientific computing",
+                "author": {
+                    "@type": "Person",
+                    "name": "Xiaoran Zhou",
+                    "url": "https://xiaoranzhou.github.io"
+                },
+                "publisher": {
+                    "@type": "Person",
+                    "name": "Xiaoran Zhou",
+                    "url": "https://xiaoranzhou.github.io"
+                }
+            },
+            {
+                "@type": "BlogPosting",
+                "headline": "I Asked 9 LLM Models to View Each Other as Superheroes",
+                "description": "I asked 9 AI models to pick superhero identities for themselves and each other. The results reveal surprising patterns about how different models see themselves and their rivals.",
+                "datePublished": "2026-04-08",
+                "author": {"@type": "Person", "name": "Xiaoran Zhou", "url": "https://xiaoranzhou.github.io"},
+                "publisher": {"@type": "Person", "name": "Xiaoran Zhou"},
+                "mainEntityOfPage": "https://xiaoranzhou.github.io/pages/blog-superhero-matrix.html",
+                "image": "https://xiaoranzhou.github.io/images/perspective_4x4_cosmic.png",
+                "keywords": ["LLM", "AI", "superhero", "ChatGPT", "Claude", "Gemini", "benchmark", "personality"]
+            },
+            {
+                "@type": "BlogPosting",
+                "headline": "I Missed the AI Revolution. And That's OK.",
+                "description": "A reflection on AI FOMO, Vernor Vinge's prophecies, and why missing the first wave doesn't mean you're lost.",
+                "datePublished": "2026-04-13",
+                "author": {"@type": "Person", "name": "Xiaoran Zhou", "url": "https://xiaoranzhou.github.io"},
+                "publisher": {"@type": "Person", "name": "Xiaoran Zhou"},
+                "mainEntityOfPage": "https://xiaoranzhou.github.io/pages/blog-ai-revolution.html",
+                "image": "https://xiaoranzhou.github.io/blog_post/post2/Gemini_Generated_Image_hdyuerhdyuerhdyu.png",
+                "keywords": ["AI", "FOMO", "Vernor Vinge", "reflection", "AI revolution"]
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://xiaoranzhou.github.io/"},
+                    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://xiaoranzhou.github.io/pages/blog.html"}
+                ]
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a class="nav-brand" href="../index.html">Xiaoran Zhou</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+                <i class="bi bi-list"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="https://github.com/xiaoranzhou" target="_blank">GitHub</a></li>
+                <li><a href="mailto:a@xrzhou.com">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="blog-hero">
+        <p class="hero-eyebrow">Writing</p>
+        <h1 class="hero-title">Blog.</h1>
+        <p class="hero-sub">Thinking out loud about AI, research data, and the shape of things to come.</p>
+        <div class="category-pills">
+            <button class="pill active" data-filter="all">All</button>
+            <button class="pill" data-filter="ai">AI &amp; LLMs</button>
+            <button class="pill" data-filter="reflection">Reflection</button>
+            <button class="pill" data-filter="data">Data</button>
+        </div>
+    </section>
+
+    <!-- Posts -->
+    <main class="posts-section" id="main-content">
+
+        <p class="section-label">Latest Posts</p>
+
+        <!-- Featured Post -->
+        <a href="blog-superhero-matrix.html" class="post-featured" data-category="ai">
+            <div class="post-featured-img">
+                <img src="../blog_post/perspective_4x4_cosmic.png" alt="LLM Superhero Matrix — Cosmic Tier">
+                <span class="featured-badge">Featured</span>
+            </div>
+            <div class="post-featured-body">
+                <div class="post-meta">
+                    <span class="post-category">AI &amp; LLMs</span>
+                    <span class="dot"></span>
+                    <span>April 8, 2026</span>
+                    <span class="dot"></span>
+                    <span>5 min read</span>
+                </div>
+                <h2>I Asked 9 LLMs to Rank Each Other as Superheroes. The Results Were Hilarious.</h2>
+                <p>I use LLMs every day, but I still don&rsquo;t fully understand them. So I ran an experiment: I asked 9 models to pick superhero identities for themselves and for each other. The results reveal surprising patterns about how different AI models see themselves and their rivals.</p>
+                <span class="read-link">Read post <i class="bi bi-arrow-right"></i></span>
+            </div>
+        </a>
+
+        <!-- Post Grid -->
+        <div class="posts-grid">
+
+            <!-- Post 2 -->
+            <a href="blog-ai-revolution.html" class="post-card" data-category="reflection">
+                <div class="post-card-img">
+                    <img src="../blog_post/post2/Gemini_Generated_Image_hdyuerhdyuerhdyu.png" alt="AI Revolution Typology">
+                </div>
+                <div class="post-card-body">
+                    <div class="post-meta" style="margin-bottom:12px;">
+                        <span class="post-category">Reflection</span>
+                        <span class="dot"></span>
+                        <span>April 13, 2026</span>
+                        <span class="dot"></span>
+                        <span>4 min</span>
+                    </div>
+                    <h3>I Missed the AI Revolution. And That&rsquo;s OK.</h3>
+                    <p>Most of us aren&rsquo;t surfing the AI wave — we&rsquo;re just swimming, trying not to get pulled under. A reflection on FOMO, Vernor Vinge&rsquo;s prophecies, and why missing the first wave doesn&rsquo;t mean you&rsquo;re lost.</p>
+                    <div class="post-tags">
+                        <span class="post-tag">AI &amp; LLMs</span>
+                        <span class="post-tag">Reflection</span>
+                        <span class="post-tag">Sci-Fi</span>
+                    </div>
+                    <span class="read-link">Read post <i class="bi bi-arrow-right"></i></span>
+                </div>
+            </a>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <h2>Get in Touch</h2>
+        <p>Questions, collaborations, or just want to chat about AI and research data?</p>
+        <div class="footer-links">
+            <a href="mailto:a@xrzhou.com" class="footer-link footer-link-solid">
+                <i class="bi bi-envelope-fill"></i> Email
+            </a>
+            <a href="https://www.linkedin.com/in/xiaoranzhou/" class="footer-link footer-link-outline" target="_blank">
+                <i class="bi bi-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/xiaoranzhou" class="footer-link footer-link-outline" target="_blank">
+                <i class="bi bi-github"></i> GitHub
+            </a>
+            <a href="https://github.com/xiaoranzhou/xiaoranzhou.github.io" class="footer-link footer-link-outline" target="_blank" rel="noopener">
+                <i class="bi bi-code-slash"></i> View Source
+            </a>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <script>
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+        // Back to top
+        const btt = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            btt.classList.toggle('visible', window.scrollY > 300);
+        });
+        btt.addEventListener('click', e => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Category filter
+        const pills = document.querySelectorAll('.pill');
+        const cards = document.querySelectorAll('[data-category]');
+
+        pills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                pills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                const filter = pill.dataset.filter;
+                cards.forEach(card => {
+                    const match = filter === 'all' || card.dataset.category === filter;
+                    card.classList.toggle('hidden', !match);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

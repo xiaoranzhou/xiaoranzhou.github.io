@@ -2,7 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /wasm/
 Disallow: /content/
-Disallow: /test-rag.html
-Disallow: /test-rag-node.js
+Disallow: /archive/
 
 Sitemap: https://xiaoranzhou.github.io/sitemap.xml

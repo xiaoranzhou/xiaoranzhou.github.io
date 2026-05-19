@@ -24,22 +24,25 @@
     <meta name="twitter:description" content="AI-driven Plant Data Infrastructure Scientist. Building LLM-powered tools for research data management.">
     <meta name="twitter:image" content="https://xiaoranzhou.github.io/images/animation.gif">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/unified.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
         :root {
-            /* Subtle, professional palette */
-            --primary-color: #4a5568;      /* Neutral gray-blue */
-            --secondary-color: #718096;    /* Light gray-blue */
-            --accent-color: #a0aec0;       /* Soft gray */
-            --bg-light: #f7fafc;           /* Very light gray */
-            --bg-medium: #edf2f7;          /* Light gray */
-            --text-muted: #718096;         /* Muted text */
+            /* Unified design system overrides */
+            --primary-color: #1e293b;
+            --secondary-color: #475569;
+            --accent-color: #c2410c;
+            --bg-light: #f9f7f4;
+            --bg-medium: #fdfbf7;
+            --text-muted: #64748b;
         }
 
         body {
             color: #333;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', system-ui, sans-serif;
             padding-top: 60px;
         }
 
@@ -191,7 +194,7 @@
 
         .section-subtitle {
             font-size: 1rem;
-            color: var(--text-muted);
+            color: var(--secondary-color);
             margin-bottom: 2.5rem;
             font-weight: 400;
         }
@@ -444,7 +447,7 @@
             bottom: 50px;
             right: 50px;
             z-index: 10000;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', system-ui, sans-serif;
         }
 
         .chat-button {
@@ -1152,21 +1155,21 @@
 </head>
 <body>
     <!-- Sticky Top Navigation -->
-    <nav class="top-navbar">
+    <nav class="top-navbar unified-nav">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
-                <a class="navbar-brand" href="#home">Xiaoran Zhou</a>
+                <a class="navbar-brand unified-nav-brand" href="#home">Xiaoran Zhou</a>
                 <div class="d-none d-md-flex gap-2">
                     <a class="nav-link" href="#home">Home</a>
                     <a class="nav-link" href="#ai-tools">AI Tools</a>
                     <a class="nav-link" href="#expertise">Expertise</a>
                     <a class="nav-link" href="#skills">Skills</a>
                     <a class="nav-link" href="#publications">Publications</a>
-                    <a class="nav-link" href="blog.html">Blog</a>
+                    <a class="nav-link" href="pages/blog.html">Blog</a>
                     <a class="nav-link" href="#github">GitHub</a>
                     <a class="nav-link" href="#contact">Contact</a>
                 </div>
-                <button class="btn btn-sm btn-outline-primary d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav">
+                <button class="btn btn-sm btn-outline-primary d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav" aria-label="Toggle navigation menu">
                     <i class="bi bi-list"></i>
                 </button>
             </div>
@@ -1177,7 +1180,7 @@
                     <a class="nav-link" href="#expertise">Expertise</a>
                     <a class="nav-link" href="#skills">Skills</a>
                     <a class="nav-link" href="#publications">Publications</a>
-                    <a class="nav-link" href="blog.html">Blog</a>
+                    <a class="nav-link" href="pages/blog.html">Blog</a>
                     <a class="nav-link" href="#github">GitHub</a>
                     <a class="nav-link" href="#contact">Contact</a>
                 </div>
@@ -1185,18 +1188,20 @@
         </div>
     </nav>
 
+    <main id="main-content">
     <!-- Hero Section -->
-    <div id="home" class="parallax-section" style="background-image: url('images/animation.gif'); cursor: pointer;" onclick="window.location.href='https://xrzhou.com/cpb'">
-        <div class="container h-100">
+    <div id="home" class="parallax-section" style="background-image: url('images/animation.gif'); cursor: pointer; position: relative;" onclick="window.location.href='https://xrzhou.com/cpb'">
+        <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.3) 100%);"></div>
+        <div class="container h-100" style="position: relative; z-index: 1;">
             <div class="row h-100 align-items-center">
                 <div class="col-lg-4 offset-lg-1">
-                    <div class="profile-card text-light bg-transparent">
-                        <h2>Xiaoran Zhou</h2>
+                    <div class="profile-card text-light bg-transparent" style="text-shadow: 0 2px 8px rgba(0,0,0,0.5);">
+                        <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">Xiaoran Zhou</h1>
                         <p class="lead">AI-driven Plant Data Infrastructure Scientist</p>
                         <p class="mb-2">Bioinformatics, IBG-4<br>Forschungszentrum Jülich</p>
                         <p class="small opacity-75">Turning experimental plant data into reusable, model-ready, fundable digital assets</p>
                         <div class="d-grid gap-2">
-                            <a href="portfolio.html" class="btn btn-primary" onclick="event.stopPropagation()">AI Portfolio</a>
+                            <a href="pages/portfolio.html" class="btn unified-btn unified-btn-primary" onclick="event.stopPropagation()" style="background: white; color: #1e293b; border-color: white;">AI Portfolio</a>
                             <a href="https://www.linkedin.com/in/xiaoranzhou/" class="btn btn-outline-info" onclick="event.stopPropagation()" target="_blank">LinkedIn</a>
                             <a href="https://github.com/xiaoranzhou" class="btn btn-outline-info" onclick="event.stopPropagation()" target="_blank">GitHub</a>
                         </div>
@@ -1207,55 +1212,55 @@
     </div>
 
     <!-- AI Tools Section -->
-    <section id="ai-tools" class="portfolio-section">
+    <section id="ai-tools" class="unified-section">
         <div class="container">
-            <h2 class="section-title text-center">AI Tools</h2>
-            <p class="section-subtitle text-center">Tools for research data management</p>
+            <h2 class="unified-section-title text-center">AI Tools</h2>
+            <p class="unified-section-sub text-center">Tools for research data management</p>
 
             <div class="row">
                 <!-- DataPLAN -->
                 <div class="col-md-12 mb-4">
-                    <div class="tool-card">
+                    <div class="tool-card unified-tool-card">
                         <h3><i class="bi bi-file-earmark-text"></i> DataPLAN</h3>
                         <p class="lead">LLM-assisted Data Management Plan Generator</p>
                         <p>A web tool that uses language models to generate data management plans. It helps create structured DMPs with appropriate metadata standards.</p>
                         <div class="mt-3">
-                            <span class="badge bg-primary">LLM Integration</span>
-                            <span class="badge bg-success">Workflow Automation</span>
-                            <span class="badge bg-info">ISA Framework</span>
-                            <span class="badge bg-warning text-dark">Research Data Management</span>
+                            <span class="badge" style="background: #e2e8f0; color: #475569; font-weight: 500; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem;">LLM Integration</span>
+                            <span class="badge" style="background: #e2e8f0; color: #475569; font-weight: 500; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem;">Workflow Automation</span>
+                            <span class="badge" style="background: #e2e8f0; color: #475569; font-weight: 500; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem;">ISA Framework</span>
+                            <span class="badge" style="background: #e2e8f0; color: #475569; font-weight: 500; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem;">Research Data Management</span>
                         </div>
 
                         <!-- Audience Pitches -->
                         <div class="pitch-container" data-tool="dataplan">
-                            <div class="pitch-audience-label">Benefits by Role</div>
-                            <div class="pitch-tabs">
-                                <button class="pitch-tab active" onclick="showPitch('dataplan', 'pi')">
+                            <div class="pitch-audience-label unified-pitch-label">Benefits by Role</div>
+                            <div class="pitch-tabs unified-pitch-tabs">
+                                <button class="pitch-tab unified-pitch-tab active" onclick="showPitch('dataplan', 'pi')">
                                     <i class="bi bi-person-badge"></i> For PIs
                                 </button>
-                                <button class="pitch-tab" onclick="showPitch('dataplan', 'lab')">
+                                <button class="pitch-tab unified-pitch-tab" onclick="showPitch('dataplan', 'lab')">
                                     <i class="bi bi-people"></i> For Lab Users
                                 </button>
-                                <button class="pitch-tab" onclick="showPitch('dataplan', 'reviewer')">
+                                <button class="pitch-tab unified-pitch-tab" onclick="showPitch('dataplan', 'reviewer')">
                                     <i class="bi bi-clipboard-check"></i> For Evaluators
                                 </button>
                             </div>
-                            <div class="pitch-content active" data-audience="pi">
-                                <ul class="pitch-list">
+                            <div class="pitch-content unified-pitch-content active" data-audience="pi">
+                                <ul class="pitch-list unified-pitch-list">
                                     <li>Reduces proposal preparation time with auto-generated DMPs</li>
                                     <li>Ensures funder compliance with FAIR & metadata standards</li>
                                     <li>Improves institutional competitiveness through strong planning</li>
                                 </ul>
                             </div>
-                            <div class="pitch-content" data-audience="lab">
-                                <ul class="pitch-list">
+                            <div class="pitch-content unified-pitch-content" data-audience="lab">
+                                <ul class="pitch-list unified-pitch-list">
                                     <li>Quickly produces accurate, structured DMP text — no templates to struggle with</li>
                                     <li>Reuses previous metadata, reducing repetitive typing</li>
                                     <li>Keeps projects aligned with standard formats from day one</li>
                                 </ul>
                             </div>
-                            <div class="pitch-content" data-audience="reviewer">
-                                <ul class="pitch-list">
+                            <div class="pitch-content unified-pitch-content" data-audience="reviewer">
+                                <ul class="pitch-list unified-pitch-list">
                                     <li>Demonstrates credible Open Science compliance</li>
                                     <li>Reduces inconsistencies and missing metadata</li>
                                     <li>Shows proactive research data stewardship at proposal stage</li>
@@ -1264,16 +1269,16 @@
                         </div>
 
                         <div class="mt-3">
-                            <a href="https://plan.nfdi4plants.org" class="btn btn-primary" target="_blank">
+                            <a href="https://plan.nfdi4plants.org" class="btn unified-btn unified-btn-primary" target="_blank">
                                 <i class="bi bi-globe"></i> Try DataPLAN
                             </a>
-                            <a href="https://doi.org/10.3390/data8110159" class="btn btn-outline-primary ms-2" target="_blank">
+                            <a href="https://doi.org/10.3390/data8110159" class="btn unified-btn unified-btn-outline ms-2" target="_blank">
                                 <i class="bi bi-file-text"></i> Publication
                             </a>
-                            <a href="https://github.com/nfdi4plants/dataplan" class="btn btn-outline-secondary ms-2" target="_blank">
+                            <a href="https://github.com/nfdi4plants/dataplan" class="btn unified-btn unified-btn-outline ms-2" target="_blank">
                                 <i class="bi bi-github"></i> GitHub
                             </a>
-                            <a href="javascript:void(0)" class="chatbot-link ms-3" onclick="openChatWithQuestion('Tell me about DataPLAN')">
+                            <a href="#" class="chatbot-link ms-3" onclick="event.preventDefault(); openChatWithQuestion('Tell me about DataPLAN')">
                                 <i class="bi bi-chat-dots"></i> Ask chatbot
                             </a>
                         </div>
@@ -1282,47 +1287,47 @@
 
                 <!-- DMP-EVA -->
                 <div class="col-md-12 mb-4">
-                    <div class="tool-card">
+                    <div class="tool-card unified-tool-card">
                         <h3><i class="bi bi-file-earmark-check"></i> DMP-EVA</h3>
                         <p class="lead">AI-Based DMP Evaluation Tool</p>
                         <p>A tool that assesses data management plans and provides feedback on compliance and completeness.</p>
                         <div class="mt-3">
-                            <span class="badge bg-success">AI Evaluation</span>
-                            <span class="badge bg-primary">Automated Feedback</span>
-                            <span class="badge bg-info">Compliance Checking</span>
-                            <span class="badge bg-warning text-dark">Gap Analysis</span>
+                            <span class="badge" style="background: #e2e8f0; color: #475569; font-weight: 500; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem;">AI Evaluation</span>
+                            <span class="badge" style="background: #e2e8f0; color: #475569; font-weight: 500; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem;">Automated Feedback</span>
+                            <span class="badge" style="background: #e2e8f0; color: #475569; font-weight: 500; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem;">Compliance Checking</span>
+                            <span class="badge" style="background: #e2e8f0; color: #475569; font-weight: 500; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem;">Gap Analysis</span>
                         </div>
 
                         <!-- Audience Pitches -->
                         <div class="pitch-container" data-tool="dmpeva">
-                            <div class="pitch-audience-label">Benefits by Role</div>
-                            <div class="pitch-tabs">
-                                <button class="pitch-tab active" onclick="showPitch('dmpeva', 'pi')">
+                            <div class="pitch-audience-label unified-pitch-label">Benefits by Role</div>
+                            <div class="pitch-tabs unified-pitch-tabs">
+                                <button class="pitch-tab unified-pitch-tab active" onclick="showPitch('dmpeva', 'pi')">
                                     <i class="bi bi-person-badge"></i> For PIs
                                 </button>
-                                <button class="pitch-tab" onclick="showPitch('dmpeva', 'lab')">
+                                <button class="pitch-tab unified-pitch-tab" onclick="showPitch('dmpeva', 'lab')">
                                     <i class="bi bi-people"></i> For Lab Users
                                 </button>
-                                <button class="pitch-tab" onclick="showPitch('dmpeva', 'reviewer')">
+                                <button class="pitch-tab unified-pitch-tab" onclick="showPitch('dmpeva', 'reviewer')">
                                     <i class="bi bi-clipboard-check"></i> For Evaluators
                                 </button>
                             </div>
-                            <div class="pitch-content active" data-audience="pi">
-                                <ul class="pitch-list">
+                            <div class="pitch-content unified-pitch-content active" data-audience="pi">
+                                <ul class="pitch-list unified-pitch-list">
                                     <li>Automated quality check before submission — catch weaknesses early</li>
                                     <li>Reduces revision cycles from reviewer feedback</li>
                                     <li>Enhances perception of professional project management</li>
                                 </ul>
                             </div>
-                            <div class="pitch-content" data-audience="lab">
-                                <ul class="pitch-list">
+                            <div class="pitch-content unified-pitch-content" data-audience="lab">
+                                <ul class="pitch-list unified-pitch-list">
                                     <li>Gives immediate actionable scoring and improvement suggestions</li>
                                     <li>Ensures DMPs meet institutional and policy guidelines</li>
                                     <li>Easy self-service — no waiting for internal review</li>
                                 </ul>
                             </div>
-                            <div class="pitch-content" data-audience="reviewer">
-                                <ul class="pitch-list">
+                            <div class="pitch-content unified-pitch-content" data-audience="reviewer">
+                                <ul class="pitch-list unified-pitch-list">
                                     <li>Standardized assessment against best practices</li>
                                     <li>Makes compliance visible and objectively measurable</li>
                                     <li>Reduces subjective evaluation noise between reviewers</li>
@@ -1331,10 +1336,10 @@
                         </div>
 
                         <div class="mt-3">
-                            <a href="https://github.com/usadellab/dmp-eva" class="btn btn-success" target="_blank">
+                            <a href="https://github.com/usadellab/dmp-eva" class="btn unified-btn unified-btn-accent" target="_blank">
                                 <i class="bi bi-github"></i> GitHub Repository
                             </a>
-                            <a href="javascript:void(0)" class="chatbot-link ms-3" onclick="openChatWithQuestion('Tell me about DMP-EVA')">
+                            <a href="#" class="chatbot-link ms-3" onclick="event.preventDefault(); openChatWithQuestion('Tell me about DMP-EVA')">
                                 <i class="bi bi-chat-dots"></i> Ask chatbot
                             </a>
                         </div>
@@ -1343,47 +1348,47 @@
 
                 <!-- elab2arc -->
                 <div class="col-md-12 mb-4">
-                    <div class="tool-card">
+                    <div class="tool-card unified-tool-card">
                         <h3><i class="bi bi-file-earmark-spreadsheet"></i> elab2arc</h3>
                         <p class="lead">AI-Powered Protocol Standardization Tool</p>
                         <p>Converts free-text experimental protocols from lab notebooks into standardized ARC-compliant Excel files.</p>
                         <div class="mt-3">
-                            <span class="badge bg-success">NLP</span>
-                            <span class="badge bg-primary">LLM Parsing</span>
-                            <span class="badge bg-info">ARC Specification</span>
-                            <span class="badge bg-warning text-dark">Data Standardization</span>
+                            <span class="badge" style="background: #e2e8f0; color: #475569; font-weight: 500; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem;">NLP</span>
+                            <span class="badge" style="background: #e2e8f0; color: #475569; font-weight: 500; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem;">LLM Parsing</span>
+                            <span class="badge" style="background: #e2e8f0; color: #475569; font-weight: 500; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem;">ARC Specification</span>
+                            <span class="badge" style="background: #e2e8f0; color: #475569; font-weight: 500; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem;">Data Standardization</span>
                         </div>
 
                         <!-- Audience Pitches -->
                         <div class="pitch-container" data-tool="elab2arc">
-                            <div class="pitch-audience-label">Benefits by Role</div>
-                            <div class="pitch-tabs">
-                                <button class="pitch-tab active" onclick="showPitch('elab2arc', 'pi')">
+                            <div class="pitch-audience-label unified-pitch-label">Benefits by Role</div>
+                            <div class="pitch-tabs unified-pitch-tabs">
+                                <button class="pitch-tab unified-pitch-tab active" onclick="showPitch('elab2arc', 'pi')">
                                     <i class="bi bi-person-badge"></i> For PIs
                                 </button>
-                                <button class="pitch-tab" onclick="showPitch('elab2arc', 'lab')">
+                                <button class="pitch-tab unified-pitch-tab" onclick="showPitch('elab2arc', 'lab')">
                                     <i class="bi bi-people"></i> For Lab Users
                                 </button>
-                                <button class="pitch-tab" onclick="showPitch('elab2arc', 'reviewer')">
+                                <button class="pitch-tab unified-pitch-tab" onclick="showPitch('elab2arc', 'reviewer')">
                                     <i class="bi bi-clipboard-check"></i> For Evaluators
                                 </button>
                             </div>
-                            <div class="pitch-content active" data-audience="pi">
-                                <ul class="pitch-list">
+                            <div class="pitch-content unified-pitch-content active" data-audience="pi">
+                                <ul class="pitch-list unified-pitch-list">
                                     <li>Turns local lab know-how into reusable institutional assets</li>
                                     <li>Saves personnel hours on formatting and metadata curation</li>
                                     <li>Improves long-term data traceability for publications and audits</li>
                                 </ul>
                             </div>
-                            <div class="pitch-content" data-audience="lab">
-                                <ul class="pitch-list">
+                            <div class="pitch-content unified-pitch-content" data-audience="lab">
+                                <ul class="pitch-list unified-pitch-list">
                                     <li>Upload ELN protocols → instantly get ARC-compatible Excel</li>
                                     <li>No more manual copy-paste or metadata lookup</li>
                                     <li>Fewer missing links → fewer late-stage project headaches</li>
                                 </ul>
                             </div>
-                            <div class="pitch-content" data-audience="reviewer">
-                                <ul class="pitch-list">
+                            <div class="pitch-content unified-pitch-content" data-audience="reviewer">
+                                <ul class="pitch-list unified-pitch-list">
                                     <li>Evidence of reproducible and machine-readable experimental design</li>
                                     <li>Supports FAIR implementation — "Findable & Interoperable" by default</li>
                                     <li>Strong alignment with modern research data governance requirements</li>
@@ -1392,10 +1397,10 @@
                         </div>
 
                         <div class="mt-3">
-                            <a href="https://github.com/nfdi4plants/elab2arc" class="btn btn-success" target="_blank">
+                            <a href="https://github.com/nfdi4plants/elab2arc" class="btn unified-btn unified-btn-accent" target="_blank">
                                 <i class="bi bi-github"></i> GitHub Repository
                             </a>
-                            <a href="javascript:void(0)" class="chatbot-link ms-3" onclick="openChatWithQuestion('What is elab2arc?')">
+                            <a href="#" class="chatbot-link ms-3" onclick="event.preventDefault(); openChatWithQuestion('What is elab2arc?')">
                                 <i class="bi bi-chat-dots"></i> Ask chatbot
                             </a>
                         </div>
@@ -1407,48 +1412,48 @@
     </section>
 
     <!-- Work Areas Section -->
-    <section id="expertise" class="portfolio-section">
+    <section id="expertise" class="unified-section">
         <div class="container">
-            <h2 class="section-title text-center">Work Areas</h2>
-            <p class="section-subtitle text-center">Main areas of focus</p>
+            <h2 class="unified-section-title text-center">Work Areas</h2>
+            <p class="unified-section-sub text-center">Main areas of focus</p>
 
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
-                    <div class="expertise-card text-center">
+                    <div class="expertise-card unified-expertise-card text-center">
                         <i class="bi bi-tools"></i>
-                        <h4>AI Tools</h4>
+                        <h3 style="font-size: 1.1rem;">AI Tools</h3>
                         <p>Building applications that integrate language models for research data management workflows.</p>
-                        <a href="javascript:void(0)" class="chatbot-link" onclick="openChatWithQuestion('Tell me about your AI tools')">
+                        <a href="#" class="chatbot-link" onclick="event.preventDefault(); openChatWithQuestion('Tell me about your AI tools')">
                             <i class="bi bi-chat-dots"></i> Ask chatbot
                         </a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="expertise-card text-center">
+                    <div class="expertise-card unified-expertise-card text-center">
                         <i class="bi bi-code-square"></i>
-                        <h4>Software Development</h4>
+                        <h3 style="font-size: 1.1rem;">Software Development</h3>
                         <p>Developing web applications with modular architecture and API integration.</p>
-                        <a href="javascript:void(0)" class="chatbot-link" onclick="openChatWithQuestion('Tell me about your software development experience')">
+                        <a href="#" class="chatbot-link" onclick="event.preventDefault(); openChatWithQuestion('Tell me about your software development experience')">
                             <i class="bi bi-chat-dots"></i> Ask chatbot
                         </a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="expertise-card text-center">
+                    <div class="expertise-card unified-expertise-card text-center">
                         <i class="bi bi-graph-up"></i>
-                        <h4>Visualization</h4>
+                        <h3 style="font-size: 1.1rem;">Visualization</h3>
                         <p>Creating interactive visualizations for biological and computational models.</p>
-                        <a href="javascript:void(0)" class="chatbot-link" onclick="openChatWithQuestion('Tell me about your visualization work')">
+                        <a href="#" class="chatbot-link" onclick="event.preventDefault(); openChatWithQuestion('Tell me about your visualization work')">
                             <i class="bi bi-chat-dots"></i> Ask chatbot
                         </a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="expertise-card text-center">
+                    <div class="expertise-card unified-expertise-card text-center">
                         <i class="bi bi-database"></i>
-                        <h4>Data Management</h4>
+                        <h3 style="font-size: 1.1rem;">Data Management</h3>
                         <p>Working with research data standards, metadata, and FAIR principles.</p>
-                        <a href="javascript:void(0)" class="chatbot-link" onclick="openChatWithQuestion('Tell me about research data management')">
+                        <a href="#" class="chatbot-link" onclick="event.preventDefault(); openChatWithQuestion('Tell me about research data management')">
                             <i class="bi bi-chat-dots"></i> Ask chatbot
                         </a>
                     </div>
@@ -1458,64 +1463,64 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="portfolio-section" style="background: white;">
+    <section id="skills" class="unified-section" style="background: white;">
         <div class="container">
-            <h2 class="section-title text-center">Technical Skills</h2>
-            <p class="section-subtitle text-center">Technologies and tools</p>
+            <h2 class="unified-section-title text-center">Technical Skills</h2>
+            <p class="unified-section-sub text-center">Technologies and tools</p>
 
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <div class="mb-4">
-                        <h4 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">
                             <i class="bi bi-robot me-2"></i> AI & Machine Learning
                         </h4>
                         <div>
-                            <span class="skill-tag">Large Language Models (GPT, Claude)</span>
-                            <span class="skill-tag">Natural Language Processing</span>
-                            <span class="skill-tag">LLM Workflow Integration</span>
-                            <span class="skill-tag">Prompt Engineering</span>
-                            <span class="skill-tag">AI-Assisted Evaluation</span>
+                            <span class="skill-tag unified-skill-tag">Large Language Models (GPT, Claude)</span>
+                            <span class="skill-tag unified-skill-tag">Natural Language Processing</span>
+                            <span class="skill-tag unified-skill-tag">LLM Workflow Integration</span>
+                            <span class="skill-tag unified-skill-tag">Prompt Engineering</span>
+                            <span class="skill-tag unified-skill-tag">AI-Assisted Evaluation</span>
                         </div>
                     </div>
 
                     <div class="mb-4">
-                        <h4 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">
                             <i class="bi bi-diagram-3 me-2"></i> Integration & Protocols
                         </h4>
                         <div>
-                            <span class="skill-tag">Model Context Protocol (MCP)</span>
-                            <span class="skill-tag">API Development</span>
-                            <span class="skill-tag">Workflow Automation</span>
-                            <span class="skill-tag">Server Development</span>
-                            <span class="skill-tag">Claude AI Integration</span>
+                            <span class="skill-tag unified-skill-tag">Model Context Protocol (MCP)</span>
+                            <span class="skill-tag unified-skill-tag">API Development</span>
+                            <span class="skill-tag unified-skill-tag">Workflow Automation</span>
+                            <span class="skill-tag unified-skill-tag">Server Development</span>
+                            <span class="skill-tag unified-skill-tag">Claude AI Integration</span>
                         </div>
                     </div>
 
                     <div class="mb-4">
-                        <h4 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">
                             <i class="bi bi-database me-2"></i> Research Data Management
                         </h4>
                         <div>
-                            <span class="skill-tag">ISA Framework</span>
-                            <span class="skill-tag">ARC Specification</span>
-                            <span class="skill-tag">Data Management Plans</span>
-                            <span class="skill-tag">Metadata Standards</span>
-                            <span class="skill-tag">FAIR Principles</span>
-                            <span class="skill-tag">Data Standardization</span>
+                            <span class="skill-tag unified-skill-tag">ISA Framework</span>
+                            <span class="skill-tag unified-skill-tag">ARC Specification</span>
+                            <span class="skill-tag unified-skill-tag">Data Management Plans</span>
+                            <span class="skill-tag unified-skill-tag">Metadata Standards</span>
+                            <span class="skill-tag unified-skill-tag">FAIR Principles</span>
+                            <span class="skill-tag unified-skill-tag">Data Standardization</span>
                         </div>
                     </div>
 
                     <div class="mb-4">
-                        <h4 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600;">
                             <i class="bi bi-code-slash me-2"></i> Development & Tools
                         </h4>
                         <div>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">WebAssembly</span>
-                            <span class="skill-tag">Git/GitHub</span>
-                            <span class="skill-tag">Bootstrap</span>
-                            <span class="skill-tag">RESTful APIs</span>
+                            <span class="skill-tag unified-skill-tag">Python</span>
+                            <span class="skill-tag unified-skill-tag">JavaScript</span>
+                            <span class="skill-tag unified-skill-tag">WebAssembly</span>
+                            <span class="skill-tag unified-skill-tag">Git/GitHub</span>
+                            <span class="skill-tag unified-skill-tag">Bootstrap</span>
+                            <span class="skill-tag unified-skill-tag">RESTful APIs</span>
                         </div>
                     </div>
                 </div>
@@ -1524,10 +1529,10 @@
     </section>
 
     <!-- Publications Section -->
-    <section id="publications" class="portfolio-section">
+    <section id="publications" class="unified-section">
         <div class="container">
-            <h2 class="section-title text-center">Publications</h2>
-            <p class="section-subtitle text-center">Research publications</p>
+            <h2 class="unified-section-title text-center">Publications</h2>
+            <p class="unified-section-sub text-center">Research publications</p>
 
             <div class="row g-4" id="publicationsGrid">
                 <!-- Publications will be loaded here -->
@@ -1536,35 +1541,35 @@
     </section>
 
     <!-- GitHub Section -->
-    <section id="github" class="portfolio-section" style="background: white;">
+    <section id="github" class="unified-section" style="background: white;">
         <div class="container">
-            <h2 class="section-title text-center">GitHub Repositories</h2>
-            <p class="section-subtitle text-center">Open source projects</p>
+            <h2 class="unified-section-title text-center">GitHub Repositories</h2>
+            <p class="unified-section-sub text-center">Open source projects</p>
 
             <div class="row g-4">
                 <div class="col-md-6 col-lg-4">
-                    <div class="github-card">
-                        <h5><i class="bi bi-github me-2"></i> DataPLAN</h5>
+                    <div class="github-card unified-github-card">
+                        <h3 style="font-size: 1.1rem;"><i class="bi bi-github me-2"></i> DataPLAN</h3>
                         <p class="text-muted mb-3">Web-based data management plan generator for plant sciences with LLM integration</p>
-                        <a href="https://github.com/nfdi4plants/dataplan" class="btn btn-sm btn-dark w-100" target="_blank">
+                        <a href="https://github.com/nfdi4plants/dataplan" class="btn unified-btn unified-btn-primary unified-btn-sm w-100" target="_blank">
                             View Repository <i class="bi bi-box-arrow-up-right"></i>
                         </a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
-                    <div class="github-card">
-                        <h5><i class="bi bi-github me-2"></i> DMP-EVA</h5>
+                    <div class="github-card unified-github-card">
+                        <h3 style="font-size: 1.1rem;"><i class="bi bi-github me-2"></i> DMP-EVA</h3>
                         <p class="text-muted mb-3">AI-assisted front-end data management plan evaluation tool</p>
-                        <a href="https://github.com/usadellab/dmp-eva" class="btn btn-sm btn-dark w-100" target="_blank">
+                        <a href="https://github.com/usadellab/dmp-eva" class="btn unified-btn unified-btn-primary unified-btn-sm w-100" target="_blank">
                             View Repository <i class="bi bi-box-arrow-up-right"></i>
                         </a>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4">
-                    <div class="github-card">
-                        <h5><i class="bi bi-github me-2"></i> elab2arc</h5>
+                    <div class="github-card unified-github-card">
+                        <h3 style="font-size: 1.1rem;"><i class="bi bi-github me-2"></i> elab2arc</h3>
                         <p class="text-muted mb-3">AI-powered converter from electronic lab notebook protocols to ARC format</p>
-                        <a href="https://github.com/nfdi4plants/elab2arc" class="btn btn-sm btn-dark w-100" target="_blank">
+                        <a href="https://github.com/nfdi4plants/elab2arc" class="btn unified-btn unified-btn-primary unified-btn-sm w-100" target="_blank">
                             View Repository <i class="bi bi-box-arrow-up-right"></i>
                         </a>
                     </div>
@@ -1572,7 +1577,7 @@
             </div>
 
             <div class="text-center mt-5">
-                <a href="https://github.com/xiaoranzhou" class="btn btn-light btn-lg" target="_blank">
+                <a href="https://github.com/xiaoranzhou" class="btn unified-btn unified-btn-outline" target="_blank">
                     <i class="bi bi-github me-2"></i> View All Repositories
                 </a>
             </div>
@@ -1580,26 +1585,28 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="portfolio-section">
+    <section id="contact" class="unified-section">
         <div class="container text-center">
-            <h2 class="section-title">Contact</h2>
-            <p class="section-subtitle">Get in touch</p>
+            <h2 class="unified-section-title text-center">Contact</h2>
+            <p class="unified-section-sub text-center">Get in touch</p>
             <div class="d-flex gap-2 justify-content-center flex-wrap">
-                <a href="mailto:a@xrzhou.com" class="btn btn-outline-secondary">
+                <a href="mailto:a@xrzhou.com" class="btn unified-btn unified-btn-outline">
                     <i class="bi bi-envelope me-2"></i> Email
                 </a>
-                <a href="https://www.linkedin.com/in/xiaoranzhou/" class="btn btn-outline-secondary" target="_blank">
+                <a href="https://www.linkedin.com/in/xiaoranzhou/" class="btn unified-btn unified-btn-outline" target="_blank">
                     <i class="bi bi-linkedin me-2"></i> LinkedIn
                 </a>
-                <a href="https://github.com/xiaoranzhou" class="btn btn-outline-secondary" target="_blank">
+                <a href="https://github.com/xiaoranzhou" class="btn unified-btn unified-btn-outline" target="_blank">
                     <i class="bi bi-github me-2"></i> GitHub
                 </a>
-                <a href="https://scholar.google.de/citations?hl=en&user=PNEarlYAAAAJ" class="btn btn-outline-secondary" target="_blank">
+                <a href="https://scholar.google.de/citations?hl=en&user=PNEarlYAAAAJ" class="btn unified-btn unified-btn-outline" target="_blank">
                     <i class="bi bi-mortarboard me-2"></i> Scholar
                 </a>
             </div>
         </div>
     </section>
+
+    </main>
 
     <!-- Floating Chat Widget -->
     <div class="chat-widget">
@@ -1616,10 +1623,10 @@
                     </div>
                 </div>
                 <div class="chat-header-actions">
-                    <button class="chat-fullscreen" onclick="toggleFullscreen()" title="Toggle Fullscreen">
+                    <button class="chat-fullscreen" onclick="toggleFullscreen()" title="Toggle Fullscreen" aria-label="Toggle fullscreen">
                         <i class="bi bi-arrows-fullscreen"></i>
                     </button>
-                    <button class="chat-close" onclick="toggleChat()" title="Close Chat">
+                    <button class="chat-close" onclick="toggleChat()" title="Close Chat" aria-label="Close chat">
                         <i class="bi bi-x-lg"></i>
                     </button>
                 </div>
@@ -1652,19 +1659,19 @@
             <!-- Suggestion Chips -->
             <div class="chat-suggestions" id="chatSuggestions">
                 <div class="suggestion-chip" onclick="sendSuggestion('Tell me about DataPLAN')">
-                    📊 DataPLAN
+                    DataPLAN
                 </div>
                 <div class="suggestion-chip" onclick="sendSuggestion('Tell me about DMP-EVA')">
-                    ✅ DMP-EVA
+                    DMP-EVA
                 </div>
                 <div class="suggestion-chip" onclick="sendSuggestion('What is elab2arc?')">
-                    🔬 elab2arc
+                    elab2arc
                 </div>
                 <div class="suggestion-chip" onclick="sendSuggestion('Research interests')">
-                    🌿 Research
+                    Research
                 </div>
                 <div class="suggestion-chip" onclick="sendSuggestion('Publications')">
-                    📚 Publications
+                    Publications
                 </div>
             </div>
 
@@ -1693,14 +1700,14 @@
                     placeholder="Ask me anything..."
                     onkeypress="handleKeyPress(event)"
                 />
-                <button class="chat-send-button" onclick="sendMessage()" id="sendButton">
+                <button class="chat-send-button" onclick="sendMessage()" id="sendButton" aria-label="Send message">
                     <i class="bi bi-send-fill"></i>
                 </button>
             </div>
         </div>
 
         <!-- Chat Button -->
-        <button class="chat-button" onclick="toggleChat()" id="chatButton">
+        <button class="chat-button" onclick="toggleChat()" id="chatButton" aria-label="Open chat">
             <i class="bi bi-chat-dots-fill"></i>
             <span class="notification-badge">1</span>
         </button>
@@ -1742,7 +1749,7 @@
                 const col = document.createElement('div');
                 col.className = 'col-md-6';
                 col.innerHTML = `
-                    <div class="publication-card">
+                    <div class="publication-card unified-pub-card">
                         <img data-src="${pub.image}" alt="${pub.title}" class="publication-image" loading="lazy">
                         <h3>${pub.title}</h3>
                         <p><strong>Journal:</strong> ${pub.journal}</p>
@@ -2281,9 +2288,9 @@
     <!-- JSONata for querying knowledge base (v2.x) -->
     <script src="https://cdn.jsdelivr.net/npm/jsonata@2.0.5/jsonata.min.js"></script>
 
-    <script src="chat-state.js?v=1.0.0"></script>
-    <script src="knowledge-base.js?v=1.1.0"></script>
-    <script src="digital-twin-agent.js?v=1.0.7"></script>
+    <script src="js/chat-state.js?v=1.0.0"></script>
+    <script src="js/knowledge-base.js?v=1.1.0"></script>
+    <script src="js/digital-twin-agent.js?v=1.0.7"></script>
     <script>
         // Embedded agent definitions
         const AGENT_DEFINITIONS = {
@@ -2431,8 +2438,8 @@
     <!-- Site Footer -->
     <footer class="py-3 text-center" style="background:#f7fafc; border-top:1px solid #e2e8f0;">
         <div class="container">
-            <small class="text-muted">
-                <a href="https://github.com/xiaoranzhou/xiaoranzhou.github.io" target="_blank" rel="noopener" class="text-muted text-decoration-none">
+            <small class="" style="color: #64748b;">
+                <a href="https://github.com/xiaoranzhou/xiaoranzhou.github.io" target="_blank" rel="noopener" class="text-decoration-none" style="color: #64748b;">
                     <i class="bi bi-github me-1"></i>View page source on GitHub
                 </a>
             </small>

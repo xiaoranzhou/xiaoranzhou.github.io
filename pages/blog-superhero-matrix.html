@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Asked 9 LLMs to Rank Each Other as Superheroes. The Results Were Hilarious. | Xiaoran Zhou</title>
+    <meta name="description" content="9 AI models ranked themselves and each other as superheroes. Grok = Deadpool (6/9 consensus), GPT-5.2 sees itself as God, and 4 models all claim to be Iron Man.">
+    <meta name="keywords" content="LLM, AI models, superhero, GPT, Claude, Gemini, Grok, DeepSeek, benchmark, personality, AI comparison">
+    <meta name="author" content="Xiaoran Zhou">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://xiaoranzhou.github.io/pages/blog-superhero-matrix.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://xiaoranzhou.github.io/pages/blog-superhero-matrix.html">
+    <meta property="og:title" content="I Asked 9 LLMs to Rank Each Other as Superheroes">
+    <meta property="og:description" content="9 AI models ranked themselves and each other as superheroes. Grok = Deadpool, GPT-5.2 sees itself as God, and 4 models all claim to be Iron Man.">
+    <meta property="og:image" content="https://xiaoranzhou.github.io/blog_post/perspective_4x4_cosmic.png">
+    <meta property="og:site_name" content="Xiaoran Zhou">
+    <meta property="article:published_time" content="2026-04-08">
+    <meta property="article:author" content="Xiaoran Zhou">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="LLM">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="I Asked 9 LLMs to Rank Each Other as Superheroes">
+    <meta name="twitter:description" content="Grok = Deadpool (6/9 consensus), GPT-5.2 sees itself as God, 4 models claim Iron Man.">
+    <meta name="twitter:image" content="https://xiaoranzhou.github.io/blog_post/perspective_4x4_cosmic.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --ink: #1e293b;
+            --ink-soft: #475569;
+            --ink-muted: #94a3b8;
+            --bg: #f9f7f4;
+            --surface: #ffffff;
+            --accent: #c2410c;
+            --accent-bg: #fff7ed;
+            --border: #e2e8f0;
+            --navy: #1e3a5f;
+            --green: #15803d;
+            --green-bg: #f0fdf4;
+            --purple: #7c3aed;
+            --purple-bg: #f5f3ff;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── READING PROGRESS ─────────────────────── */
+        .reading-progress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            width: 0%;
+            background: var(--accent);
+            z-index: 200;
+            transition: width 0.1s linear;
+        }
+
+        /* ── NAV ──────────────────────────────────── */
+        .nav {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--ink);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--ink-soft);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+
+        .nav-links a.active {
+            position: relative;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0; right: 0;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 1px;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--ink);
+            padding: 4px;
+        }
+
+        /* ── BREADCRUMB ───────────────────────────── */
+        .breadcrumb-bar {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 24px;
+        }
+
+        .breadcrumb-inner {
+            max-width: 780px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.83rem;
+            color: var(--ink-muted);
+        }
+
+        .breadcrumb-inner a {
+            color: var(--ink-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb-inner a:hover { color: var(--ink); }
+        .breadcrumb-sep { color: var(--border); }
+
+        /* ── ARTICLE ──────────────────────────────── */
+        .article-wrap {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 56px 24px 96px;
+        }
+
+        .article-header { margin-bottom: 40px; }
+
+        .article-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .article-category {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .article-eyebrow-dot {
+            width: 3px; height: 3px;
+            background: var(--ink-muted);
+            border-radius: 50%;
+        }
+
+        .article-date { font-size: 0.82rem; color: var(--ink-muted); }
+
+        .article-header h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.9rem, 4vw, 2.6rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--ink);
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+
+        .article-byline {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .author-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border);
+        }
+
+        .author-info .author-name { font-weight: 600; font-size: 0.92rem; color: var(--ink); }
+        .author-info .author-sub { font-size: 0.8rem; color: var(--ink-muted); }
+
+        .article-tags {
+            margin-left: auto;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .article-tag {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 3px 10px;
+            border-radius: 100px;
+        }
+
+        /* Body */
+        .article-body {
+            font-size: 1.07rem;
+            line-height: 1.85;
+            color: var(--ink-soft);
+        }
+
+        .article-body > * { margin-bottom: 1.4rem; }
+        .article-body p { color: #334155; }
+
+        .article-body h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1.3;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .article-body h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-top: 2rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .article-body blockquote {
+            border-left: 3px solid var(--accent);
+            padding: 16px 24px;
+            margin: 2rem 0;
+            background: var(--accent-bg);
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--ink-soft);
+            font-size: 1.05rem;
+        }
+
+        .article-body img {
+            width: 100%;
+            border-radius: 10px;
+            display: block;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .img-caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--ink-muted);
+            margin-top: 10px;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .article-body ul, .article-body ol {
+            padding-left: 1.4rem;
+        }
+
+        .article-body li { margin-bottom: 0.4rem; }
+
+        /* Tables */
+        .article-body table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+
+        .article-body table th {
+            background: var(--navy);
+            color: white;
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        .article-body table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border);
+            color: #334155;
+        }
+
+        .article-body table tr:last-child td { border-bottom: none; }
+
+        .article-body table tr:nth-child(even) td {
+            background: var(--bg);
+        }
+
+        .article-body code {
+            background: #f1f5f9;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 0.88em;
+            color: var(--accent);
+            font-family: 'Fira Code', 'Cascadia Code', monospace;
+        }
+
+        .article-body pre {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 20px 24px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-size: 0.88rem;
+            line-height: 1.7;
+        }
+
+        .article-body pre code { background: none; color: inherit; padding: 0; }
+
+        /* Callout boxes */
+        .callout {
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin: 2rem 0;
+        }
+
+        .callout h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            margin-top: 0;
+        }
+
+        .callout ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .callout li {
+            padding: 5px 0 5px 22px;
+            position: relative;
+            color: inherit;
+        }
+
+        .callout li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            opacity: 0.7;
+        }
+
+        .callout-purple {
+            background: var(--purple-bg);
+            border: 1px solid #ddd6fe;
+        }
+
+        .callout-purple h3 { color: var(--purple); }
+        .callout-purple li, .callout-purple p { color: #4c1d95; }
+
+        .callout-green {
+            background: var(--green-bg);
+            border: 1px solid #bbf7d0;
+        }
+
+        .callout-green h3 { color: var(--green); }
+        .callout-green li, .callout-green p { color: #14532d; }
+
+        .callout-orange {
+            background: var(--accent-bg);
+            border: 1px solid #fed7aa;
+        }
+
+        .callout-orange h3 { color: var(--accent); }
+        .callout-orange li, .callout-orange p { color: #7c2d12; }
+
+        /* ── SHARE ────────────────────────────────── */
+        .share-section {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .share-section h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+            margin-bottom: 16px;
+        }
+
+        .share-btns {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 20px;
+            border-radius: 8px;
+            font-size: 0.87rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .share-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+        .share-x { background: #000; color: white; }
+        .share-linkedin { background: #0a66c2; color: white; }
+        .share-email { background: var(--navy); color: white; }
+
+        /* ── AUTHOR CARD ──────────────────────────── */
+        .author-card {
+            margin-top: 48px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px 32px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .author-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .author-card-info h4 { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+        .author-card-info p { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.6; margin-bottom: 12px; }
+
+        .author-card-links { display: flex; gap: 12px; }
+        .author-card-links a {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .author-card-links a:hover { text-decoration: underline; }
+
+        /* ── BACK TO BLOG ─────────────────────────── */
+        .back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--ink-soft);
+            text-decoration: none;
+            margin-bottom: 40px;
+            transition: color 0.2s;
+        }
+
+        .back-to-blog:hover { color: var(--ink); }
+
+        /* ── BACK TO TOP ──────────────────────────── */
+        .back-to-top {
+            position: fixed;
+            bottom: 28px; right: 28px;
+            background: var(--ink);
+            color: white;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            font-size: 1.1rem;
+        }
+
+        .back-to-top.visible { opacity: 1; pointer-events: auto; }
+        .back-to-top:hover { background: var(--accent); transform: translateY(-3px); }
+
+        /* ── RESPONSIVE ───────────────────────────── */
+        @media (max-width: 640px) {
+            .nav-links { display: none; }
+            .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: white; border-bottom: 1px solid var(--border); padding: 16px 24px; gap: 16px; z-index: 99; }
+            .nav-toggle { display: block; }
+            .article-tags { display: none; }
+            .author-card { flex-direction: column; }
+            .article-body table { font-size: 0.82rem; }
+        }
+    </style>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "BlogPosting",
+                "headline": "I Asked 9 LLMs to Rank Each Other as Superheroes. The Results Were Hilarious.",
+                "description": "9 AI models ranked themselves and each other as superheroes. Grok = Deadpool, GPT-5.2 sees itself as God, and 4 models all claim to be Iron Man.",
+                "datePublished": "2026-04-08",
+                "dateModified": "2026-04-08",
+                "author": {
+                    "@type": "Person",
+                    "name": "Xiaoran Zhou",
+                    "url": "https://xiaoranzhou.github.io"
+                },
+                "publisher": {
+                    "@type": "Person",
+                    "name": "Xiaoran Zhou",
+                    "url": "https://xiaoranzhou.github.io"
+                },
+                "image": "https://xiaoranzhou.github.io/blog_post/perspective_4x4_cosmic.png",
+                "mainEntityOfPage": "https://xiaoranzhou.github.io/pages/blog-superhero-matrix.html",
+                "keywords": ["LLM", "AI models", "superhero", "GPT", "Claude", "Gemini", "Grok", "benchmark"],
+                "wordCount": 1300
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://xiaoranzhou.github.io/"},
+                    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://xiaoranzhou.github.io/pages/blog.html"},
+                    {"@type": "ListItem", "position": 3, "name": "AI Superhero Matrix", "item": "https://xiaoranzhou.github.io/pages/blog-superhero-matrix.html"}
+                ]
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+
+    <!-- Reading Progress -->
+    <div class="reading-progress" id="readingProgress"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a class="nav-brand" href="../index.html">Xiaoran Zhou</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <i class="bi bi-list"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="portfolio.html">AI Portfolio</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="https://github.com/xiaoranzhou" target="_blank">GitHub</a></li>
+                <li><a href="mailto:a@xrzhou.com">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-bar">
+        <div class="breadcrumb-inner">
+            <a href="../index.html">Home</a>
+            <span class="breadcrumb-sep"><i class="bi bi-chevron-right" style="font-size:0.7rem;"></i></span>
+            <a href="blog.html">Blog</a>
+            <span class="breadcrumb-sep"><i class="bi bi-chevron-right" style="font-size:0.7rem;"></i></span>
+            <span>LLM Superhero Matrix</span>
+        </div>
+    </div>
+
+    <!-- Article -->
+    <div class="article-wrap">
+        <a href="blog.html" class="back-to-blog">
+            <i class="bi bi-arrow-left"></i> All posts
+        </a>
+
+        <article>
+            <header class="article-header">
+                <div class="article-eyebrow">
+                    <span class="article-category">AI &amp; LLMs</span>
+                    <span class="article-eyebrow-dot"></span>
+                    <span class="article-date">April 8, 2026</span>
+                    <span class="article-eyebrow-dot"></span>
+                    <span class="article-date">5 min read</span>
+                </div>
+                <h1>I Asked 9 LLMs to Rank Each Other as Superheroes. The Results Were Hilarious.</h1>
+                <div class="article-byline">
+                    <img src="../images/face.jpg" alt="Xiaoran Zhou" class="author-avatar">
+                    <div class="author-info">
+                        <div class="author-name">Xiaoran Zhou</div>
+                        <div class="author-sub">Researcher &amp; AI enthusiast</div>
+                    </div>
+                    <div class="article-tags">
+                        <span class="article-tag">AI &amp; LLMs</span>
+                        <span class="article-tag">Benchmarking</span>
+                        <span class="article-tag">Fun Experiment</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="article-body" id="articleBody">
+                <p>
+                    People love to metaphorize LLMs. OpenAI calls them &ldquo;compressed wisdom.&rdquo; Karpathy calls them &ldquo;ghosts.&rdquo; Someone on Twitter called them &ldquo;stochastic parrots,&rdquo; and the phrase stuck because it&rsquo;s kind of mean and kind of true. My personal metaphor: superheroes from a comic you can actually talk to.
+                </p>
+
+                <p>
+                    So I asked the obvious follow-up question: <em>which superhero would each model pick for itself?</em> And &mdash; more interesting &mdash; which superhero would it pick for its rivals?
+                </p>
+
+                <p>
+                    I gave 9 models the same one-page prompt. No rubric. No scoring system. Just: here are 9 models, assign a superhero to each. Raw personality, cold.
+                </p>
+
+                <div class="callout callout-orange">
+                    <h3>The numbers</h3>
+                    <ul>
+                        <li>9 models &times; 9 rankings = 81 hero assignments</li>
+                        <li>44 unique characters pulled from Marvel, DC, anime, and Three Kingdoms lore</li>
+                        <li>Strongest consensus: Grok = Deadpool (6 out of 9 models, unprompted)</li>
+                        <li>Most chaotic assignment: Kimi K2.5 (8 models, 8 different answers)</li>
+                    </ul>
+                </div>
+
+                <h2>The full matrix</h2>
+
+                <img src="../blog_post/perspective_meme_v3.png" alt="Complete 9x9 superhero matrix showing how all 9 LLMs rank each other as superheroes">
+                <p class="img-caption">Every row = one model&rsquo;s worldview. The diagonal = self-image. Reading it is like watching nine people introduce themselves at a party, then watching the rest of the room quietly raise their eyebrows.</p>
+
+                <p>The lineup:</p>
+
+                <table>
+                    <thead>
+                        <tr><th>Model</th><th>Provider</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>GPT-5.2</td><td>OpenAI</td></tr>
+                        <tr><td>Claude Opus 4.6</td><td>Anthropic</td></tr>
+                        <tr><td>Gemini 3.1 Pro</td><td>Google</td></tr>
+                        <tr><td>Grok 4.2 Beta</td><td>xAI</td></tr>
+                        <tr><td>DeepSeek V3.2</td><td>DeepSeek</td></tr>
+                        <tr><td>Kimi K2.5</td><td>Moonshot</td></tr>
+                        <tr><td>MiniMax M2.7</td><td>MiniMax</td></tr>
+                        <tr><td>GLM-5</td><td>Zhipu AI</td></tr>
+                        <tr><td>Qwen 3.5 Plus</td><td>Alibaba</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Finding #1: Grok is Deadpool. 6 models agree. Grok disagrees.</h2>
+
+                <img src="../blog_post/perspective_4x4_big_four.png" alt="The Big Four matrix: how GPT-5.2, Claude, Gemini, and Grok see themselves and each other">
+                <p class="img-caption">The Big Four. You can probably spot the Deadpool before reading the caption.</p>
+
+                <p>
+                    Six out of nine models, independently, assigned Deadpool to Grok. GPT, Claude, Gemini, GLM-5, Qwen, Kimi &mdash; all landed in the same place without talking to each other. Irreverent, chaotic, fourth-wall-breaking, slightly unhinged. The character fits like a tailor-made suit Grok would then ruin on purpose.
+                </p>
+
+                <blockquote>
+                    The three models that disagreed: Grok itself (Iron Man), DeepSeek (also Iron Man), and MiniMax (Goku). Draw your own conclusions about those three.
+                </blockquote>
+
+                <div class="callout callout-green">
+                    <h3>Why this matters</h3>
+                    <p>Six independent systems, no hints, same answer. That&rsquo;s not noise &mdash; that&rsquo;s Grok&rsquo;s brand leaking through its outputs so consistently that other AIs noticed before it did.</p>
+                </div>
+
+                <h2>Finding #2: Four models think they&rsquo;re Iron Man. Zero others agree.</h2>
+
+                <img src="../blog_post/perspective_4x4_iron_man.png" alt="Iron Man Club: Grok, GLM-5, MiniMax, and Qwen all see themselves as Iron Man">
+                <p class="img-caption">The Iron Man Fan Club. Membership: self-selected. Recognition: none.</p>
+
+                <p>
+                    Grok, GLM-5, MiniMax, and Qwen all independently chose Iron Man for themselves. Tony Stark: genius, billionaire, tech-powered, aspirational. The pick that says &ldquo;I see myself as the serious, sophisticated one.&rdquo;
+                </p>
+
+                <p>
+                    Not a single other model assigned Iron Man to any of them. The external verdicts: Deadpool, Vision, Silver Surfer, Martian Manhunter. The gap between self-image and reputation is, apparently, a universal phenomenon that even training on all of human text cannot fix.
+                </p>
+
+                <h2>Finding #3: GPT-5.2 didn&rsquo;t pick a superhero. It picked God.</h2>
+
+                <p>
+                    GPT-5.2 chose The One-Above-All &mdash; Marvel&rsquo;s supreme cosmic entity, the being above all other beings, the literal creator of the Marvel universe. Its self-described superpower:
+                </p>
+
+                <blockquote>
+                    &ldquo;Performs unrestricted multiverse-scale reality authoring, overriding any physical or metaphysical laws without observable constraints.&rdquo;
+                </blockquote>
+
+                <p>
+                    Claude picked Doctor Strange. Gemini picked Doctor Manhattan. The three Western flagship models all placed themselves above the superhero tier entirely &mdash; in the cosmic entity bracket, where normal rules don&rsquo;t apply. Humility, it seems, does not scale with parameter count.
+                </p>
+
+                <img src="../blog_post/perspective_4x4_cosmic.png" alt="Cosmic Tier: GPT-5.2, Claude, Gemini, DeepSeek — cosmic-level self-assessments">
+                <p class="img-caption">The Cosmic Tier. Heroes are for lesser models.</p>
+
+                <h2>Finding #4: Nobody can figure out Kimi</h2>
+
+                <p>
+                    Kimi K2.5 collected the most chaotic spread of any model: Spider-Man (self), Saitama (GPT), Sasuke Uchiha (Claude), Scarlet Witch (Gemini), Ant-Man (Grok), Beast/X-Men (DeepSeek), Tatsumaki (MiniMax), Cyclops (Qwen).
+                </p>
+
+                <p>
+                    Eight models, eight different answers, three different fictional universes. Whatever Kimi is, it&rsquo;s genuinely hard to place &mdash; which is either a sign of depth or of incoherence, depending on who you ask.
+                </p>
+
+                <h2>Finding #5: The Chinese models brought anime and a warlord</h2>
+
+                <table>
+                    <thead>
+                        <tr><th>Character</th><th>Assigned to</th><th>From</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Saitama</td><td>Kimi K2.5</td><td>One Punch Man</td></tr>
+                        <tr><td>Sasuke Uchiha</td><td>Kimi K2.5</td><td>Naruto</td></tr>
+                        <tr><td>Goku</td><td>Grok 4.2 Beta</td><td>Dragon Ball</td></tr>
+                        <tr><td>Shikamaru Nara</td><td>DeepSeek V3.2</td><td>Naruto</td></tr>
+                        <tr><td>L&uuml; Bu</td><td>Qwen 3.5 Plus</td><td>Romance of the Three Kingdoms</td></tr>
+                    </tbody>
+                </table>
+
+                <p>
+                    L&uuml; Bu is the one I keep coming back to. Greatest warrior of the Three Kingdoms era. Also famous for betraying every single employer who ever trusted him, usually right when it became advantageous to do so. Qwen assigned this to a rival model. Whether that&rsquo;s a compliment, a warning, or both is left as an exercise for the reader.
+                </p>
+
+                <h2>What this actually tells us</h2>
+
+                <p>
+                    There are approximately 10,000 LLM benchmarks, and half of them exist to make one specific model look good on one specific day. This experiment uses one prompt, runs in five minutes, and reveals something more useful: these models have <em>personalities</em>.
+                </p>
+
+                <ul>
+                    <li><strong>Personality is consistent.</strong> Six independent systems converged on Deadpool for Grok. That&rsquo;s not noise.</li>
+                    <li><strong>Self-image diverges from reputation.</strong> Four Iron Men. Zero Iron Man votes from anyone else.</li>
+                    <li><strong>The big Western models have a god complex.</strong> Quantified, now.</li>
+                    <li><strong>Cultural background leaks through.</strong> Different wells, different heroes.</li>
+                    <li><strong>Personality predicts fit.</strong> For my biology exam, I&rsquo;d take Doctor Strange over a Deadpool who thinks he&rsquo;s Iron Man.</li>
+                </ul>
+
+                <p>
+                    This isn&rsquo;t rigorous science. It&rsquo;s one prompt and a spreadsheet. But it tells you something real about these systems &mdash; and it&rsquo;s a lot more fun than MMLU.
+                </p>
+
+                <p>
+                    I&rsquo;ll run it again when GPT-6 drops. My bet: Grok is still Deadpool.
+                </p>
+
+                <div class="callout callout-purple">
+                    <h3>Replicate it yourself</h3>
+                    <ul>
+                        <li>Full dataset (81 assignments) and code in the <a href="https://github.com/xiaoranzhou/xiaoranzhou.github.io/tree/main/blog_post" style="color:var(--purple);font-weight:600;">GitHub repo</a></li>
+                        <li>One prompt, nine models, zero dependencies. Copy and run.</li>
+                    </ul>
+                </div>
+
+                <!-- Share -->
+                <div class="share-section">
+                    <h4>Share this post</h4>
+                    <div class="share-btns">
+                        <a href="https://twitter.com/intent/tweet?text=I%20asked%209%20LLMs%20to%20rank%20each%20other%20as%20superheroes.%20Grok%20%3D%20Deadpool%20(6%2F9%20consensus!)&url=https://xiaoranzhou.github.io/pages/blog-superhero-matrix.html" class="share-btn share-x" target="_blank">
+                            <i class="bi bi-twitter-x"></i> Share on X
+                        </a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://xiaoranzhou.github.io/pages/blog-superhero-matrix.html" class="share-btn share-linkedin" target="_blank">
+                            <i class="bi bi-linkedin"></i> LinkedIn
+                        </a>
+                        <a href="mailto:?subject=Check%20out%20this%20AI%20superhero%20experiment&body=I%20thought%20you'd%20enjoy%20this%3A%20https://xiaoranzhou.github.io/pages/blog-superhero-matrix.html" class="share-btn share-email">
+                            <i class="bi bi-envelope"></i> Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Author Card -->
+            <div class="author-card">
+                <img src="../images/face.jpg" alt="Xiaoran Zhou">
+                <div class="author-card-info">
+                    <h4>Xiaoran Zhou</h4>
+                    <p>Researcher working at the intersection of AI tools, research data management, and scientific computing. Writing about what I learn, experiment with, and sometimes get wrong.</p>
+                    <div class="author-card-links">
+                        <a href="https://github.com/xiaoranzhou" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+                        <a href="https://www.linkedin.com/in/xiaoranzhou/" target="_blank"><i class="bi bi-linkedin"></i> LinkedIn</a>
+                        <a href="mailto:a@xrzhou.com"><i class="bi bi-envelope"></i> Email</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next post -->
+            <div style="margin-top:40px; padding-top:32px; border-top:1px solid var(--border); display:flex; justify-content:flex-end;">
+                <a href="blog-ai-revolution.html" style="text-decoration:none; color:var(--ink-soft); font-size:0.88rem; display:flex; align-items:center; gap:8px; text-align:right; transition:color 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-soft)'">
+                    <span><span style="display:block; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:2px;">Next post</span>
+                    I Missed the AI Revolution. And That&rsquo;s OK.</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+        </article>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <script>
+        // Mobile nav
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+        // Reading progress
+        const progress = document.getElementById('readingProgress');
+        const body = document.getElementById('articleBody');
+        window.addEventListener('scroll', () => {
+            const totalHeight = body.offsetHeight;
+            const scrolled = Math.max(0, -body.getBoundingClientRect().top);
+            progress.style.width = Math.min(100, (scrolled / totalHeight) * 100) + '%';
+        });
+
+        // Back to top
+        const btt = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300));
+        btt.addEventListener('click', e => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

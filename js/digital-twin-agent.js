@@ -12,7 +12,7 @@
 class DigitalTwinAgent {
   constructor(config = {}) {
     this.apiEndpoint = config.apiEndpoint || 'https://h.dataplan.top/';
-    this.model = config.model || 'Qwen/Qwen3-235B-A22B-Instruct-2507-tput';
+    this.model = config.model || 'openai/gpt-oss-20b';
     this.agents = [];
     this.conversationHistory = [];
     this.currentAgent = null;
@@ -151,15 +151,23 @@ Respond ONLY with valid JSON:
 }`;
 
     try {
+      const requestBody = {
+        model: this.model,
+        messages: [{ role: "user", content: checkPrompt }],
+        max_tokens: 200,
+        temperature: 0.1
+      };
+
+      // gpt-oss models emit hidden reasoning tokens by default, which can consume
+      // the entire max_tokens budget before any content is produced
+      if (this.model.includes('gpt-oss')) {
+        requestBody.reasoning_effort = 'low';
+      }
+
       const response = await fetch(this.apiEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: this.model,
-          messages: [{ role: "user", content: checkPrompt }],
-          max_tokens: 200,
-          temperature: 0.1
-        })
+        body: JSON.stringify(requestBody)
       });
 
       const data = await response.json();
@@ -300,6 +308,12 @@ For accurate information, I recommend:
         temperature: selectedAgent.temperature || 0.7,
         stream: onChunk ? true : false
       };
+
+      // gpt-oss models emit hidden reasoning tokens by default, which can consume
+      // the entire max_tokens budget before any content is produced
+      if (this.model.includes('gpt-oss')) {
+        requestBody.reasoning_effort = 'low';
+      }
 
       if (this.debug) {
         console.log('API Request:', requestBody);

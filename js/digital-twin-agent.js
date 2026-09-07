@@ -12,7 +12,9 @@
 class DigitalTwinAgent {
   constructor(config = {}) {
     this.apiEndpoint = config.apiEndpoint || 'https://h.dataplan.top/';
-    this.model = config.model || 'openai/gpt-oss-20b';
+    // Switched from openai/gpt-oss-20b in September 2026 after gpt-oss-20b was
+    // scheduled for removal from the DataPLANT Community Server.
+    this.model = config.model || 'deepseek-ai/DeepSeek-V4-Flash-0731';
     this.agents = [];
     this.conversationHistory = [];
     this.currentAgent = null;
@@ -154,21 +156,41 @@ Respond ONLY with valid JSON:
       const requestBody = {
         model: this.model,
         messages: [{ role: "user", content: checkPrompt }],
-        max_tokens: 200,
+        // Eased from 200 - reasoning models (DeepSeek, gpt-oss) can spend a
+        // variable share of this on hidden reasoning before any real content,
+        // and 200 left near-zero headroom for the actual JSON answer.
+        max_tokens: 600,
         temperature: 0.1
       };
 
-      // gpt-oss models emit hidden reasoning tokens by default, which can consume
-      // the entire max_tokens budget before any content is produced
+      // Reasoning models emit hidden reasoning tokens by default, which can
+      // consume the entire max_tokens budget before any content is produced.
+      // gpt-oss uses reasoning_effort (harmony format); other reasoning
+      // models (DeepSeek) use enable_thinking - suppresses (though doesn't
+      // fully eliminate) the verbosity.
       if (this.model.includes('gpt-oss')) {
         requestBody.reasoning_effort = 'low';
+      } else {
+        requestBody.enable_thinking = false;
       }
 
-      const response = await fetch(this.apiEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(requestBody)
-      });
+      // Guard against a hung/unreachable server - without this, an
+      // unreachable h.dataplan.top would hang the confidence check (and thus
+      // the whole chat reply) indefinitely instead of falling through to the
+      // existing degrade-gracefully catch block below.
+      const abortController = new AbortController();
+      const timeoutId = setTimeout(() => abortController.abort(), 20000);
+      let response;
+      try {
+        response = await fetch(this.apiEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(requestBody),
+          signal: abortController.signal
+        });
+      } finally {
+        clearTimeout(timeoutId);
+      }
 
       const data = await response.json();
       const content = data.choices[0].message.content;
@@ -309,23 +331,36 @@ For accurate information, I recommend:
         stream: onChunk ? true : false
       };
 
-      // gpt-oss models emit hidden reasoning tokens by default, which can consume
-      // the entire max_tokens budget before any content is produced
+      // Reasoning models emit hidden reasoning tokens by default, which can
+      // consume the entire max_tokens budget before any content is produced.
       if (this.model.includes('gpt-oss')) {
         requestBody.reasoning_effort = 'low';
+      } else {
+        requestBody.enable_thinking = false;
       }
 
       if (this.debug) {
         console.log('API Request:', requestBody);
       }
 
-      const response = await fetch(this.apiEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody)
-      });
+      // Guard against a hung/unreachable server - falls through to the
+      // getFallbackResponse() safety net in the catch block below instead of
+      // leaving the chat UI's typing indicator spinning forever.
+      const apiAbortController = new AbortController();
+      const apiTimeoutId = setTimeout(() => apiAbortController.abort(), 90000);
+      let response;
+      try {
+        response = await fetch(this.apiEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(requestBody),
+          signal: apiAbortController.signal
+        });
+      } finally {
+        clearTimeout(apiTimeoutId);
+      }
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

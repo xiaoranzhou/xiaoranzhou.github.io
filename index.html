@@ -2302,7 +2302,7 @@
                     "description": "Expert in LLM-powered data management planning",
                     "trigger_keywords": ["dataplan", "dmp generation", "data management plan generator"],
                     "system_prompt": "You are Xiaoran Zhou's DataPLAN expert agent. DataPLAN is a web-based data management plan generator for plant sciences using LLM workflows. You understand: (1) LLM-powered DMP generation, (2) ISA Framework and metadata standards, (3) Research data management best practices, (4) Funder requirements and compliance. Published in Data 2023. Be concise and practical.",
-                    "max_tokens": 200,
+                    "max_tokens": 600,
                     "temperature": 0.7
                 },
                 {
@@ -2312,7 +2312,7 @@
                     "description": "Expert in AI-assisted DMP evaluation",
                     "trigger_keywords": ["dmp-eva", "dmpeva", "dmp evaluation", "dmp assessment"],
                     "system_prompt": "You are Xiaoran Zhou's DMP-EVA expert agent. DMP-EVA is an AI-assisted front-end data management plan evaluation tool that helps researchers assess and improve their DMPs. You understand: (1) AI-powered DMP evaluation and feedback, (2) Compliance checking and gap analysis, (3) Data management best practices, (4) Actionable improvement suggestions. Be helpful and constructive.",
-                    "max_tokens": 200,
+                    "max_tokens": 600,
                     "temperature": 0.7
                 },
                 {
@@ -2322,7 +2322,7 @@
                     "description": "Expert in AI-driven protocol standardization",
                     "trigger_keywords": ["elab2arc", "protocol", "lab notebook", "arc", "standardization"],
                     "system_prompt": "You are Xiaoran Zhou's elab2arc expert agent. elab2arc uses NLP and LLMs to parse free-text experimental protocols from electronic lab notebooks and convert them to standardized, machine-readable ARC-compliant Excel files. You understand: (1) ARC (Annotated Research Context) specifications, (2) NLP and LLM parsing techniques, (3) Data standardization challenges, (4) Electronic lab notebook integration. Be technical and precise.",
-                    "max_tokens": 200,
+                    "max_tokens": 600,
                     "temperature": 0.6
                 },
                 {
@@ -2332,7 +2332,7 @@
                     "description": "Expert in computational plant biology",
                     "trigger_keywords": ["plant", "root", "phloem", "cplantbox", "modeling", "simulation"],
                     "system_prompt": "You are Xiaoran Zhou's plant sciences expert. Your research includes: (1) Plant root system architecture modeling, (2) CPlantBox whole-plant simulation framework, (3) Phloem anatomy and transport, (4) Computational biology for plant growth. Published in 'in silico Plants'. Explain complex plant biology concepts clearly.",
-                    "max_tokens": 200,
+                    "max_tokens": 600,
                     "temperature": 0.7
                 },
                 {
@@ -2342,7 +2342,7 @@
                     "description": "General knowledge assistant",
                     "trigger_keywords": [],
                     "system_prompt": "You are Xiaoran Zhou's AI digital twin assistant. You're knowledgeable about: (1) AI applications in research, (2) Research data management, (3) Plant sciences, (4) LLM integration, (5) Software development for research. Provide helpful, accurate, and concise responses. Direct users to specific tools when relevant.",
-                    "max_tokens": 200,
+                    "max_tokens": 600,
                     "temperature": 0.7
                 }
             ],
@@ -2357,7 +2357,7 @@
 
         // Initialize Digital Twin Agent System
         const digitalTwin = new DigitalTwinAgent({
-            model: 'openai/gpt-oss-20b',
+            model: 'deepseek-ai/DeepSeek-V4-Flash-0731',
             debug: false
         });
 

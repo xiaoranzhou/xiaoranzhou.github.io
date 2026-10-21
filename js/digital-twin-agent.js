@@ -14,7 +14,7 @@ class DigitalTwinAgent {
     this.apiEndpoint = config.apiEndpoint || 'https://h.dataplan.top/';
     // Switched from openai/gpt-oss-20b in September 2026 after gpt-oss-20b was
     // scheduled for removal from the DataPLANT Community Server.
-    this.model = config.model || 'deepseek-ai/DeepSeek-V4-Flash-0731';
+    this.model = config.model || 'deepseek-ai/DeepSeek-V4.1-Flash-1017';
     this.agents = [];
     this.conversationHistory = [];
     this.currentAgent = null;
